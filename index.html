@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Inicio</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div class="container">
+		  	<div class="jumbotron">
+		    	<h1 style="text-align: center;">Autoescuela El multazo</h1> 
+		  	</div>
+			<nav class="navbar navbar-inverse">
+			  	<div class="container-fluid">
+			  		<div class="navbar-header">
+				      	<a class="navbar-brand" href="#" id="inicio">Inicio</a>
+				    </div>
+				    	<ul class="nav navbar-nav">
+				    		<!-- Altas -->
+				      		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Altas <span class="caret"></span></a>
+				        		<ul class="dropdown-menu">
+				          			<li><a href="#" id="btnAltaPersona">Alta Persona</a></li>
+				          			<li><a href="#" id="btnAltaMatricula">Alta Matricula</a></li>
+				          			<li><a href="#" id="btnAltaClases">Alta Clases</a></li>
+				          			<li><a href="#" id="btnAltaCoche">Alta Coche</a></li>
+				        		</ul>
+				      		</li>
+				      		<!-- Bajas -->
+					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Bajas <span class="caret"></span></a>
+					        	<ul class="dropdown-menu">
+					          		<li><a href="#" id="btnBajaPersona">Baja Persona</a></li>
+					          		<li><a href="#" id="btnBajaMatricula">Baja Matricula</a></li>
+					          		<li><a href="#" id="btnBajaCoche">Baja Coche</a></li>
+					        	</ul>
+					      	</li>
+					      	<!-- Listados -->
+					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados <span class="caret"></span></a>
+					        	<ul class="dropdown-menu">
+					          		<li><a href="#" id="btnListadoPersona">Listado Persona</a></li>
+					          		<li><a href="#" id="btnListadoMatricula">Listado Matricula</a></li>
+					          		<li><a href="#" id="btnListadoClases">Listado Clases</a></li>
+					          		<li><a href="#" id="btnListadoCoche">Listado Coche</a></li>
+					        	</ul>
+					      	</li>
+				   		</ul>
+			  	</div>
+			</nav>
+			<!-- Formulario de alta persona -->
+			<form name="formu_altaPersona">
+				<h3>Alta de personas</h3><br>
+			    <div class="form-group">
+			    	<label>Nombre</label>
+			    	<input type="text" class="form-control" name="altaPersonaNombre">
+			    	<br>
+			      	<label>Apellidos</label>
+			      	<input type="text" class="form-control" name="altaPersonaApellidos">
+			    	<br>
+			    	<label>DNI</label>
+			    	<input type="text" class="form-control" name="altaPersonaDni">
+			    	<br>
+			    	<label>Dirección</label>
+			    	<input type="text" class="form-control" name="altaPersonaDireccion">
+			    	<br>
+			    	<label>Email</label>
+			    	<input type="text" class="form-control" name="altaPersonaEmail">
+			    	<br>
+			    	<label>Teléfono</label>
+			    	<input type="text" class="form-control" name="altaPersonaTlf">
+			    	<div class="radio"> 
+		  				<label><input type="radio" name="persona" value="profesor">Profesor</label>
+		  				<label><input type="radio" name="persona" value="cliente" checked>Cliente</label>
+					</div>
+			   	</div>
+			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
+			   	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de alta matricula -->
+			<form name="formu_altaMatricula">
+				<h3>Alta de matrícula</h3><br>
+			    <div class="form-group">
+			      	<label>Veces que se ha examinado</label>
+			      	<input type="text" class="form-control" name="altaMatriculaVecesExamen">
+			    	<br>
+			      	<label>Cantidad abonada</label>
+			    	<input type="text" class="form-control" name="altaMatriculaCantidadAbonada">
+			    	<br>
+		  			<label>Fecha </label>
+		  			<input type="date" class="form-control" name="altaMatriculaFecha">
+		  			<br><br>
+			    	<label>DNI cliente</label>
+			    	<input type="text" class="form-control" name="altaMatriculaIdCliente">
+			    	<br>
+			    	<label>Identificador matricula</label>
+			    	<input type="text" class="form-control" name="altaMatriculaIdMatricula">
+			    	<br>
+			    	<label>Numero de practicas</label>
+			    	<input type="text" class="form-control" name="altaMatriculaNPracticas">
+			    	<br>
+			    	<label>Precio</label>
+			    	<input type="text" class="form-control" name="altaMatriculaPrecio">
+			   	</div>
+			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
+			   	<input name="mod" type="button" class="btn btn-default" value="Modificar">
+			   	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de alta clases -->
+			<form name="formu_altaClases">
+				<h3>Alta de clases</h3><br>
+			    <div class="form-group">
+			      	<label>ID</label>
+			      	<input type="text" class="form-control" name="altaClasesId">
+			    	<br>
+			    	<label>Duración (Por horas)</label>
+			      	<input type="text" class="form-control" name="altaClasesDuracion">
+			    	<br>
+		  			<label>Fecha </label>
+		  			<input type="date" class="form-control" name="altaClasesFecha">
+		  			<br><br>
+			    	<label>Hora</label>
+			    	<input type="text" class="form-control" name="altaClasesHora">
+			    	<div class="radio"> 
+		  				<label><input type="radio" name="clase" value="practica">Prácticas</label>
+		  				<label><input type="radio" name="clase" value="teorica" checked>Teóricas</label>
+					</div>
+					<label>Tarifa por horas (Rellenar campo si se selecciona Prácticas)</label>
+			    	<input type="text" class="form-control" name="altaClasesTarifa">
+			    	<br>
+			    	<label>Aforo (Rellenar campo si se selecciona Teóricas)</label>
+			    	<input type="text" class="form-control" name="altaClasesAforo">
+			    	<br>
+			   	</div>
+			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
+			   	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de alta coche -->
+			<form name="formu_altaCoche">
+				<h3>Alta de coche</h3><br>
+			    <div class="form-group">
+			      	<label>Marca</label>
+			      	<input type="text" class="form-control" name="altaCocheMarca">
+			    	<br>
+			      	<label>Matrícula</label>
+			    	<input type="text" class="form-control" name="altaCocheMatricula">
+			    	<br>
+			    	<label>Modelo</label>
+			    	<input type="text" class="form-control" name="altaCocheModelo">
+			   	</div>
+			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
+			   	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de baja persona -->
+			<form name="formu_bajaPersona">
+				<h3>Baja de personas</h3><br>
+			    <div class="form-group">
+			    	<label>DNI</label>
+			    	<input type="text" class="form-control" name="bajaCocheDni">
+			   	</div>
+			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
+			  	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de baja matricula -->
+			<form name="formu_bajaMatricula">
+				<h3>Baja de matrícula</h3><br>
+			    <div class="form-group">
+			      	<label>Identificador matricula</label>
+			    	<input type="text" class="form-control" name="bajaCocheIdentificador">
+			   	</div>
+			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
+			  	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de baja coche -->
+			<form name="formu_bajaCoche">
+				<h3>Baja de coche</h3><br>
+			    <div class="form-group">
+			      	<label>Matrícula</label>
+			    	<input type="text" class="form-control" name="bajaCocheMatricula">
+			   	</div>
+			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
+			  	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+		</div>
+		<script type="text/javascript" src="js/objetos.js"></script>
+		<script type="text/javascript" src="js/principal.js"></script>
+	</body>
+</html>
