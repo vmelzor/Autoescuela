@@ -2,7 +2,6 @@
 	border-color: red; 
 }
 
-
-/*.formularios{
-	display: none;
-}*/
+th, td {
+  	padding: 5px;
+}
