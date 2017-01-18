@@ -331,10 +331,10 @@ function frmAltaMatricula(){
 		if(oPersona instanceof Object){
 			var oMatricula = new Matriculas(sCantidad, dFecha, oPersona, sIdentificador, sNPracticas, sPrecio);
 			sMensaje = oAutoescuela.altaMatriculas(oMatricula);
+			oForm.reset();
 			alert(sMensaje);
 		}else{
 			alert(oPersona);
-			
 		}
 	}else{
 		alert(sErrores);
@@ -447,11 +447,11 @@ function frmAltaClases(){
 			sMensaje = oAutoescuela.altaClases(oPractica);
 			alert(sMensaje);
 		}else{
-			// alert(sAforo);
 			var oTeorica = new Teoricas(sIdentificador, sDuracion, dFecha, sHora, sAforo);
 			sMensaje = oAutoescuela.altaClases(oTeorica);
 			alert(sMensaje);
 		}
+		oForm.reset();
 	}else{
 		alert(sErrores);
 	}
@@ -511,6 +511,7 @@ function frmAltaCoche(){
 		//Aquí es donde se hacen los metodos para añadir el coche al modelo
 		var oCoche = new Coche(sMarca, sMatricula, sModelo);
 		var sMensaje = oAutoescuela.altaCoche(oCoche);
+		oForm.reset();
 		alert(sMensaje);
 	}else{
 		alert(sErrores);
@@ -538,6 +539,7 @@ function frmBajaPersona(){
 		oForm.bajaPersonaDni.className = "form-control";
 		//Aqui es donde se hacen los metodos para quitar una persona del modelo
 		var sMensaje = oAutoescuela.bajaPersona(sDni);
+		oForm.reset();
 		alert(sMensaje);
 	}
 }
@@ -558,6 +560,7 @@ function frmBajaMatricula(){
 		oForm.bajaCocheIdentificador.className = "form-control";
 		//Aqui es donde se hacen los metodos para quitar una matricula del modelo
 		var sMensaje = oAutoescuela.bajaMatricula(sIdentificador);
+		oForm.reset();
 		alert(sMensaje);
 	}
 }
@@ -578,6 +581,7 @@ function frmBajaCoche(){
 		oForm.bajaCocheMatricula.className = "form-control";
 		//Aqui es donde se hacen los metodos para quitar un coche del modelo
 		var sMensaje = oAutoescuela.bajaCoche(sMatricula);
+		oForm.reset();
 		alert(sMensaje);
 	}
 }
@@ -600,6 +604,7 @@ function frmAprobarTeorico(){
 		//Desmarcar error
 		oForm.aprobarTeoricoMatricula.className = "form-control";
 		var sMensaje = oAutoescuela.apruebaTeorico(sIdentificador);
+		oForm.reset();
 		alert(sMensaje);
 	}
 }
@@ -618,6 +623,7 @@ function frmAprobarPractico(){
 		//Desmarcar error
 		oForm.aprobarPracticoMatricula.className = "form-control";
 		var sMensaje = oAutoescuela.apruebaPractico(sIdentificador);
+		oForm.reset();
 		alert(sMensaje);
 	}
 }
@@ -660,6 +666,7 @@ function frmMatricularCliente(){
 	if (bValido) {
 		//Aquí es donde se hacen los metodos para matricular al cliente
 		var sMensaje = oAutoescuela.matricularClienteEnClases(sDni, sIdentificador);
+		oForm.reset();
 		alert(sMensaje);
 	}else{
 		alert(sErrores);
@@ -704,6 +711,7 @@ function frmAsignarProfesorAClase(){
 	if (bValido) {
 		//Aquí es donde se hacen los metodos para matricular al cliente
 		var sMensaje = oAutoescuela.AsignarProfesorAClases(sDni, sIdentificador);
+		oForm.reset();
 		alert(sMensaje);
 	}else{
 		alert(sErrores);
