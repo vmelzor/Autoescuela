@@ -37,6 +37,13 @@
 					          		<li><a href="#" id="btnBajaCoche">Baja Coche</a></li>
 					        	</ul>
 					      	</li>
+					      	<!-- Modificaciones -->
+					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Aprobar <span class="caret"></span></a>
+					        	<ul class="dropdown-menu">
+					          		<li><a href="#" id="btnAprobarTeorico">Aprobar Teórico</a></li>
+					      			<li><a href="#" id="btnAprobarPractico">Aprobar Práctico</a></li>
+					        	</ul>
+					      	</li>
 					      	<!-- Listados -->
 					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados <span class="caret"></span></a>
 					        	<ul class="dropdown-menu">
@@ -46,9 +53,12 @@
 					          		<li><a href="#" id="btnListadoCoche">Listado Coche</a></li>
 					        	</ul>
 					      	</li>
+					      	<li><a href="#" id="btnMatricularCliente">Matricular Cliente</a></li>
+					      	<li><a href="#" id="btnAsignarProfesorAClase">Asignar Profesor a Clase</a></li>
 				   		</ul>
 			  	</div>
 			</nav>
+			<div id="capa"></div>
 			<!-- Formulario de alta persona -->
 			<form name="formu_altaPersona">
 				<h3>Alta de personas</h3><br>
@@ -74,6 +84,8 @@
 		  				<label><input type="radio" name="persona" value="profesor">Profesor</label>
 		  				<label><input type="radio" name="persona" value="cliente" checked>Cliente</label>
 					</div>
+			    	<label>ID </label>
+			    	<input type="text" class="form-control" name="altaPersonaId">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
 			   	<input type="reset" class="btn btn-default" value="Borrar">
@@ -82,9 +94,6 @@
 			<form name="formu_altaMatricula">
 				<h3>Alta de matrícula</h3><br>
 			    <div class="form-group">
-			      	<label>Veces que se ha examinado</label>
-			      	<input type="text" class="form-control" name="altaMatriculaVecesExamen">
-			    	<br>
 			      	<label>Cantidad abonada</label>
 			    	<input type="text" class="form-control" name="altaMatriculaCantidadAbonada">
 			    	<br>
@@ -92,7 +101,7 @@
 		  			<input type="date" class="form-control" name="altaMatriculaFecha">
 		  			<br><br>
 			    	<label>DNI cliente</label>
-			    	<input type="text" class="form-control" name="altaMatriculaIdCliente">
+			    	<input type="text" class="form-control" name="altaMatriculaDniCliente">
 			    	<br>
 			    	<label>Identificador matricula</label>
 			    	<input type="text" class="form-control" name="altaMatriculaIdMatricula">
@@ -104,7 +113,6 @@
 			    	<input type="text" class="form-control" name="altaMatriculaPrecio">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
-			   	<input name="mod" type="button" class="btn btn-default" value="Modificar">
 			   	<input type="reset" class="btn btn-default" value="Borrar">
 			</form>
 			<!-- Formulario de alta clases -->
@@ -157,7 +165,7 @@
 				<h3>Baja de personas</h3><br>
 			    <div class="form-group">
 			    	<label>DNI</label>
-			    	<input type="text" class="form-control" name="bajaCocheDni">
+			    	<input type="text" class="form-control" name="bajaPersonaDni">
 			   	</div>
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
 			  	<input type="reset" class="btn btn-default" value="Borrar">
@@ -182,6 +190,49 @@
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
 			  	<input type="reset" class="btn btn-default" value="Borrar">
 			</form>
+			<!-- Formulario de aprobar teórico -->
+			<form name="formu_aprobarTeorico">
+				<h3>Aprobar Teorico</h3><br>
+			    <div class="form-group">
+			      	<label>ID Matricula</label>
+			    	<input type="text" class="form-control" name="aprobarTeoricoMatricula">
+			   	</div>
+			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
+			  	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de aprobar Practico -->
+			<form name="formu_aprobarPractico">
+				<h3>Aprobar Práctico</h3><br>
+			    <div class="form-group">
+			      	<label>ID Matricula</label>
+			    	<input type="text" class="form-control" name="aprobarPracticoMatricula">
+			   	</div>
+			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
+			  	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de matriculacion de cliente -->
+			<form name="formu_matricularCliente">
+				<h3>Matricular Cliente en Clase</h3><br>
+			    <div class="form-group">
+			      	<label>DNI Cliente</label>
+			    	<input type="text" class="form-control" name="matricularClienteDni">
+			    	<br>
+			    	<label>ID Clases</label>
+			    	<input type="text" class="form-control" name="matricularClienteId">
+			   	</div>
+			   	<input type="button" name="mod" class="btn btn-default" value="Matricular Cliente">
+			  	<input type="reset" class="btn btn-default" value="Borrar">
+			</form>
+			<!-- Formulario de aprobar Practico -->
+			<!-- <form name="formu_aprobarPractico">
+				<h3>Aprobar Práctico</h3><br>
+			    <div class="form-group">
+			      	<label>ID Matricula</label>
+			    	<input type="text" class="form-control" name="aprobarPracticoMatricula">
+			   	</div>
+			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
+			  	<input type="reset" class="btn btn-default" value="Borrar">
+			</form> -->
 		</div>
 		<script type="text/javascript" src="js/objetos.js"></script>
 		<script type="text/javascript" src="js/principal.js"></script>
