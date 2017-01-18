@@ -13,7 +13,7 @@ document.getElementById("btnBajaCoche").addEventListener("click", mostrarBajaCoc
 document.getElementById("btnAprobarTeorico").addEventListener("click", mostrarAprobarTeorico); 
 document.getElementById("btnAprobarPractico").addEventListener("click", mostrarAprobarPractico); 
 document.getElementById("btnMatricularCliente").addEventListener("click", mostrarMatricularCliente); 
-
+document.getElementById("btnAsignarProfesorAClase").addEventListener("click", mostrarAsignarProfesorAClase); 
 document.getElementById("btnListadoPersona").addEventListener("click", listadoPersona);
 document.getElementById("btnListadoMatricula").addEventListener("click", listadoMatriculas);
 document.getElementById("btnListadoClases").addEventListener("click", listadoClases);
@@ -70,6 +70,11 @@ function mostrarMatricularCliente(){
 	document.formu_matricularCliente.style.display = "block";
 	document.formu_matricularCliente.reset();
 }
+function mostrarAsignarProfesorAClase(){
+	ocultarFormularios();
+	document.formu_asignarProfesor.style.display = "block";
+	document.formu_asignarProfesor.reset();	
+}
 //Funcion que oculta todos los formularios
 function ocultarFormularios(){
 	document.formu_altaPersona.style.display = "none";
@@ -82,6 +87,7 @@ function ocultarFormularios(){
 	document.formu_aprobarTeorico.style.display = "none";
 	document.formu_aprobarPractico.style.display = "none";
 	document.formu_matricularCliente.style.display = "none";
+	document.formu_asignarProfesor.style.display = "none";
 	document.getElementById("capa").style.display = "none";
 }
 
@@ -97,12 +103,14 @@ document.formu_bajaCoche.baja.addEventListener("click", frmBajaCoche);
 document.formu_aprobarTeorico.mod.addEventListener("click", frmAprobarTeorico);
 document.formu_aprobarPractico.mod.addEventListener("click", frmAprobarPractico);
 document.formu_matricularCliente.mod.addEventListener("click", frmMatricularCliente);
+document.formu_asignarProfesor.mod.addEventListener("click", frmAsignarProfesorAClase);
 
 
 
 //////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////ALTAS////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
+
 //Funcion para dar de alta a una persona
 function frmAltaPersona(){
 	var oForm = document.formu_altaPersona;
@@ -218,6 +226,7 @@ function frmAltaPersona(){
 			var oCliente = new Cliente(sApellidos,sDireccion, sDni, sEmail, sNombre, sTlf, sID);
 			sMensaje = oAutoescuela.altaPersona(oCliente);
 		}
+		oForm.reset();
 		alert(sMensaje);
 	}else{
 		alert(sErrores);
@@ -658,7 +667,47 @@ function frmMatricularCliente(){
 }
 
 function frmAsignarProfesorAClase(){
+	var oForm = document.formu_asignarProfesor;
+	var bValido = true;
+	var sErrores = "";
 
+	//campo dni cliente
+	var sDni = oForm.asignarProfDni.value.trim();
+	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
+	if (oExpReg.test(sDni) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "\nDNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+		//Marcar error
+		oForm.asignarProfDni.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.asignarProfDni.className = "form-control";
+	}
+	//Campo ID
+	var sIdentificador = oForm.asignarProfId.value.trim();
+	var oExpReg = /^[0-9]{1,10}$/; 
+	if (oExpReg.test(sIdentificador) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "\nIdentificador incorrecto (Sintaxis:  1-10 numeros)";
+		//Marcar error
+		oForm.asignarProfId.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.asignarProfId.className = "form-control";
+	}
+
+	//Comprobamos si el formulario es valido y matriculamos cliente
+	if (bValido) {
+		//Aquí es donde se hacen los metodos para matricular al cliente
+		var sMensaje = oAutoescuela.AsignarProfesorAClases(sDni, sIdentificador);
+		alert(sMensaje);
+	}else{
+		alert(sErrores);
+	}
 }
 
 
