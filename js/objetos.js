@@ -779,6 +779,7 @@ Autoescuela.prototype.AsignarProfesorAClases = function (sDNI, iID){
 			}
 		}
 	}
+	return strMensaje;
 }
 
 Autoescuela.prototype.bajaPersona = function(sDNI){
