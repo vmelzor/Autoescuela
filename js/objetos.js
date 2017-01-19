@@ -1065,7 +1065,7 @@ Autoescuela.prototype.ListadoPersonas = function (Clave, Valor){
 	return Tabla;//Devolvemos la tabla ya preparada para insertarla en el documento
 }
 
-Autoescuela.prototype.ListadoCoches = function (){
+Autoescuela.prototype.ListadoCoches = function (Clave, Valor){
 	//Creamos la tabla
 	var Tabla   = document.createElement("table");
 	Tabla.setAttribute("border","1");
@@ -1089,8 +1089,36 @@ Autoescuela.prototype.ListadoCoches = function (){
 	//Fin de encabezado
 	tblBody.appendChild(fila);
 	
-	for(var i = 0; i < this.arrCoches.length; i++){
-		tblBody.appendChild(this.arrCoches[i].toHTMLRow());
+	var arrBusqueda = [];
+	switch(Clave){
+		case "Marca":
+			for(var j = 0; j < this.arrCoches.length; j++){
+				if(this.arrCoches[j].Marca == Valor){
+					arrBusqueda.push(this.arrCoches[j]);
+				}
+			}
+		break;
+		case "Matricula":
+			for(var j = 0; j < this.arrCoches.length; j++){
+				if(this.arrCoches[j].Matricula == Valor){
+					arrBusqueda.push(this.arrCoches[j]);
+				}
+			}
+		break;
+		case "Modelo":
+			for(var j = 0; j < this.arrCoches.length; j++){
+				if(this.arrCoches[j].Modelo == Valor){
+					arrBusqueda.push(this.arrCoches[j]);
+				}
+			}
+		break;
+	}
+	
+	if(Clave == ""){
+		arrBusqueda = this.arrCoches;
+	}
+	for(var i = 0; i < arrBusqueda.length; i++){
+		tblBody.appendChild(arrBusqueda[i].toHTMLRow());
 	}
 	
 	Tabla.appendChild(tblBody);
@@ -1098,7 +1126,7 @@ Autoescuela.prototype.ListadoCoches = function (){
 	return Tabla;//Devolvemos la tabla ya preparada para insertarla en el documento
 }
 
-Autoescuela.prototype.ListadoMatriculas = function (){
+Autoescuela.prototype.ListadoMatriculas = function (Clave, Valor){
 	//Creamos la tabla
 	var Tabla   = document.createElement("table");
 	Tabla.setAttribute("border","1");
@@ -1152,8 +1180,81 @@ Autoescuela.prototype.ListadoMatriculas = function (){
 	//Fin de encabezado
 	tblBody.appendChild(fila);
 	
-	for(var i = 0; i < this.arrMatriculas.length; i++){
-		tblBody.appendChild(this.arrMatriculas[i].toHTMLRow());
+	/*
+	this.CantidadAbonada = fCantidadAbonada;
+	this.ExPracticaPass = false;
+	this.ExTeoricoPass = false;
+	this.Fecha = dFecha;
+	this.Cliente = oCliente;
+	this.IdMatricula = sIdMatricula;
+	this.NumeroPracticas = iNumPracticas;
+	this.Precio = fPrecio;*/
+	
+	var arrBusqueda = [];
+	switch(Clave){
+		case "Identificador Matricula":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				if(this.arrMatriculas[j].IdMatricula == Valor){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "Examen Teorico aprobado":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				var auxiliar;
+				if(Valor == "SI"){
+					auxiliar = true;
+				}
+				else{
+					auxiliar = false;
+				}
+				if(this.arrMatriculas[j].ExTeoricoPass == auxiliar){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "Examen Practico aprobado":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				var auxiliar;
+				if(Valor == "SI"){
+					auxiliar = true;
+				}
+				else{
+					auxiliar = false;
+				}
+				if(this.arrMatriculas[j].ExPracticaPass == auxiliar){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "Fecha":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				if(this.arrMatriculas[j].Fecha == Valor){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "DNI Cliente":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				if(this.arrMatriculas[j].Cliente.DNI == Valor){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "Nombre Cliente":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				if(this.arrMatriculas[j].Cliente.Nombre == Valor){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+	}
+	
+	if(Clave == ""){
+		arrBusqueda = this.arrMatriculas;
+	}
+	for(var i = 0; i < arrBusqueda.length; i++){
+		tblBody.appendChild(arrBusqueda[i].toHTMLRow());
 	}
 	
 	Tabla.appendChild(tblBody);
