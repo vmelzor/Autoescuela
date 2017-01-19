@@ -75,6 +75,11 @@ function mostrarAsignarProfesorAClase(){
 	document.formu_asignarProfesor.style.display = "block";
 	document.formu_asignarProfesor.reset();	
 }
+function mostrarListadoClase(){
+	ocultarFormularios();
+	document.formu_busquedaAvanzada.style.display = "block";
+	document.formu_busquedaAvanzada.reset();	
+}
 //Funcion que oculta todos los formularios
 function ocultarFormularios(){
 	document.formu_altaPersona.style.display = "none";
@@ -88,7 +93,13 @@ function ocultarFormularios(){
 	document.formu_aprobarPractico.style.display = "none";
 	document.formu_matricularCliente.style.display = "none";
 	document.formu_asignarProfesor.style.display = "none";
+	document.formu_busquedaAvanzada.style.display = "none";
 	document.getElementById("capa").style.display = "none";
+	//Recojo en la array inputs todos los input que tengan las clase error 
+	var inputs = document.querySelectorAll("input.error");
+	for (var i=0; i<inputs.length; i++) {
+		inputs[i].className = "form-control";
+	}
 }
 
 
@@ -104,6 +115,7 @@ document.formu_aprobarTeorico.mod.addEventListener("click", frmAprobarTeorico);
 document.formu_aprobarPractico.mod.addEventListener("click", frmAprobarPractico);
 document.formu_matricularCliente.mod.addEventListener("click", frmMatricularCliente);
 document.formu_asignarProfesor.mod.addEventListener("click", frmAsignarProfesorAClase);
+document.formu_busquedaAvanzada.buscar.addEventListener("click", listadoClasesConValores);
 
 
 
@@ -124,7 +136,7 @@ function frmAltaPersona(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nNombre incorrecto (Sintaxis: 2-40 Digitos)";
+		sErrores += "Nombre incorrecto (Sintaxis: 2-40 Digitos)";
 		//Marcar error
 		oForm.altaPersonaNombre.className = "form-control error";
 	}else{
@@ -138,7 +150,7 @@ function frmAltaPersona(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nApellidos incorrecto (Sintaxis: 3-40 Digitos)";
+		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos)";
 		//Marcar error
 		oForm.altaPersonaApellidos.className = "form-control error";
 	}else{
@@ -152,7 +164,7 @@ function frmAltaPersona(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nDNI incorrecto  (Sintaxis: XXXXXXXX-A)";
+		sErrores += "<br>DNI incorrecto  (Sintaxis: XXXXXXXX-A)";
 		//Marcar error
 		oForm.altaPersonaDni.className = "form-control error";
 	}else{
@@ -166,7 +178,7 @@ function frmAltaPersona(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nDireccion incorrecta (Sintaxis: 10-40 Digitos)";
+		sErrores += "<br>Direccion incorrecta (Sintaxis: 10-40 Digitos)";
 		//Marcar error
 		oForm.altaPersonaDireccion.className = "form-control error";
 	}else{
@@ -180,7 +192,7 @@ function frmAltaPersona(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nEmail incorrecto (Sintaxis:  nombreusuario@servidor.dominio)";
+		sErrores += "<br>Email incorrecto (Sintaxis:  nombreusuario@servidor.dominio)";
 		//Marcar error
 		oForm.altaPersonaEmail.className = "form-control error";
 	}else {
@@ -194,7 +206,7 @@ function frmAltaPersona(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nTelefono incorrecto (Sintaxis: 9 Digitos)";
+		sErrores += "<br>Telefono incorrecto (Sintaxis: 9 Digitos)";
 		//Marcar error
 		oForm.altaPersonaTlf.className = "form-control error";
 	}else {
@@ -208,7 +220,7 @@ function frmAltaPersona(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nID incorrecto (Sintaxis: 1-10 numeros)";
+		sErrores += "<br>ID incorrecto (Sintaxis: 1-10 numeros)";
 		//Marcar error
 		oForm.altaPersonaId.className = "form-control error";
 	}else {
@@ -227,9 +239,9 @@ function frmAltaPersona(){
 			sMensaje = oAutoescuela.altaPersona(oCliente);
 		}
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}else{
-		alert(sErrores);
+		toastr.error(sErrores);
 	}
 }
 
@@ -247,7 +259,7 @@ function frmAltaMatricula(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nCantidad abonado incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
+		sErrores += "Cantidad abonado incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
 		//Marcar error
 		oForm.altaMatriculaCantidadAbonada.className = "form-control error";
 	}else{
@@ -260,7 +272,7 @@ function frmAltaMatricula(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nFecha incorrecta";
+		sErrores += "<br>Fecha incorrecta";
 		//Marcar error
 		oForm.altaMatriculaFecha.className = "form-control error";
 	}else{
@@ -274,7 +286,7 @@ function frmAltaMatricula(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nDNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "<br>DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
 		oForm.altaMatriculaDniCliente.className = "form-control error";
 	}else{
@@ -288,7 +300,7 @@ function frmAltaMatricula(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nIdentificador de matricula incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "<br>Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
 		oForm.altaMatriculaIdMatricula.className = "form-control error";
 	}else{
@@ -302,7 +314,7 @@ function frmAltaMatricula(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nNº de practicas incorrectas (Sintaxis: De 0 al 99)";
+		sErrores += "<br>Nº de practicas incorrectas (Sintaxis: De 0 al 99)";
 		//Marcar error
 		oForm.altaMatriculaNPracticas.className = "form-control error";
 	}else{
@@ -316,7 +328,7 @@ function frmAltaMatricula(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nPrecio incorrecto (Sintaxis: Numeros enteros o decimales(con .))";
+		sErrores += "<br>Precio incorrecto (Sintaxis: Numeros enteros o decimales(con .))";
 		//Marcar error
 		oForm.altaMatriculaPrecio.className = "form-control error";
 	}else{
@@ -332,12 +344,12 @@ function frmAltaMatricula(){
 			var oMatricula = new Matriculas(sCantidad, dFecha, oPersona, sIdentificador, sNPracticas, sPrecio);
 			sMensaje = oAutoescuela.altaMatriculas(oMatricula);
 			oForm.reset();
-			alert(sMensaje);
+			toastr.success(sMensaje);
 		}else{
-			alert(oPersona);
+			toastr.error(oPersona);
 		}
 	}else{
-		alert(sErrores);
+		toastr.error(sErrores);
 	}
 }
 
@@ -354,7 +366,7 @@ function frmAltaClases(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nIdentificador incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "Identificador incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
 		oForm.altaClasesId.className = "form-control error";
 	}else{
@@ -368,7 +380,7 @@ function frmAltaClases(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nDuracion incorrecta (Sintaxis: Del 1 al 999)";
+		sErrores += "<br>Duracion incorrecta (Sintaxis: Del 1 al 999)";
 		//Marcar error
 		oForm.altaClasesDuracion.className = "form-control error";
 	}else{
@@ -381,7 +393,7 @@ function frmAltaClases(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nFecha incorrecta";
+		sErrores += "<br>Fecha incorrecta";
 		//Marcar error
 		oForm.altaClasesFecha.className = "form-control error";
 	}else{
@@ -394,7 +406,7 @@ function frmAltaClases(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nHora incorrecta (Sintaxis: HH:MM)";
+		sErrores += "<br>Hora incorrecta (Sintaxis: HH:MM)";
 		//Marcar error
 		oForm.altaClasesHora.className = "form-control error";
 	}else{
@@ -410,7 +422,7 @@ function frmAltaClases(){
 			if(bValido == true){
 				bValido = false;		
 			}
-			sErrores += "\nTarifa incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
+			sErrores += "<br>Tarifa incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
 			//Marcar error
 			oForm.altaClasesTarifa.className = "form-control error";
 			oForm.altaClasesAforo.className = "form-control";
@@ -427,7 +439,7 @@ function frmAltaClases(){
 			if(bValido == true){
 				bValido = false;	
 			}
-			sErrores += "\nAforo incorrecto (Sintaxis: Del 1 al 99)";
+			sErrores += "<br>Aforo incorrecto (Sintaxis: Del 1 al 99)";
 			//Marcar error
 			oForm.altaClasesAforo.className = "form-control error";
 			oForm.altaClasesTarifa.className = "form-control";
@@ -445,15 +457,14 @@ function frmAltaClases(){
 		if (oForm.clase.value == "practica"){
 			var oPractica = new Practicas(sIdentificador, sDuracion, dFecha, sHora, sTarifa);
 			sMensaje = oAutoescuela.altaClases(oPractica);
-			alert(sMensaje);
 		}else{
 			var oTeorica = new Teoricas(sIdentificador, sDuracion, dFecha, sHora, sAforo);
 			sMensaje = oAutoescuela.altaClases(oTeorica);
-			alert(sMensaje);
 		}
+		toastr.success(sMensaje);
 		oForm.reset();
 	}else{
-		alert(sErrores);
+		toastr.error(sErrores);
 	}
 }
 
@@ -470,7 +481,7 @@ function frmAltaCoche(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nMarca incorrecta (Sintaxis: 3-20 Digitos)";
+		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos)";
 		//Marcar error
 		oForm.altaCocheMarca.className = "form-control error";
 	}else{
@@ -484,7 +495,7 @@ function frmAltaCoche(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nMatricula incorrecta (Sintaxis: XXXX AAA)";
+		sErrores += "<br>Matricula incorrecta (Sintaxis: XXXX AAA)";
 		//Marcar error
 		oForm.altaCocheMatricula.className = "form-control error";
 	}else{
@@ -498,7 +509,7 @@ function frmAltaCoche(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "\nModelo incorrecto (Sintaxis: 3-20 Digitos)";
+		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos)";
 		//Marcar error
 		oForm.altaCocheModelo.className = "form-control error";
 	}else{
@@ -512,9 +523,9 @@ function frmAltaCoche(){
 		var oCoche = new Coche(sMarca, sMatricula, sModelo);
 		var sMensaje = oAutoescuela.altaCoche(oCoche);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}else{
-		alert(sErrores);
+		toastr.error(sErrores);
 	}
 }
 
@@ -531,7 +542,7 @@ function frmBajaPersona(){
 	var sDni = oForm.bajaPersonaDni.value.trim();
 	var oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
 	if (oExpReg.test(sDni) == false){
-		alert("DNI incorrecto  (Sintaxis: XXXXXXXX-A)");
+		toastr.error("DNI incorrecto  (Sintaxis: XXXXXXXX-A)");
 		//Marcar error
 		oForm.bajaPersonaDni.className = "form-control error";
 	}else{
@@ -540,7 +551,7 @@ function frmBajaPersona(){
 		//Aqui es donde se hacen los metodos para quitar una persona del modelo
 		var sMensaje = oAutoescuela.bajaPersona(sDni);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}
 }
 
@@ -552,7 +563,7 @@ function frmBajaMatricula(){
 	var sIdentificador = oForm.bajaCocheIdentificador.value.trim();
 	var oExpReg = /^[0-9]{1,10}$/; 
 	if (oExpReg.test(sIdentificador) == false){
-		alert("Matricula incorrecta  (Sintaxis:  1-10 numeros)");
+		toastr.error("Matricula incorrecta  (Sintaxis:  1-10 numeros)");
 		//Marcar error
 		oForm.bajaCocheIdentificador.className = "form-control error";
 	}else{
@@ -561,7 +572,7 @@ function frmBajaMatricula(){
 		//Aqui es donde se hacen los metodos para quitar una matricula del modelo
 		var sMensaje = oAutoescuela.bajaMatricula(sIdentificador);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}
 }
 
@@ -573,7 +584,7 @@ function frmBajaCoche(){
 	var sMatricula = oForm.bajaCocheMatricula.value.trim();
 	var oExpReg = /^[1-9]{4}\s[a-zA-Z]{3}/;
 	if (oExpReg.test(sMatricula) == false){
-		alert("Matricula incorrecta  (Sintaxis: XXXX AAA)");
+		toastr.error("Matricula incorrecta  (Sintaxis: XXXX AAA)");
 		//Marcar error
 		oForm.bajaCocheMatricula.className = "form-control error";
 	}else{
@@ -582,7 +593,7 @@ function frmBajaCoche(){
 		//Aqui es donde se hacen los metodos para quitar un coche del modelo
 		var sMensaje = oAutoescuela.bajaCoche(sMatricula);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}
 }
 
@@ -597,7 +608,7 @@ function frmAprobarTeorico(){
 	var sIdentificador = oForm.aprobarTeoricoMatricula.value.trim();
 	oExpReg = /^[0-9]{1,10}$/; 
 	if (oExpReg.test(sIdentificador) == false){
-		alert("Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)");
+		toastr.error("Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)");
 		//Marcar error
 		oForm.aprobarTeoricoMatricula.className = "form-control error";
 	}else{
@@ -605,7 +616,7 @@ function frmAprobarTeorico(){
 		oForm.aprobarTeoricoMatricula.className = "form-control";
 		var sMensaje = oAutoescuela.apruebaTeorico(sIdentificador);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}
 }
 
@@ -616,7 +627,7 @@ function frmAprobarPractico(){
 	var sIdentificador = oForm.aprobarPracticoMatricula.value.trim();
 	oExpReg = /^[0-9]{1,10}$/; 
 	if (oExpReg.test(sIdentificador) == false){
-		alert("Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)");
+		toastr.error("Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)");
 		//Marcar error
 		oForm.aprobarPracticoMatricula.className = "form-control error";
 	}else{
@@ -624,7 +635,7 @@ function frmAprobarPractico(){
 		oForm.aprobarPracticoMatricula.className = "form-control";
 		var sMensaje = oAutoescuela.apruebaPractico(sIdentificador);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}
 }
 
@@ -640,7 +651,7 @@ function frmMatricularCliente(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nDNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
 		oForm.matricularClienteDni.className = "form-control error";
 	}else{
@@ -654,7 +665,7 @@ function frmMatricularCliente(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nIdentificador incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "<br>Identificador incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
 		oForm.matricularClienteId.className = "form-control error";
 	}else{
@@ -667,9 +678,9 @@ function frmMatricularCliente(){
 		//Aquí es donde se hacen los metodos para matricular al cliente
 		var sMensaje = oAutoescuela.matricularClienteEnClases(sDni, sIdentificador);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}else{
-		alert(sErrores);
+		toastr.error(sErrores);
 	}
 }
 
@@ -685,7 +696,7 @@ function frmAsignarProfesorAClase(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nDNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
 		oForm.asignarProfDni.className = "form-control error";
 	}else{
@@ -699,7 +710,7 @@ function frmAsignarProfesorAClase(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "\nIdentificador incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "<br>Identificador incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
 		oForm.asignarProfId.className = "form-control error";
 	}else{
@@ -712,9 +723,9 @@ function frmAsignarProfesorAClase(){
 		//Aquí es donde se hacen los metodos para matricular al cliente
 		var sMensaje = oAutoescuela.AsignarProfesorAClases(sDni, sIdentificador);
 		oForm.reset();
-		alert(sMensaje);
+		toastr.success(sMensaje);
 	}else{
-		alert(sErrores);
+		toastr.error(sErrores);
 	}
 }
 
@@ -767,14 +778,25 @@ function listadoMatriculas(){
 
 function listadoClases(){
 	ocultarFormularios();
+	document.formu_busquedaAvanzada.style.display = "block";
+	document.formu_busquedaAvanzada.reset();
+	listadoClasesAvanzados("","");
+}
+
+function listadoClasesConValores(){
+	var oForm = document.formu_busquedaAvanzada;
+
+	var sClave = oForm.busquedaAvanzadaClave.value.trim();
+	var sValor = oForm.busquedaAvanzadaValor.value.trim();
+	listadoClasesAvanzados(sClave, sValor);
+}
+
+function listadoClasesAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
 	oCapa.style.display = "block";
 	if(cont > 0){
 		oCapa.removeChild(oCapa.childNodes[0]);
-		oCapa.appendChild(oAutoescuela.listadoClases("",""));
 	}
-	else{
-		oCapa.appendChild(oAutoescuela.listadoClases("",""));
-	}
+	oCapa.appendChild(oAutoescuela.listadoClases(clave,valor));
 	cont++;
 }

@@ -904,7 +904,6 @@ Autoescuela.prototype.listadoClases = function(Clave, Valor){
     fila.appendChild(celdaCabecera);
 	//Fin de encabezado
 	tblBody.appendChild(fila);
-	
 	var arrBusqueda = [];
 	switch(Clave){
 		case "Identificador":

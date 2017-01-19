@@ -7,6 +7,9 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
@@ -53,12 +56,11 @@
 					          		<li><a href="#" id="btnListadoCoche">Listado Coche</a></li>
 					        	</ul>
 					      	</li>
-					      	<li><a href="#" id="btnMatricularCliente">Matricular Cliente</a></li>
+					      	<li><a href="#" id="btnMatricularCliente">Matricular Cliente en Clase</a></li>
 					      	<li><a href="#" id="btnAsignarProfesorAClase">Asignar Profesor a Clase</a></li>
 				   		</ul>
 			  	</div>
 			</nav>
-			<div id="capa"></div>
 			<!-- Formulario de alta persona -->
 			<form name="formu_altaPersona">
 				<h3>Alta de personas</h3><br>
@@ -88,7 +90,7 @@
 			    	<input type="text" class="form-control" name="altaPersonaId">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
-			   	<input type="reset" class="btn btn-default" value="Borrar">
+			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de alta matricula -->
 			<form name="formu_altaMatricula">
@@ -113,7 +115,7 @@
 			    	<input type="text" class="form-control" name="altaMatriculaPrecio">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
-			   	<input type="reset" class="btn btn-default" value="Borrar">
+			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de alta clases -->
 			<form name="formu_altaClases">
@@ -142,7 +144,7 @@
 			    	<br>
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
-			   	<input type="reset" class="btn btn-default" value="Borrar">
+			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de alta coche -->
 			<form name="formu_altaCoche">
@@ -158,7 +160,7 @@
 			    	<input type="text" class="form-control" name="altaCocheModelo">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
-			   	<input type="reset" class="btn btn-default" value="Borrar">
+			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de baja persona -->
 			<form name="formu_bajaPersona">
@@ -168,7 +170,7 @@
 			    	<input type="text" class="form-control" name="bajaPersonaDni">
 			   	</div>
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
-			  	<input type="reset" class="btn btn-default" value="Borrar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de baja matricula -->
 			<form name="formu_bajaMatricula">
@@ -178,7 +180,7 @@
 			    	<input type="text" class="form-control" name="bajaCocheIdentificador">
 			   	</div>
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
-			  	<input type="reset" class="btn btn-default" value="Borrar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de baja coche -->
 			<form name="formu_bajaCoche">
@@ -188,7 +190,7 @@
 			    	<input type="text" class="form-control" name="bajaCocheMatricula">
 			   	</div>
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
-			  	<input type="reset" class="btn btn-default" value="Borrar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de aprobar teórico -->
 			<form name="formu_aprobarTeorico">
@@ -198,7 +200,7 @@
 			    	<input type="text" class="form-control" name="aprobarTeoricoMatricula">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
-			  	<input type="reset" class="btn btn-default" value="Borrar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de aprobar Practico -->
 			<form name="formu_aprobarPractico">
@@ -208,7 +210,7 @@
 			    	<input type="text" class="form-control" name="aprobarPracticoMatricula">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
-			  	<input type="reset" class="btn btn-default" value="Borrar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de matriculacion de cliente -->
 			<form name="formu_matricularCliente">
@@ -221,7 +223,7 @@
 			    	<input type="text" class="form-control" name="matricularClienteId">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Matricular Cliente">
-			  	<input type="reset" class="btn btn-default" value="Borrar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de aprobar Practico -->
 			<form name="formu_asignarProfesor">
@@ -234,8 +236,23 @@
 			    	<input type="text" class="form-control" name="asignarProfId">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Matricular Cliente">
-			  	<input type="reset" class="btn btn-default" value="Borrar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
+			<!-- Formulario de busqueda avanzada -->
+			<form name="formu_busquedaAvanzada">
+				<h3>Busqueda Avanzada</h3><br>
+			    <div class="form-group">
+			      	<label>Clave</label>
+			    	<input type="text" class="form-control" name="busquedaAvanzadaClave">
+			    	<br>
+			    	<label>Valor</label>
+			    	<input type="text" class="form-control" name="busquedaAvanzadaValor">
+			   	</div>
+			   	<input type="button" name="buscar" class="btn btn-default" value="Buscar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
+			</form>
+			<br>
+			<div id="capa"></div>
 		</div>
 		<script type="text/javascript" src="js/objetos.js"></script>
 		<script type="text/javascript" src="js/principal.js"></script>
