@@ -1,0 +1,17 @@
+Busqueda avanzada por matricula
+	Cantidad abonada 
+	Nombre cliente
+	Numero de practicas
+	Precio
+
+
+
+Busqueda avanzada por clase
+	Duracion
+	Fecha
+	hora
+	tarifa / aforo
+	nombre profesor
+
+
+A la hora de asignar el profesor a una clase no se muestra el mensaje 

@@ -117,6 +117,7 @@ document.formu_busquedaAvanzadaPersona.buscar.addEventListener("click", listadoP
 document.formu_busquedaAvanzadaMatricula.buscar.addEventListener("click", listadoMatriculaConValores);
 document.formu_busquedaAvanzadaClase.buscar.addEventListener("click", listadoClasesConValores);
 document.formu_busquedaAvanzadaCoche.buscar.addEventListener("click", listadoCocheConValores);
+window.addEventListener("load", añadirDatos);
 
 
 
@@ -746,7 +747,12 @@ function listadoPersonaConValores(){
 	var sClave = oForm.busquedaPersonaClave.value.trim();
 	var sValor = oForm.busquedaPersonaValor.value.trim();
 
-	listadoPersonaAvanzados(sClave, sValor);
+	if (sClave == "Seleccione clave") {
+		listadoPersonaAvanzados("", "");	
+	}else{
+		listadoPersonaAvanzados(sClave, sValor);	
+	}
+	oForm.reset();
 }
 function listadoPersonaAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
@@ -754,7 +760,7 @@ function listadoPersonaAvanzados(clave, valor){
 	if(cont > 0){
 		oCapa.removeChild(oCapa.childNodes[0]);
 	}
-	oCapa.appendChild(oAutoescuela.ListadoPersonas());
+	oCapa.appendChild(oAutoescuela.ListadoPersonas(clave, valor));
 	cont++;
 }
 
@@ -770,8 +776,13 @@ function listadoMatriculaConValores(){
 	var oForm = document.formu_busquedaAvanzadaMatricula;
 	var sClave = oForm.busquedaMatriculaClave.value.trim();
 	var sValor = oForm.busquedaMatriculaValor.value.trim();
-
-	listadoMatriculaAvanzados(sClave, sValor);
+	
+	if (sClave == "Seleccione clave") {
+		listadoMatriculaAvanzados("", "");	
+	}else{
+		listadoMatriculaAvanzados(sClave, sValor);
+	}
+	oForm.reset();
 }
 function listadoMatriculaAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
@@ -779,7 +790,7 @@ function listadoMatriculaAvanzados(clave, valor){
 	if(cont > 0){
 		oCapa.removeChild(oCapa.childNodes[0]);
 	}
-	oCapa.appendChild(oAutoescuela.ListadoMatriculas());
+	oCapa.appendChild(oAutoescuela.ListadoMatriculas(clave, valor));
 	cont++;
 }
 
@@ -793,10 +804,15 @@ function listadoClases(){
 }
 function listadoClasesConValores(){
 	var oForm = document.formu_busquedaAvanzadaClase;
-
 	var sClave = oForm.busquedaClaseClave.value.trim();
 	var sValor = oForm.busquedaClaseValor.value.trim();
-	listadoClasesAvanzados(sClave, sValor);
+
+	if (sClave == "Seleccione clave") {
+		listadoClasesAvanzados("", "");	
+	}else{
+		listadoClasesAvanzados(sClave, sValor);
+	}
+	oForm.reset();
 }
 function listadoClasesAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
@@ -823,7 +839,13 @@ function listadoCocheConValores(){
 
 	var sClave = oForm.busquedaCocheClave.value.trim();
 	var sValor = oForm.busquedaCocheValor.value.trim();
-	listadoCocheAvanzados(sClave, sValor);
+
+	if (sClave == "Seleccione clave") {
+		listadoCocheAvanzados("", "");	
+	}else{
+		listadoCocheAvanzados(sClave, sValor);
+	}
+	oForm.reset();
 }
 function listadoCocheAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
@@ -831,9 +853,32 @@ function listadoCocheAvanzados(clave, valor){
 	if(cont > 0){
 		oCapa.removeChild(oCapa.childNodes[0]);
 	}
-	oCapa.appendChild(oAutoescuela.ListadoCoches());
+	oCapa.appendChild(oAutoescuela.ListadoCoches(clave, valor));
 	cont++;
 }
 
 
 	
+
+
+function añadirDatos(){
+	//Añado 2 profesores y 2 cliente al modelo
+	oAutoescuela.altaPersona(new Profesor("Melero", "Calle de la piruleta", "11223344-T", "usuario1@gmail.com", "Prof1", "655987845", "1"));
+	oAutoescuela.altaPersona(new Profesor("Rodriguez", "Calle de la golosina", "55667788-T", "usuario2@gmail.com", "Prof2", "988745298", "2"));
+	var cliente1 = new Cliente("Gomez", "Calle de la cocacola", "99999999-T", "usuario3@gmail.com", "Cliente1", "555555555", "3");
+	var cliente2 = new Cliente("Garcia", "Calle de los lacasitos", "12312312-T", "usuario4@gmail.com", "Cliente2", "123123123", "4");
+	oAutoescuela.altaPersona(cliente1);
+	oAutoescuela.altaPersona(cliente2);
+
+	//Añado 2 matriculas al modelo
+	oAutoescuela.altaMatriculas(new Matriculas("1000", "19/01/2017", cliente1, "1", "15", "650"));
+	oAutoescuela.altaMatriculas(new Matriculas("500", "01/01/2017", cliente2, "2", "30", "1000"));
+
+	//Añado 2 clases(1 practica, 1 teorica) al modelo
+	oAutoescuela.altaClases(new Practicas("1", "250", "11/12/2016", "16:00", "10"));
+	oAutoescuela.altaClases(new Teoricas("2", "300", "15/01/2017", "17:00", "30"));
+
+	//Añado 2 coches al modelo
+	oAutoescuela.altaCoche(new Coche("Seat", "5555 YYY", "Ibiza"));
+	oAutoescuela.altaCoche(new Coche("Ford", "6666 GGG", "Mustang"));
+}
