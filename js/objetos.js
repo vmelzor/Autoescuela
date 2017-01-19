@@ -963,7 +963,7 @@ Autoescuela.prototype.listadoClases = function(Clave, Valor){
 	return Tabla;//Devolvemos la tabla ya preparada para insertarla en el documento
 }
 
-Autoescuela.prototype.ListadoPersonas = function (){
+Autoescuela.prototype.ListadoPersonas = function (Clave, Valor){
 	//Creamos la tabla
 	var Tabla   = document.createElement("table");
 	Tabla.setAttribute("border","1");
@@ -1007,9 +1007,57 @@ Autoescuela.prototype.ListadoPersonas = function (){
 	//Fin de encabezado
 	tblBody.appendChild(fila);
 	
+	var arrBusqueda = [];
+	switch(Clave){
+		case "DNI":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if(this.arrPersonas[j].DNI == Valor){
+					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
+		case "Nombre":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if(this.arrPersonas[j].Nombre == Valor){
+					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
+		case "Apellidos":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if(this.arrPersonas[j].Apellidos == Valor){
+					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
+		case "Email":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if(this.arrPersonas[j].Email == Valor){
+					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
+		case "Telefono":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if(this.arrPersonas[j].Telefono == Valor){
+					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
+		case "ID":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if(this.arrPersonas[j].ID == Valor){
+					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
+	}
 	
-	for(var i = 0; i < this.arrPersonas.length; i++){
-		tblBody.appendChild(this.arrPersonas[i].toHTMLRow());
+	if(Clave == ""){
+		arrBusqueda = this.arrPersonas;
+	}
+	for(var i = 0; i < arrBusqueda.length; i++){
+		tblBody.appendChild(arrBusqueda[i].toHTMLRow());
 	}
 	
 	Tabla.appendChild(tblBody);
