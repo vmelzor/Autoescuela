@@ -769,8 +769,13 @@ Autoescuela.prototype.AsignarProfesorAClases = function (sDNI, iID){
 				for(var i = 0; i < this.arrClases.length; i++){
 					if(this.arrClases[i].ID == iID){
 						boolEsta = true;
-						this.arrClases[i].Profesor = oProfesor;
-						strMensaje = "Profesor asignado satisfactoriamente en la clase dada";
+						if(this.arrClases[i].Profesor == null){
+							this.arrClases[i].Profesor = oProfesor;
+							strMensaje = "Profesor asignado satisfactoriamente en la clase dada";
+						}
+						else{
+							strMensaje = "Esta clase ya tiene un profesor asignado";
+						}
 					}
 				}
 				if(!boolEsta){
@@ -779,7 +784,6 @@ Autoescuela.prototype.AsignarProfesorAClases = function (sDNI, iID){
 			}
 		}
 	}
-	return strMensaje;
 }
 
 Autoescuela.prototype.bajaPersona = function(sDNI){
@@ -904,6 +908,7 @@ Autoescuela.prototype.listadoClases = function(Clave, Valor){
     fila.appendChild(celdaCabecera);
 	//Fin de encabezado
 	tblBody.appendChild(fila);
+	
 	var arrBusqueda = [];
 	switch(Clave){
 		case "Identificador":
