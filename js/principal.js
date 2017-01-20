@@ -766,6 +766,7 @@ function listadoPersonaAvanzados(clave, valor){
 
 
 
+
 function listadoMatriculas(){
 	ocultarFormularios();
 	document.formu_busquedaAvanzadaMatricula.style.display = "block";
@@ -793,6 +794,7 @@ function listadoMatriculaAvanzados(clave, valor){
 	oCapa.appendChild(oAutoescuela.ListadoMatriculas(clave, valor));
 	cont++;
 }
+
 
 
 
@@ -827,7 +829,6 @@ function listadoClasesAvanzados(clave, valor){
 
 
 
-
 function listadoCoche(){
 	ocultarFormularios();
 	document.formu_busquedaAvanzadaCoche.style.display = "block";
@@ -858,7 +859,6 @@ function listadoCocheAvanzados(clave, valor){
 }
 
 
-	
 
 
 function añadirDatos(){
