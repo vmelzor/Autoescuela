@@ -868,6 +868,7 @@ Autoescuela.prototype.listadoClases = function(Clave, Valor){
 	//Creamos la tabla
 	var Tabla   = document.createElement("table");
 	Tabla.setAttribute("border","1");
+	Tabla.setAttribute("id","tablas");
 	var tblBody = document.createElement("tbody");
 	var fila = document.createElement("tr");
 	//Creamos el encabezado
@@ -967,6 +968,7 @@ Autoescuela.prototype.ListadoPersonas = function (Clave, Valor){
 	//Creamos la tabla
 	var Tabla   = document.createElement("table");
 	Tabla.setAttribute("border","1");
+	Tabla.setAttribute("id","tablas");
 	var tblBody = document.createElement("tbody");
 	var fila = document.createElement("tr");
 	//creamos la celda DNI y la introducimos en la fila
@@ -1069,6 +1071,7 @@ Autoescuela.prototype.ListadoCoches = function (Clave, Valor){
 	//Creamos la tabla
 	var Tabla   = document.createElement("table");
 	Tabla.setAttribute("border","1");
+	Tabla.setAttribute("id","tablas");
 	var tblBody = document.createElement("tbody");
 	var fila = document.createElement("tr");
 	//creamos la celda Marca y la introducimos en la fila
@@ -1130,6 +1133,7 @@ Autoescuela.prototype.ListadoMatriculas = function (Clave, Valor){
 	//Creamos la tabla
 	var Tabla   = document.createElement("table");
 	Tabla.setAttribute("border","1");
+	Tabla.setAttribute("id","tablas");
 	var tblBody = document.createElement("tbody");
 	var fila = document.createElement("tr");
 	//creamos la celda IdMatricula y la introducimos en la fila

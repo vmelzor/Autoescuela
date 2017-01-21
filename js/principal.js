@@ -75,11 +75,6 @@ function mostrarAsignarProfesorAClase(){
 	document.formu_asignarProfesor.style.display = "block";
 	document.formu_asignarProfesor.reset();	
 }
-function mostrarListadoClase(){
-	ocultarFormularios();
-	document.formu_busquedaAvanzada.style.display = "block";
-	document.formu_busquedaAvanzada.reset();	
-}
 //Funcion que oculta todos los formularios
 function ocultarFormularios(){
 	document.formu_altaPersona.style.display = "none";
@@ -93,7 +88,10 @@ function ocultarFormularios(){
 	document.formu_aprobarPractico.style.display = "none";
 	document.formu_matricularCliente.style.display = "none";
 	document.formu_asignarProfesor.style.display = "none";
-	document.formu_busquedaAvanzada.style.display = "none";
+	document.formu_busquedaAvanzadaPersona.style.display = "none";
+	document.formu_busquedaAvanzadaMatricula.style.display = "none";
+	document.formu_busquedaAvanzadaClase.style.display = "none";
+	document.formu_busquedaAvanzadaCoche.style.display = "none";
 	document.getElementById("capa").style.display = "none";
 	//Recojo en la array inputs todos los input que tengan las clase error 
 	var inputs = document.querySelectorAll("input.error");
@@ -115,7 +113,11 @@ document.formu_aprobarTeorico.mod.addEventListener("click", frmAprobarTeorico);
 document.formu_aprobarPractico.mod.addEventListener("click", frmAprobarPractico);
 document.formu_matricularCliente.mod.addEventListener("click", frmMatricularCliente);
 document.formu_asignarProfesor.mod.addEventListener("click", frmAsignarProfesorAClase);
-document.formu_busquedaAvanzada.buscar.addEventListener("click", listadoClasesConValores);
+document.formu_busquedaAvanzadaPersona.buscar.addEventListener("click", listadoPersonaConValores);
+document.formu_busquedaAvanzadaMatricula.buscar.addEventListener("click", listadoMatriculaConValores);
+document.formu_busquedaAvanzadaClase.buscar.addEventListener("click", listadoClasesConValores);
+document.formu_busquedaAvanzadaCoche.buscar.addEventListener("click", listadoCocheConValores);
+window.addEventListener("load", añadirDatos);
 
 
 
@@ -239,7 +241,7 @@ function frmAltaPersona(){
 			sMensaje = oAutoescuela.altaPersona(oCliente);
 		}
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}else{
 		toastr.error(sErrores);
 	}
@@ -344,7 +346,7 @@ function frmAltaMatricula(){
 			var oMatricula = new Matriculas(sCantidad, dFecha, oPersona, sIdentificador, sNPracticas, sPrecio);
 			sMensaje = oAutoescuela.altaMatriculas(oMatricula);
 			oForm.reset();
-			toastr.success(sMensaje);
+			toastr.info(sMensaje);
 		}else{
 			toastr.error(oPersona);
 		}
@@ -461,7 +463,7 @@ function frmAltaClases(){
 			var oTeorica = new Teoricas(sIdentificador, sDuracion, dFecha, sHora, sAforo);
 			sMensaje = oAutoescuela.altaClases(oTeorica);
 		}
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 		oForm.reset();
 	}else{
 		toastr.error(sErrores);
@@ -523,7 +525,7 @@ function frmAltaCoche(){
 		var oCoche = new Coche(sMarca, sMatricula, sModelo);
 		var sMensaje = oAutoescuela.altaCoche(oCoche);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}else{
 		toastr.error(sErrores);
 	}
@@ -551,7 +553,7 @@ function frmBajaPersona(){
 		//Aqui es donde se hacen los metodos para quitar una persona del modelo
 		var sMensaje = oAutoescuela.bajaPersona(sDni);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}
 }
 
@@ -572,7 +574,7 @@ function frmBajaMatricula(){
 		//Aqui es donde se hacen los metodos para quitar una matricula del modelo
 		var sMensaje = oAutoescuela.bajaMatricula(sIdentificador);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}
 }
 
@@ -593,7 +595,7 @@ function frmBajaCoche(){
 		//Aqui es donde se hacen los metodos para quitar un coche del modelo
 		var sMensaje = oAutoescuela.bajaCoche(sMatricula);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}
 }
 
@@ -616,7 +618,7 @@ function frmAprobarTeorico(){
 		oForm.aprobarTeoricoMatricula.className = "form-control";
 		var sMensaje = oAutoescuela.apruebaTeorico(sIdentificador);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}
 }
 
@@ -635,7 +637,7 @@ function frmAprobarPractico(){
 		oForm.aprobarPracticoMatricula.className = "form-control";
 		var sMensaje = oAutoescuela.apruebaPractico(sIdentificador);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}
 }
 
@@ -678,7 +680,7 @@ function frmMatricularCliente(){
 		//Aquí es donde se hacen los metodos para matricular al cliente
 		var sMensaje = oAutoescuela.matricularClienteEnClases(sDni, sIdentificador);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}else{
 		toastr.error(sErrores);
 	}
@@ -723,7 +725,7 @@ function frmAsignarProfesorAClase(){
 		//Aquí es donde se hacen los metodos para matricular al cliente
 		var sMensaje = oAutoescuela.AsignarProfesorAClases(sDni, sIdentificador);
 		oForm.reset();
-		toastr.success(sMensaje);
+		toastr.info(sMensaje);
 	}else{
 		toastr.error(sErrores);
 	}
@@ -736,61 +738,84 @@ function frmAsignarProfesorAClase(){
 var cont = 0;
 function listadoPersona(){
 	ocultarFormularios();
+	document.formu_busquedaAvanzadaPersona.style.display = "block";
+	document.formu_busquedaAvanzadaPersona.reset();
+	listadoPersonaAvanzados("","");	
+}
+function listadoPersonaConValores(){
+	var oForm = document.formu_busquedaAvanzadaPersona;
+	var sClave = oForm.busquedaPersonaClave.value.trim();
+	var sValor = oForm.busquedaPersonaValor.value.trim();
+
+	if (sClave == "Seleccione clave") {
+		listadoPersonaAvanzados("", "");	
+	}else{
+		listadoPersonaAvanzados(sClave, sValor);	
+	}
+	oForm.reset();
+}
+function listadoPersonaAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
 	oCapa.style.display = "block";
 	if(cont > 0){
 		oCapa.removeChild(oCapa.childNodes[0]);
-		oCapa.appendChild(oAutoescuela.ListadoPersonas());
 	}
-	else{
-		oCapa.appendChild(oAutoescuela.ListadoPersonas());
-	}
+	oCapa.appendChild(oAutoescuela.ListadoPersonas(clave, valor));
 	cont++;
 }
 
-function listadoCoche(){
-	ocultarFormularios();
-	var oCapa = document.getElementById("capa");
-	oCapa.style.display = "block";
-	if(cont > 0){
-		oCapa.removeChild(oCapa.childNodes[0]);
-		oCapa.appendChild(oAutoescuela.ListadoCoches());
-	}
-	else{
-		oCapa.appendChild(oAutoescuela.ListadoCoches());
-	}
-	cont++;
-}
+
+
 
 function listadoMatriculas(){
 	ocultarFormularios();
+	document.formu_busquedaAvanzadaMatricula.style.display = "block";
+	document.formu_busquedaAvanzadaMatricula.reset();
+	listadoMatriculaAvanzados("","");		
+}
+function listadoMatriculaConValores(){
+	var oForm = document.formu_busquedaAvanzadaMatricula;
+	var sClave = oForm.busquedaMatriculaClave.value.trim();
+	var sValor = oForm.busquedaMatriculaValor.value.trim();
+	
+	if (sClave == "Seleccione clave") {
+		listadoMatriculaAvanzados("", "");	
+	}else{
+		listadoMatriculaAvanzados(sClave, sValor);
+	}
+	oForm.reset();
+}
+function listadoMatriculaAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
 	oCapa.style.display = "block";
 	if(cont > 0){
 		oCapa.removeChild(oCapa.childNodes[0]);
-		oCapa.appendChild(oAutoescuela.ListadoMatriculas());
 	}
-	else{
-		oCapa.appendChild(oAutoescuela.ListadoMatriculas());
-	}
+	oCapa.appendChild(oAutoescuela.ListadoMatriculas(clave, valor));
 	cont++;
 }
 
+
+
+
 function listadoClases(){
 	ocultarFormularios();
-	document.formu_busquedaAvanzada.style.display = "block";
-	document.formu_busquedaAvanzada.reset();
+	document.formu_busquedaAvanzadaClase.style.display = "block";
+	document.formu_busquedaAvanzadaClase.reset();
 	listadoClasesAvanzados("","");
 }
-
 function listadoClasesConValores(){
-	var oForm = document.formu_busquedaAvanzada;
+	var oForm = document.formu_busquedaAvanzadaClase;
+	var sClave = oForm.busquedaClaseClave.value.trim();
+	var sValor = oForm.busquedaClaseValor.value.trim();
 
-	var sClave = oForm.busquedaAvanzadaClave.value.trim();
-	var sValor = oForm.busquedaAvanzadaValor.value.trim();
-	listadoClasesAvanzados(sClave, sValor);
+	if (sClave == "Seleccione clave") {
+		listadoClasesAvanzados("", "");	
+	}else{
+		listadoClasesAvanzados(sClave, sValor);
+	}
+	oForm.reset();
 }
-
 function listadoClasesAvanzados(clave, valor){
 	var oCapa = document.getElementById("capa");
 	oCapa.style.display = "block";
@@ -799,4 +824,61 @@ function listadoClasesAvanzados(clave, valor){
 	}
 	oCapa.appendChild(oAutoescuela.listadoClases(clave,valor));
 	cont++;
+}
+
+
+
+
+function listadoCoche(){
+	ocultarFormularios();
+	document.formu_busquedaAvanzadaCoche.style.display = "block";
+	document.formu_busquedaAvanzadaCoche.reset();
+	listadoCocheAvanzados("","");
+}
+function listadoCocheConValores(){
+	var oForm = document.formu_busquedaAvanzadaCoche;
+
+	var sClave = oForm.busquedaCocheClave.value.trim();
+	var sValor = oForm.busquedaCocheValor.value.trim();
+
+	if (sClave == "Seleccione clave") {
+		listadoCocheAvanzados("", "");	
+	}else{
+		listadoCocheAvanzados(sClave, sValor);
+	}
+	oForm.reset();
+}
+function listadoCocheAvanzados(clave, valor){
+	var oCapa = document.getElementById("capa");
+	oCapa.style.display = "block";
+	if(cont > 0){
+		oCapa.removeChild(oCapa.childNodes[0]);
+	}
+	oCapa.appendChild(oAutoescuela.ListadoCoches(clave, valor));
+	cont++;
+}
+
+
+
+
+function añadirDatos(){
+	//Añado 2 profesores y 2 cliente al modelo
+	oAutoescuela.altaPersona(new Profesor("Melero", "Calle de la piruleta", "11223344-T", "usuario1@gmail.com", "Prof1", "655987845", "1"));
+	oAutoescuela.altaPersona(new Profesor("Rodriguez", "Calle de la golosina", "55667788-T", "usuario2@gmail.com", "Prof2", "988745298", "2"));
+	var cliente1 = new Cliente("Gomez", "Calle de la cocacola", "99999999-T", "usuario3@gmail.com", "Cliente1", "555555555", "3");
+	var cliente2 = new Cliente("Garcia", "Calle de los lacasitos", "12312312-T", "usuario4@gmail.com", "Cliente2", "123123123", "4");
+	oAutoescuela.altaPersona(cliente1);
+	oAutoescuela.altaPersona(cliente2);
+
+	//Añado 2 matriculas al modelo
+	oAutoescuela.altaMatriculas(new Matriculas("1000", "19/01/2017", cliente1, "1", "15", "650"));
+	oAutoescuela.altaMatriculas(new Matriculas("500", "01/01/2017", cliente2, "2", "30", "1000"));
+
+	//Añado 2 clases(1 practica, 1 teorica) al modelo
+	oAutoescuela.altaClases(new Practicas("1", "250", "11/12/2016", "16:00", "10"));
+	oAutoescuela.altaClases(new Teoricas("2", "300", "15/01/2017", "17:00", "30"));
+
+	//Añado 2 coches al modelo
+	oAutoescuela.altaCoche(new Coche("Seat", "5555 YYY", "Ibiza"));
+	oAutoescuela.altaCoche(new Coche("Ford", "6666 GGG", "Mustang"));
 }

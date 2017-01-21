@@ -2,6 +2,11 @@
 	border-color: red; 
 }
 
+#tablas{
+	margin-top:30px;	
+	margin-left: 50px;
+	margin-bottom: 50px;
+}
 th, td {
   	padding: 5px;
 }

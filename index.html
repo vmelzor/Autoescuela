@@ -66,28 +66,28 @@
 				<h3>Alta de personas</h3><br>
 			    <div class="form-group">
 			    	<label>Nombre</label>
-			    	<input type="text" class="form-control" name="altaPersonaNombre">
+			    	<input type="text" class="form-control" name="altaPersonaNombre" placeholder="Nombre de la Persona">
 			    	<br>
 			      	<label>Apellidos</label>
-			      	<input type="text" class="form-control" name="altaPersonaApellidos">
+			      	<input type="text" class="form-control" name="altaPersonaApellidos" placeholder="Apellido de la Persona">
 			    	<br>
 			    	<label>DNI</label>
-			    	<input type="text" class="form-control" name="altaPersonaDni">
+			    	<input type="text" class="form-control" name="altaPersonaDni" placeholder="DNI de la Persona">
 			    	<br>
 			    	<label>Dirección</label>
-			    	<input type="text" class="form-control" name="altaPersonaDireccion">
+			    	<input type="text" class="form-control" name="altaPersonaDireccion" placeholder="Dirección de la Persona">
 			    	<br>
 			    	<label>Email</label>
-			    	<input type="text" class="form-control" name="altaPersonaEmail">
+			    	<input type="text" class="form-control" name="altaPersonaEmail" placeholder="Email de la Persona">
 			    	<br>
 			    	<label>Teléfono</label>
-			    	<input type="text" class="form-control" name="altaPersonaTlf">
+			    	<input type="text" class="form-control" name="altaPersonaTlf" placeholder="Teléfono de la Persona">
 			    	<div class="radio"> 
-		  				<label><input type="radio" name="persona" value="profesor">Profesor</label>
-		  				<label><input type="radio" name="persona" value="cliente" checked>Cliente</label>
+		  				<label><input type="radio" name="persona" value="profesor" checked>Profesor</label>
+		  				<label><input type="radio" name="persona" value="cliente">Cliente</label>
 					</div>
 			    	<label>ID </label>
-			    	<input type="text" class="form-control" name="altaPersonaId">
+			    	<input type="text" class="form-control" name="altaPersonaId" placeholder="ID de la Persona">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -97,22 +97,22 @@
 				<h3>Alta de matrícula</h3><br>
 			    <div class="form-group">
 			      	<label>Cantidad abonada</label>
-			    	<input type="text" class="form-control" name="altaMatriculaCantidadAbonada">
+			    	<input type="text" class="form-control" name="altaMatriculaCantidadAbonada" placeholder="Cantidad Abonada por el Cliente">
 			    	<br>
 		  			<label>Fecha </label>
 		  			<input type="date" class="form-control" name="altaMatriculaFecha">
 		  			<br><br>
 			    	<label>DNI cliente</label>
-			    	<input type="text" class="form-control" name="altaMatriculaDniCliente">
+			    	<input type="text" class="form-control" name="altaMatriculaDniCliente" placeholder="DNI del Cliente">
 			    	<br>
 			    	<label>Identificador matricula</label>
-			    	<input type="text" class="form-control" name="altaMatriculaIdMatricula">
+			    	<input type="text" class="form-control" name="altaMatriculaIdMatricula" placeholder="ID de la Matrícula">
 			    	<br>
 			    	<label>Numero de practicas</label>
-			    	<input type="text" class="form-control" name="altaMatriculaNPracticas">
+			    	<input type="text" class="form-control" name="altaMatriculaNPracticas" placeholder="Numero de Practicas">
 			    	<br>
 			    	<label>Precio</label>
-			    	<input type="text" class="form-control" name="altaMatriculaPrecio">
+			    	<input type="text" class="form-control" name="altaMatriculaPrecio" placeholder="Precio">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -122,25 +122,25 @@
 				<h3>Alta de clases</h3><br>
 			    <div class="form-group">
 			      	<label>ID</label>
-			      	<input type="text" class="form-control" name="altaClasesId">
+			      	<input type="text" class="form-control" name="altaClasesId" placeholder="ID Clase">
 			    	<br>
 			    	<label>Duración (Por horas)</label>
-			      	<input type="text" class="form-control" name="altaClasesDuracion">
+			      	<input type="text" class="form-control" name="altaClasesDuracion" placeholder="Duración Clase">
 			    	<br>
 		  			<label>Fecha </label>
 		  			<input type="date" class="form-control" name="altaClasesFecha">
 		  			<br><br>
 			    	<label>Hora</label>
-			    	<input type="text" class="form-control" name="altaClasesHora">
+			    	<input type="text" class="form-control" name="altaClasesHora" placeholder="Hora Clase">
 			    	<div class="radio"> 
-		  				<label><input type="radio" name="clase" value="practica">Prácticas</label>
-		  				<label><input type="radio" name="clase" value="teorica" checked>Teóricas</label>
+		  				<label><input type="radio" name="clase" value="practica" checked>Prácticas</label>
+		  				<label><input type="radio" name="clase" value="teorica">Teóricas</label>
 					</div>
-					<label>Tarifa por horas (Rellenar campo si se selecciona Prácticas)</label>
-			    	<input type="text" class="form-control" name="altaClasesTarifa">
+					<label>Tarifa por hora (Rellenar campo si se selecciona Prácticas)</label>
+			    	<input type="text" class="form-control" name="altaClasesTarifa" placeholder="Tarifa por hora">
 			    	<br>
 			    	<label>Aforo (Rellenar campo si se selecciona Teóricas)</label>
-			    	<input type="text" class="form-control" name="altaClasesAforo">
+			    	<input type="text" class="form-control" name="altaClasesAforo" placeholder="Aforo de la Clase">
 			    	<br>
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
@@ -151,13 +151,13 @@
 				<h3>Alta de coche</h3><br>
 			    <div class="form-group">
 			      	<label>Marca</label>
-			      	<input type="text" class="form-control" name="altaCocheMarca">
+			      	<input type="text" class="form-control" name="altaCocheMarca" placeholder="Marca del Coche">
 			    	<br>
 			      	<label>Matrícula</label>
-			    	<input type="text" class="form-control" name="altaCocheMatricula">
+			    	<input type="text" class="form-control" name="altaCocheMatricula" placeholder="Matrícula del Coche">
 			    	<br>
 			    	<label>Modelo</label>
-			    	<input type="text" class="form-control" name="altaCocheModelo">
+			    	<input type="text" class="form-control" name="altaCocheModelo" placeholder="Modelo del Coche">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Añadir">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -167,7 +167,7 @@
 				<h3>Baja de personas</h3><br>
 			    <div class="form-group">
 			    	<label>DNI</label>
-			    	<input type="text" class="form-control" name="bajaPersonaDni">
+			    	<input type="text" class="form-control" name="bajaPersonaDni" placeholder="DNI de la Persona">
 			   	</div>
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -177,7 +177,7 @@
 				<h3>Baja de matrícula</h3><br>
 			    <div class="form-group">
 			      	<label>Identificador matricula</label>
-			    	<input type="text" class="form-control" name="bajaCocheIdentificador">
+			    	<input type="text" class="form-control" name="bajaCocheIdentificador" placeholder="ID de la Matrícula">
 			   	</div>
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -187,7 +187,7 @@
 				<h3>Baja de coche</h3><br>
 			    <div class="form-group">
 			      	<label>Matrícula</label>
-			    	<input type="text" class="form-control" name="bajaCocheMatricula">
+			    	<input type="text" class="form-control" name="bajaCocheMatricula" placeholder="Matrícula del Coche">
 			   	</div>
 			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -197,7 +197,7 @@
 				<h3>Aprobar Teorico</h3><br>
 			    <div class="form-group">
 			      	<label>ID Matricula</label>
-			    	<input type="text" class="form-control" name="aprobarTeoricoMatricula">
+			    	<input type="text" class="form-control" name="aprobarTeoricoMatricula" placeholder="ID de la Matrícula">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -207,7 +207,7 @@
 				<h3>Aprobar Práctico</h3><br>
 			    <div class="form-group">
 			      	<label>ID Matricula</label>
-			    	<input type="text" class="form-control" name="aprobarPracticoMatricula">
+			    	<input type="text" class="form-control" name="aprobarPracticoMatricula" placeholder="ID de la Matrícula">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -217,10 +217,10 @@
 				<h3>Matricular Cliente en Clase</h3><br>
 			    <div class="form-group">
 			      	<label>DNI Cliente</label>
-			    	<input type="text" class="form-control" name="matricularClienteDni">
+			    	<input type="text" class="form-control" name="matricularClienteDni" placeholder="DNI del Cliente">
 			    	<br>
 			    	<label>ID Clases</label>
-			    	<input type="text" class="form-control" name="matricularClienteId">
+			    	<input type="text" class="form-control" name="matricularClienteId" placeholder="ID de la Clase">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Matricular Cliente">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -230,23 +230,104 @@
 				<h3>Asignar Profesor a Clase</h3><br>
 			    <div class="form-group">
 			      	<label>DNI Profesor</label>
-			    	<input type="text" class="form-control" name="asignarProfDni">
+			    	<input type="text" class="form-control" name="asignarProfDni" placeholder="DNI del Profesor">
 			    	<br>
 			    	<label>ID Clases</label>
-			    	<input type="text" class="form-control" name="asignarProfId">
+			    	<input type="text" class="form-control" name="asignarProfId" placeholder="ID de la Clase">
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Matricular Cliente">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
-			<!-- Formulario de busqueda avanzada -->
-			<form name="formu_busquedaAvanzada">
-				<h3>Busqueda Avanzada</h3><br>
+			<!-- Formulario de busqueda avanzada por persona -->
+			<form name="formu_busquedaAvanzadaPersona">
+				<h3>Busqueda Avanzada por Persona</h3><br>
 			    <div class="form-group">
-			      	<label>Clave</label>
-			    	<input type="text" class="form-control" name="busquedaAvanzadaClave">
+			    	<div class="form-group">
+  						<label for="sel1">Clave</label>
+  						<select class="form-control" id="sel1" name="busquedaPersonaClave">
+      						<option>Seleccione clave</option>
+      						<option>DNI</option>
+          					<option>Nombre</option>
+          					<option>Apellidos</option>
+      						<option>Telefono</option>
+      						<option>Direccion</option>
+      						<option>Email</option>
+      						<option>ID</option>
+  						</select>
+					</div>
 			    	<br>
 			    	<label>Valor</label>
-			    	<input type="text" class="form-control" name="busquedaAvanzadaValor">
+			    	<input type="text" class="form-control" name="busquedaPersonaValor" placeholder="Valor de la Búsqueda">
+			   	</div>
+			   	<input type="button" name="buscar" class="btn btn-default" value="Buscar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
+			</form>
+			<!-- Formulario de busqueda avanzada por matricula -->
+			<form name="formu_busquedaAvanzadaMatricula">
+				<h3>Busqueda Avanzada por Matricula</h3><br>
+			    <div class="form-group">
+			    	<div class="form-group">
+  						<label for="sel1">Clave</label>
+  						<select class="form-control" id="sel1" name="busquedaMatriculaClave">
+  							<option>Seleccione clave</option>
+      						<option>Identificador Matricula</option>
+          					<option>Cantidad abonada</option>
+          					<option>Examen Teorico aprobado</option>
+      						<option>Examen Practico aprobado</option>
+      						<option>Fecha</option>
+      						<option>DNI Cliente</option>
+      						<option>Nombre Clinte</option>
+      						<option>Numero de practicas</option>
+      						<option>Precio</option>
+  						</select>
+					</div>
+			    	<br>
+			    	<label>Valor</label>
+			    	<input type="text" class="form-control" name="busquedaMatriculaValor" placeholder="Valor de la Búsqueda">
+			   	</div>
+			   	<input type="button" name="buscar" class="btn btn-default" value="Buscar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
+			</form>
+			<!-- Formulario de busqueda avanzada por clase -->
+			<form name="formu_busquedaAvanzadaClase">
+				<h3>Busqueda Avanzada por Clase</h3><br>
+			    <div class="form-group">
+			    	<div class="form-group">
+  						<label for="sel1">Clave</label>
+  						<select class="form-control" id="sel1" name="busquedaClaseClave">
+  							<option>Seleccione clave</option>
+      						<option>Identificador</option>
+          					<option>Duracion</option>
+          					<option>Fecha</option>
+      						<option>Hora</option>
+      						<option>Tarifa / Aforo</option>
+      						<option>DNI profesor</option>
+      						<option>Nombre Profesor</option>
+  						</select>
+					</div>
+			    	<br>
+			    	<label>Valor</label>
+			    	<input type="text" class="form-control" name="busquedaClaseValor" placeholder="Valor de la Búsqueda">
+			   	</div>
+			   	<input type="button" name="buscar" class="btn btn-default" value="Buscar">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
+			</form>
+			<!-- Formulario de busqueda avanzada por coche -->
+			<form name="formu_busquedaAvanzadaCoche">
+				<h3>Busqueda Avanzada por Coche</h3><br>
+			    <div class="form-group">
+			    	<div class="form-group">
+  						<label for="sel1">Clave</label>
+  						<select class="form-control" id="sel1" name="busquedaCocheClave">
+  							<option>Seleccione clave</option>
+  							<option>Marca</option>
+      						<option>Matricula</option>
+          					<option>Modelo</option>
+  						</select>
+					</div>
+			    	<br>
+			    	<label>Valor</label>
+			    	<input type="text" class="form-control" name="busquedaCocheValor" placeholder="Valor de la Búsqueda">
 			   	</div>
 			   	<input type="button" name="buscar" class="btn btn-default" value="Buscar">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
