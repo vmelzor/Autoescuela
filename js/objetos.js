@@ -705,38 +705,44 @@ Autoescuela.prototype.matricularClienteEnClases = function (sDNI, iID){
 			strMensaje = "No existe ningun cliente con ese DNI";
 		}
 		else{
-			//Buscar clase
-			if(this.arrClases.length == 0){
-				strMensaje = "No existe ninguna clase con ese identificador";
-			}
-			else{
-				boolEsta = false;
-				for(var i = 0; i < this.arrClases.length; i++){
-					if(this.arrClases[i].ID == iID){
-						boolEsta = true;
-						oClase = this.arrClases[i];
-					}
-				}
-				if(!boolEsta){
+			if(oCliente instanceof Cliente){
+				//Buscar clase
+				if(this.arrClases.length == 0){
 					strMensaje = "No existe ninguna clase con ese identificador";
 				}
 				else{
 					boolEsta = false;
-					for(var i = 0; i < oClase.Clientes.length; i++){
-						if(oClase.Clientes[i].DNI == sDNI){
+					for(var i = 0; i < this.arrClases.length; i++){
+						if(this.arrClases[i].ID == iID){
 							boolEsta = true;
+							oClase = this.arrClases[i];
 						}
 					}
 					if(!boolEsta){
-						oClase.Clientes.push(oCliente);
-						strMensaje = "Cliente matriculado satisfactoriamente en la clase dada";
+						strMensaje = "No existe ninguna clase con ese identificador";
 					}
 					else{
-						strMensaje = "El cliente ya ha sido matriculado previamente en la clase dada";
+						boolEsta = false;
+						for(var i = 0; i < oClase.Clientes.length; i++){
+							if(oClase.Clientes[i].DNI == sDNI){
+								boolEsta = true;
+							}
+						}
+						if(!boolEsta){
+							oClase.Clientes.push(oCliente);
+							strMensaje = "Cliente matriculado satisfactoriamente en la clase dada";
+						}
+						else{
+							strMensaje = "El cliente ya ha sido matriculado previamente en la clase dada";
+						}
 					}
 				}
 			}
+			else{
+				strMensaje = "El DNI proporcionado pertenece a un profesor";
+			}
 		}
+		
 	}
 	return strMensaje;
 }
@@ -760,30 +766,37 @@ Autoescuela.prototype.AsignarProfesorAClases = function (sDNI, iID){
 			strMensaje = "No existe ningun profesor con ese DNI";
 		}
 		else{
-			//Buscar clase
-			if(this.arrClases.length == 0){
-				strMensaje = "No existe ninguna clase con ese identificador";
-			}
-			else{
-				boolEsta = false;
-				for(var i = 0; i < this.arrClases.length; i++){
-					if(this.arrClases[i].ID == iID){
-						boolEsta = true;
-						if(this.arrClases[i].Profesor == null){
-							this.arrClases[i].Profesor = oProfesor;
-							strMensaje = "Profesor asignado satisfactoriamente en la clase dada";
-						}
-						else{
-							strMensaje = "Esta clase ya tiene un profesor asignado";
-						}
-					}
-				}
-				if(!boolEsta){
+			//Comprobar si es un profesor
+			if(oProfesor instanceof Profesor){
+				//Buscar clase
+				if(this.arrClases.length == 0){
 					strMensaje = "No existe ninguna clase con ese identificador";
 				}
+				else{
+					boolEsta = false;
+					for(var i = 0; i < this.arrClases.length; i++){
+						if(this.arrClases[i].ID == iID){
+							boolEsta = true;
+							if(this.arrClases[i].Profesor == null){
+								this.arrClases[i].Profesor = oProfesor;
+								strMensaje = "Profesor asignado satisfactoriamente en la clase dada";
+							}
+							else{
+								strMensaje = "Esta clase ya tiene un profesor asignado";
+							}
+						}
+					}
+					if(!boolEsta){
+						strMensaje = "No existe ninguna clase con ese identificador";
+					}
+				}
+			}
+			else{
+				strMensaje = "El DNI proporcionado pertenece a un cliente";
 			}
 		}
 	}
+	return strMensaje;
 }
 
 Autoescuela.prototype.bajaPersona = function(sDNI){
@@ -919,17 +932,70 @@ Autoescuela.prototype.listadoClases = function(Clave, Valor){
 				}
 			}
 		break;
-		case "DNI profesor":
+		case "Duracion":
 			for(var j = 0; j < this.arrClases.length; j++){
-				if(this.arrClases[j].Profesor.DNI == Valor){
+				if(this.arrClases[j].Duracion == Valor){
 					arrBusqueda.push(this.arrClases[j]);
 				}
 			}
 		break;
-		case "Nombre profesor":
+		case "Fecha":
 			for(var j = 0; j < this.arrClases.length; j++){
-				if(this.arrClases[j].Profesor.Nombre == Valor){
+				if(this.arrClases[j].Fecha == Valor){
 					arrBusqueda.push(this.arrClases[j]);
+				}
+			}
+		break;
+		case "Hora":
+			for(var j = 0; j < this.arrClases.length; j++){
+				if(this.arrClases[j].Hora == Valor){
+					arrBusqueda.push(this.arrClases[j]);
+				}
+			}
+		break;
+		case "Aforo":
+			for(var j = 0; j < this.arrClases.length; j++){
+				if(this.arrClases[j].Aforo == Valor){
+					arrBusqueda.push(this.arrClases[j]);
+				}
+			}
+		break;
+		case "Tarifa":
+			for(var j = 0; j < this.arrClases.length; j++){
+				if(this.arrClases[j].TarifaHora == Valor){
+					arrBusqueda.push(this.arrClases[j]);
+				}
+			}
+		break;
+		case "DNI profesor":
+			for(var j = 0; j < this.arrClases.length; j++){
+				if(Valor == "---"){
+					if(this.arrClases[j].Profesor == null){
+						arrBusqueda.push(this.arrClases[j]);
+					}
+				}
+				else{
+					if(this.arrClases[j].Profesor != null){
+						if(this.arrClases[j].Profesor.DNI == Valor){
+							arrBusqueda.push(this.arrClases[j]);
+						}
+					}
+				}
+			}
+		break;
+		case "Nombre Profesor":
+			for(var j = 0; j < this.arrClases.length; j++){
+				if(Valor == "---"){
+					if(this.arrClases[j].Profesor == null){
+						arrBusqueda.push(this.arrClases[j]);
+					}
+				}
+				else{
+					if(this.arrClases[j].Profesor != null){
+						if(this.arrClases[j].Profesor.Nombre == Valor){
+							arrBusqueda.push(this.arrClases[j]);
+						}
+					}
 				}
 			}
 		break;
@@ -1168,7 +1234,7 @@ Autoescuela.prototype.ListadoMatriculas = function (Clave, Valor){
     fila.appendChild(celda);
 	//creamos la celda Cliente.Nombre y la introducimos en la fila
 	celda = document.createElement("th");
-	textoCelda = document.createTextNode("Nombre Clinte");
+	textoCelda = document.createTextNode("Nombre Cliente");
     celda.appendChild(textoCelda);
     fila.appendChild(celda);
 	//creamos la celda NumeroPracticas y la introducimos en la fila
@@ -1184,21 +1250,32 @@ Autoescuela.prototype.ListadoMatriculas = function (Clave, Valor){
 	//Fin de encabezado
 	tblBody.appendChild(fila);
 	
-	/*
-	this.CantidadAbonada = fCantidadAbonada;
-	this.ExPracticaPass = false;
-	this.ExTeoricoPass = false;
-	this.Fecha = dFecha;
-	this.Cliente = oCliente;
-	this.IdMatricula = sIdMatricula;
-	this.NumeroPracticas = iNumPracticas;
-	this.Precio = fPrecio;*/
-	
 	var arrBusqueda = [];
 	switch(Clave){
 		case "Identificador Matricula":
 			for(var j = 0; j < this.arrMatriculas.length; j++){
 				if(this.arrMatriculas[j].IdMatricula == Valor){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "Cantidad abonada":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				if(this.arrMatriculas[j].CantidadAbonada == Valor){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "Numero de practicas":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				if(this.arrMatriculas[j].NumeroPracticas == Valor){
+					arrBusqueda.push(this.arrMatriculas[j]);
+				}
+			}
+		break;
+		case "Precio":
+			for(var j = 0; j < this.arrMatriculas.length; j++){
+				if(this.arrMatriculas[j].Precio == Valor){
 					arrBusqueda.push(this.arrMatriculas[j]);
 				}
 			}
