@@ -1,23 +1,32 @@
-﻿Busqueda avanzada por matricula
+Busqueda avanzada por matricula
 	Cantidad abonada 
-Nombre cliente
+  Nombre cliente
 	Numero de practicas
  Precio
 
 
+	Nombre cliente
+	Numero de practicas
+	Precio
+
 
 
 Busqueda avanzada por clase
- Duracion
+Duracion
  Fecha
  hora
 	tarifa / aforo
  nombre profesor
 
 
+	Duracion
+	Fecha
+	hora
+	tarifa / aforo
+	nombre profesor
+
 
 A la hora de asignar el profesor a una clase no se muestra el mensaje 
-
 
 
 Se puede asignar un cliente a una clase como si fuera un profesor
@@ -27,3 +36,5 @@ Se puede asignar un cliente a una clase como si fuera un profesor
 -asignar Profesor a clase -> Hay que cambiar el boton, pone "Matricular cliente"
 -Busqueda Avanzada por Clase -> faltan dos opciones ("Clientes DNI" y "Clientes Nombre")
 -Busqueda Avanzada por Matricula -> Corregir "Nombre Clinte" a "Nombre Cliente" en la opcion del select
+
+Se puede asignar un cliente a una clase como si fuera un profesor
