@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="iso-8859-15"?>
+<Autoescuela>
+	<Coches>
+		<Coche>
+			<Marca value="Seat"></Marca>
+			<MatriculaCoche value="5555 YYY"></MatriculaCoche>
+			<Modelo value="Ibiza"></Modelo>
+		</Coche>
+		<Coche>
+			<Marca value="Ford"></Marca>
+			<MatriculaCoche value="6666 GGG"></MatriculaCoche>
+			<Modelo value="Mustang"></Modelo>
+		</Coche>
+	</Coches>
+	<Personas>
+		<Persona Tipo="Profesor">
+			<DNI value="11223344-T"></DNI>
+			<Nombre value="Prof1"></Nombre>
+			<Apellidos value="Melero"></Apellidos>
+			<Direccion value="Calle de la piruleta"></Direccion>
+			<Email value="usuario1@gmail.com"></Email>
+			<Telefono value="655987845"></Telefono>
+			<IdPersona value="1"></IdPersona>
+		</Persona>
+		<Persona Tipo="Profesor">
+			<DNI value="55667788-T"></DNI>
+			<Nombre value="Prof2"></Nombre>
+			<Apellidos value="Rodriguez"></Apellidos>
+			<Direccion value="Calle de la golosina"></Direccion>
+			<Email value="usuario2@gmail.com"></Email>
+			<Telefono value="988745298"></Telefono>
+			<IdPersona value="2"></IdPersona>
+		</Persona>
+		<Persona Tipo="Cliente">
+			<DNI value="99999999-T"></DNI>
+			<Nombre value="Cliente1"></Nombre>
+			<Apellidos value="Gomez"></Apellidos>
+			<Direccion value="Calle de la cocacola"></Direccion>
+			<Email value="usuario3@gmail.com"></Email>
+			<Telefono value="555555555"></Telefono>
+			<IdPersona value="3"></IdPersona>
+		</Persona>
+		<Persona Tipo="Cliente">
+			<DNI value="12312312-T"></DNI>
+			<Nombre value="Cliente2"></Nombre>
+			<Apellidos value="Garcia"></Apellidos>
+			<Direccion value="Calle de los lacasitos"></Direccion>
+			<Email value="usuario4@gmail.com"></Email>
+			<Telefono value="123123123"></Telefono>
+			<IdPersona value="4"></IdPersona>
+		</Persona>
+	</Personas>
+	<Matriculas>
+		<Matricula>
+			<IdMatricula value="1"></IdMatricula>
+			<CantidadAbonada value="1000"></CantidadAbonada>
+			<ExPracticaPass value="NO"></ExPracticaPass>
+			<ExTeoricoPass value="NO"></ExTeoricoPass>
+			<FechaMatricula value="19/01/2017"></FechaMatricula>
+			<Cliente value="99999999-T"></Cliente>
+			<NumeroPracticas value="15"></NumeroPracticas>
+			<Precio value="650"></Precio>
+		</Matricula>
+		<Matricula>
+			<IdMatricula value="2"></IdMatricula>
+			<CantidadAbonada value="500"></CantidadAbonada>
+			<ExPracticaPass value="NO"></ExPracticaPass>
+			<ExTeoricoPass value="NO"></ExTeoricoPass>
+			<FechaMatricula value="01/01/2017"></FechaMatricula>
+			<Cliente value="12312312-T"></Cliente>
+			<NumeroPracticas value="30"></NumeroPracticas>
+			<Precio value="1000"></Precio>
+		</Matricula>
+	</Matriculas>
+	<Clases>
+		<Clase Tipo="Practicas">
+			<IdClase value="1"></IdClase>
+			<Duracion value="250"></Duracion>
+			<FechaClase value="11/12/2016"></FechaClase>
+			<Hora value="16:00"></Hora>
+			<ProfesorClase value="11223344-T"></ProfesorClase>
+			<ClientesClase>
+				<ClienteClase value="99999999-T"></ClienteClase>
+			</ClientesClase>
+			<AforoTarifa value="10"></AforoTarifa>
+		</Clase>
+		<Clase Tipo="Teoricas">
+			<IdClase value="2"></IdClase>
+			<Duracion value="300"></Duracion>
+			<FechaClase value="15/01/2017"></FechaClase>
+			<Hora value="17:00"></Hora>
+			<ProfesorClase value="55667788-T"></ProfesorClase>
+			<ClientesClase>
+				<ClienteClase value="99999999-T"></ClienteClase>
+				<ClienteClase value="12312312-T"></ClienteClase>
+			</ClientesClase>
+			<AforoTarifa value="30"></AforoTarifa>
+		</Clase>
+	</Clases>
+</Autoescuela>
