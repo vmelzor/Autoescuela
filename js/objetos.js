@@ -1119,6 +1119,13 @@ Autoescuela.prototype.ListadoPersonas = function (Clave, Valor){
 				}
 			}
 		break;
+		case "Direccion":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if(this.arrPersonas[j].Direccion == Valor){
+					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
 	}
 	
 	if(Clave == ""){
