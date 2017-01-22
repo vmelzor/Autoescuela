@@ -1,1 +1,0 @@
-para que no de errores el programa cuando se apliquen los 2 metodos para la lectura del XML, se debe abrir en firefox, o desde localhost o un servidor

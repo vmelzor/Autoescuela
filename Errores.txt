@@ -7,4 +7,17 @@
 - En la busqueda avanzada por persona cuando buscas por "Direccion" no muestra ninguna persona
 
 ------------------------Nuevos errores -------------------------------
-En la busqueda avanzada por persona cuando buscas por "Direccion" no muestra ninguna persona
+
+
+
+
+
+
+
+
+
+
+
+
+Consecuencias del XML (No es un error):
+	Para que no de errores el programa cuando se apliquen los 2 metodos para la lectura del XML, se debe abrir en firefox, o desde localhost o un servidor
