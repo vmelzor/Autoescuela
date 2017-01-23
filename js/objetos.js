@@ -89,6 +89,11 @@ Profesor.prototype.toHTMLRow = function (){
 	textoCelda = document.createTextNode(this.ID);
     celda.appendChild(textoCelda);
     fila.appendChild(celda);
+    //creamos la celda tipo y la introducimos en la fila
+	celda = document.createElement("td");
+	textoCelda = document.createTextNode("Profesor");
+    celda.appendChild(textoCelda);
+    fila.appendChild(celda);
 	return fila;
 }
 
@@ -136,6 +141,11 @@ Cliente.prototype.toHTMLRow = function (){
     //creamos la celda ID y la introducimos en la fila
 	celda = document.createElement("td");
 	textoCelda = document.createTextNode(this.ID);
+    celda.appendChild(textoCelda);
+    fila.appendChild(celda);
+    //creamos la celda tipo y la introducimos en la fila
+	celda = document.createElement("td");
+	textoCelda = document.createTextNode("Cliente");
     celda.appendChild(textoCelda);
     fila.appendChild(celda);
 	return fila;
@@ -1072,6 +1082,11 @@ Autoescuela.prototype.ListadoPersonas = function (Clave, Valor){
 	textoCelda = document.createTextNode("ID");
     celda.appendChild(textoCelda);
     fila.appendChild(celda);
+    //creamos la celda tipo y la introducimos en la fila
+	celda = document.createElement("th");
+	textoCelda = document.createTextNode("Tipo");
+    celda.appendChild(textoCelda);
+    fila.appendChild(celda);
 	//Fin de encabezado
 	tblBody.appendChild(fila);
 	
@@ -1123,6 +1138,20 @@ Autoescuela.prototype.ListadoPersonas = function (Clave, Valor){
 			for(var j = 0; j < this.arrPersonas.length; j++){
 				if(this.arrPersonas[j].Direccion == Valor){
 					arrBusqueda.push(this.arrPersonas[j]);
+				}
+			}
+		break;
+		case "Tipo":
+			for(var j = 0; j < this.arrPersonas.length; j++){
+				if("Profesor" == Valor){
+					if(this.arrPersonas[j] instanceof Profesor){
+						arrBusqueda.push(this.arrPersonas[j]);
+					}
+				}
+				if("Cliente" == Valor){
+					if(this.arrPersonas[j] instanceof Cliente){
+						arrBusqueda.push(this.arrPersonas[j]);
+					}
 				}
 			}
 		break;
