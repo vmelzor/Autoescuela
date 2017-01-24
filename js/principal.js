@@ -859,6 +859,7 @@ function listadoCocheAvanzados(clave, valor){
 }
 
 
+//La funcion añadirDatos desde un XML solo funciona desde firefox, Para que funcione desde un chrome se debe crear un servidor en local
 function añadirDatos(){
 	var oXML = loadXMLDoc("xml/Autoescuela.xml");
 	
