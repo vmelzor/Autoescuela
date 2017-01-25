@@ -1318,11 +1318,11 @@ Autoescuela.prototype.ListadoMatriculas = function (Clave, Valor){
 		break;
 		case "Examen Teorico aprobado":
 			for(var j = 0; j < this.arrMatriculas.length; j++){
-				var auxiliar;
+				var auxiliar = "null";
 				if(Valor == "SI"){
 					auxiliar = true;
 				}
-				else{
+				else if(Valor == "NO"){
 					auxiliar = false;
 				}
 				if(this.arrMatriculas[j].ExTeoricoPass == auxiliar){
@@ -1333,10 +1333,11 @@ Autoescuela.prototype.ListadoMatriculas = function (Clave, Valor){
 		case "Examen Practico aprobado":
 			for(var j = 0; j < this.arrMatriculas.length; j++){
 				var auxiliar;
+				var auxiliar = "null";
 				if(Valor == "SI"){
 					auxiliar = true;
 				}
-				else{
+				else if(Valor == "NO"){
 					auxiliar = false;
 				}
 				if(this.arrMatriculas[j].ExPracticaPass == auxiliar){
