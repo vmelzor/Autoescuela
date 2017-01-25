@@ -777,6 +777,10 @@ function listadoMatriculaConValores(){
 	var oForm = document.formu_busquedaAvanzadaMatricula;
 	var sClave = oForm.busquedaMatriculaClave.value.trim();
 	var sValor = oForm.busquedaMatriculaValor.value.trim();
+
+	if(sClave == "Examen Teorico aprobado" || sClave == "Examen Practico aprobado"){
+		sValor = sValor.toUpperCase();
+	}
 	
 	if (sClave == "Seleccione clave") {
 		listadoMatriculaAvanzados("", "");	
