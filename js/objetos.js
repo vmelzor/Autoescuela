@@ -561,13 +561,16 @@ Autoescuela.prototype.altaPersona = function (oPersona){
 			if(persona.DNI == oPersona.DNI){
 				boolEsta = true;
 			}
+			if(persona.ID == oPersona.ID){
+				boolEsta = true;
+			}
 		}
 		if(!boolEsta){
 			this.arrPersonas.push(oPersona);
 			strMensaje = "Persona dada de alta";
 		}
 		else{
-			strMensaje = "La persona ya existe";
+			strMensaje = "Ya existe una persona con ese DNI o ese ID";
 		}
 	}
 	return strMensaje;
