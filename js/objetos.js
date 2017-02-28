@@ -812,32 +812,6 @@ Autoescuela.prototype.AsignarProfesorAClases = function (sDNI, iID){
 	return strMensaje;
 }
 
-Autoescuela.prototype.bajaPersona = function(sDNI){
-	var strMensaje = "";
-	var persona;
-	//Buscar Persona
-	if(this.arrPersonas.length == 0){
-		strMensaje = "No existe ninguna persona con ese DNI";
-	}
-	else{
-		var boolEsta = false;
-		for(var i = 0; i < this.arrPersonas.length; i++){
-			if(this.arrPersonas[i].DNI == sDNI){
-				boolEsta = true;
-				persona = this.arrPersonas[i];
-			}
-		}
-		if(!boolEsta){
-			strMensaje = "No existe ninguna persona con ese DNI";
-		}
-		else{
-			eliminarElementoArray(this.arrPersonas, persona);
-			strMensaje = "Persona dada de baja satisfactoriamente";
-		}
-	}
-	return strMensaje;
-}
-
 Autoescuela.prototype.bajaMatricula = function(sIdMatricula){
 	var strMensaje = "";
 	var matricula;

@@ -10,7 +10,10 @@
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css">
+    	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="recursos/style.css">
 	</head>
 	<body>
 		<div class="container">
@@ -23,27 +26,18 @@
 				      	<a class="navbar-brand" href="#" id="inicio">Inicio</a>
 				    </div>
 				    	<ul class="nav navbar-nav">
-				    		<!-- Altas -->
-				      		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Altas <span class="caret"></span></a>
+				    		<!-- Gestiones -->
+				      		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestiones <span class="caret"></span></a>
 				        		<ul class="dropdown-menu">
-				          			<li><a href="#" id="btnAltaPersona">Alta Persona</a></li>
-				          			<li><a href="#" id="btnAltaMatricula">Alta Matricula</a></li>
-				          			<li><a href="#" id="btnAltaClases">Alta Clases</a></li>
-				          			<li><a href="#" id="btnAltaCoche">Alta Coche</a></li>
+				        			<li><a href="#" id="btnGestionPersona">Gestión Personas</a></li>
+						      		<li><a href="#" id="btnGestionMatricula">Gestión Matrículas</a></li>
+						      		<li><a href="#" id="btnGestionCoche">Gestión Coches</a></li>
+						      		<li><a href="#" id="btnGestionClases">Gestión Clases</a></li>
 				        		</ul>
 				      		</li>
-				      		<!-- Bajas -->
-					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Bajas <span class="caret"></span></a>
-					        	<ul class="dropdown-menu">
-					          		<li><a href="#" id="btnBajaPersona">Baja Persona</a></li>
-					          		<li><a href="#" id="btnBajaMatricula">Baja Matricula</a></li>
-					          		<li><a href="#" id="btnBajaCoche">Baja Coche</a></li>
-					        	</ul>
-					      	</li>
 					      	<!-- Modificaciones -->
 					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Aprobar <span class="caret"></span></a>
 					        	<ul class="dropdown-menu">
-					          		<li><a href="#" id="btnAprobarTeorico">Aprobar Teórico</a></li>
 					      			<li><a href="#" id="btnAprobarPractico">Aprobar Práctico</a></li>
 					        	</ul>
 					      	</li>
@@ -61,149 +55,110 @@
 				   		</ul>
 			  	</div>
 			</nav>
-			<!-- Formulario de alta persona -->
-			<form name="formu_altaPersona">
-				<h3>Alta de personas</h3><br>
+			<div id="mensajes" title="mensajes">
+				<p id="pResultado"></p>
+			</div>
+			<!-- Formulario de gestion de personas -->
+			<form name="formu_gestionPersona" id="formu_gestionPersona">
+				<h3>Gestión de personas</h3><br>
 			    <div class="form-group">
+			    	<label>DNI</label>
+			    	<input type="text" class="form-control" name="dniPersona" placeholder="DNI de la Persona">
+			    	<br>
 			    	<label>Nombre</label>
-			    	<input type="text" class="form-control" name="altaPersonaNombre" placeholder="Nombre de la Persona">
+			    	<input type="text" class="form-control" name="nombrePersona" placeholder="Nombre de la Persona">
 			    	<br>
 			      	<label>Apellidos</label>
-			      	<input type="text" class="form-control" name="altaPersonaApellidos" placeholder="Apellido de la Persona">
-			    	<br>
-			    	<label>DNI</label>
-			    	<input type="text" class="form-control" name="altaPersonaDni" placeholder="DNI de la Persona">
+			      	<input type="text" class="form-control" name="apellidoPersona" placeholder="Apellido de la Persona">
 			    	<br>
 			    	<label>Dirección</label>
-			    	<input type="text" class="form-control" name="altaPersonaDireccion" placeholder="Dirección de la Persona">
+			    	<input type="text" class="form-control" name="direccionPersona" placeholder="Dirección de la Persona">
 			    	<br>
 			    	<label>Email</label>
-			    	<input type="text" class="form-control" name="altaPersonaEmail" placeholder="Email de la Persona">
+			    	<input type="text" class="form-control" name="emailPersona" placeholder="Email de la Persona">
 			    	<br>
 			    	<label>Teléfono</label>
-			    	<input type="text" class="form-control" name="altaPersonaTlf" placeholder="Teléfono de la Persona">
+			    	<input type="text" class="form-control" name="tlfPersona" placeholder="Teléfono de la Persona">
 			    	<div class="radio"> 
 		  				<label><input type="radio" name="persona" value="profesor" checked>Profesor</label>
 		  				<label><input type="radio" name="persona" value="cliente">Cliente</label>
 					</div>
 			    	<label>ID </label>
-			    	<input type="text" class="form-control" name="altaPersonaId" placeholder="ID de la Persona">
+			    	<input type="text" class="form-control" name="idPersona" placeholder="ID de la Persona">
 			   	</div>
-			   	<input name="añadir" type="button" class="btn btn-default" value="Dar de alta">
+			   	<input name="añadir" type="button" class="btn btn-default" value="Alta cliente">
+			   	<input name="mod" type="button" class="btn btn-default" value="Modificación cliente">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
-			<!-- Formulario de alta matricula -->
-			<form name="formu_altaMatricula">
-				<h3>Alta de matrícula</h3><br>
+			<!-- Formulario de gestion de matriculas -->
+			<form name="formu_gestionMatricula" id="formu_gestionMatricula">
+				<h3>Gestión de matrículas</h3><br>
 			    <div class="form-group">
+			    	<label>Identificador matricula</label>
+			    	<input type="text" class="form-control" name="idMatricula" placeholder="ID de la Matrícula">
+			    	<br>
 			      	<label>Cantidad abonada</label>
-			    	<input type="text" class="form-control" name="altaMatriculaCantidadAbonada" placeholder="Cantidad Abonada por el Cliente">
+			    	<input type="text" class="form-control" name="cantidadAbonadaMatricula" placeholder="Cantidad Abonada por el Cliente">
 			    	<br>
 		  			<label>Fecha </label>
-		  			<input type="date" class="form-control" name="altaMatriculaFecha" placeholder="Fecha de la Matrícula">
+		  			<input type="date" class="form-control" name="fechaMatricula" placeholder="Fecha de la Matrícula">
 		  			<br><br>
 			    	<label>DNI cliente</label>
-			    	<input type="text" class="form-control" name="altaMatriculaDniCliente" placeholder="DNI del Cliente">
-			    	<br>
-			    	<label>Identificador matricula</label>
-			    	<input type="text" class="form-control" name="altaMatriculaIdMatricula" placeholder="ID de la Matrícula">
+			    	<input type="text" class="form-control" name="dniClienteMatricula" placeholder="DNI del Cliente">
 			    	<br>
 			    	<label>Numero de practicas</label>
-			    	<input type="text" class="form-control" name="altaMatriculaNPracticas" placeholder="Numero de Practicas">
+			    	<input type="text" class="form-control" name="nPracticasMatricula" placeholder="Numero de Practicas">
 			    	<br>
 			    	<label>Precio</label>
-			    	<input type="text" class="form-control" name="altaMatriculaPrecio" placeholder="Precio">
+			    	<input type="text" class="form-control" name="precioMatricula" placeholder="Precio">
 			   	</div>
-			   	<input name="añadir" type="button" class="btn btn-default" value="Dar de alta">
+			   	<input name="añadir" type="button" class="btn btn-default" value="Alta matrícula">
+			   	<input name="baja" type="button" class="btn btn-default" value="Baja matrícula">
+			   	<input name="mod" type="button" class="btn btn-default" value="Modificación matrícula">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
-			<!-- Formulario de alta clases -->
-			<form name="formu_altaClases">
-				<h3>Alta de clases</h3><br>
+			<!-- Formulario de gestion de un coche -->
+			<form name="formu_gestionCoche" id="formu_gestionCoche">
+				<h3>Gestión de coches</h3><br>
 			    <div class="form-group">
-			      	<label>ID</label>
-			      	<input type="text" class="form-control" name="altaClasesId" placeholder="ID Clase">
-			    	<br>
-			    	<label>Duración (Por horas)</label>
-			      	<input type="text" class="form-control" name="altaClasesDuracion" placeholder="Duración Clase">
-			    	<br>
-		  			<label>Fecha </label>
-		  			<input type="date" class="form-control" name="altaClasesFecha" placeholder="Fecha de la Matrícula">
-		  			<br><br>
-			    	<label>Hora</label>
-			    	<input type="text" class="form-control" name="altaClasesHora" placeholder="Hora Clase">
-			    	<div class="radio"> 
-		  				<label><input type="radio" name="clase" value="practica" checked>Prácticas</label>
-		  				<label><input type="radio" name="clase" value="teorica">Teóricas</label>
-					</div>
-					<label>Tarifa por hora (Rellenar campo si se selecciona Prácticas)</label>
-			    	<input type="text" class="form-control" name="altaClasesTarifa" placeholder="Tarifa por hora">
-			    	<br>
-			    	<label>Aforo (Rellenar campo si se selecciona Teóricas)</label>
-			    	<input type="text" class="form-control" name="altaClasesAforo" placeholder="Aforo de la Clase">
-			    	<br>
-			   	</div>
-			   	<input name="añadir" type="button" class="btn btn-default" value="Dar de alta">
-			   	<input type="reset" class="btn btn-default" value="Limpiar">
-			</form>
-			<!-- Formulario de alta coche -->
-			<form name="formu_altaCoche">
-				<h3>Alta de coche</h3><br>
-			    <div class="form-group">
-			      	<label>Marca</label>
-			      	<input type="text" class="form-control" name="altaCocheMarca" placeholder="Marca del Coche">
-			    	<br>
 			      	<label>Matrícula</label>
-			    	<input type="text" class="form-control" name="altaCocheMatricula" placeholder="Matrícula del Coche">
+			    	<input type="text" class="form-control" name="matriculaCoche" placeholder="Matrícula del Coche">
+			    	<br>
+			      	<label>Marca</label>
+			      	<input type="text" class="form-control" name="marcaCoche" placeholder="Marca del Coche">
 			    	<br>
 			    	<label>Modelo</label>
-			    	<input type="text" class="form-control" name="altaCocheModelo" placeholder="Modelo del Coche">
+			    	<input type="text" class="form-control" name="modeloCoche" placeholder="Modelo del Coche">
+			   	</div>
+			   	<input name="añadir" type="button" class="btn btn-default" value="Alta coche">
+			   	<input name="baja" type="button" class="btn btn-default" value="Baja coche">
+			   	<input name="mod" type="button" class="btn btn-default" value="Modificación coche">
+			   	<input type="reset" class="btn btn-default" value="Limpiar">
+			</form>
+			<!-- Formulario de gestion de una clases -->
+			<form name="formu_gestionClases" id="formu_gestionClases">
+				<h3>Gestión de clases</h3><br>
+			    <div class="form-group">
+			      	<label>ID</label>
+			      	<input type="text" class="form-control" name="idClase" placeholder="ID Clase">
+			    	<br>
+			    	<label>Duración (Por horas)</label>
+			      	<input type="text" class="form-control" name="duracionClase" placeholder="Duración Clase">
+			    	<br>
+		  			<label>Fecha </label>
+		  			<input type="date" class="form-control" name="fechaClase" placeholder="Fecha de la Matrícula">
+		  			<br>
+			    	<label>Hora</label>
+			    	<input type="text" class="form-control" name="horaClase" placeholder="Hora Clase">
+		  			<br>
+					<label>Tarifa por horas</label>
+			    	<input type="text" class="form-control" name="tarifaClase" placeholder="Tarifa por hora">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Dar de alta">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
-			<!-- Formulario de baja persona -->
-			<form name="formu_bajaPersona">
-				<h3>Baja de personas</h3><br>
-			    <div class="form-group">
-			    	<label>DNI</label>
-			    	<input type="text" class="form-control" name="bajaPersonaDni" placeholder="DNI de la Persona">
-			   	</div>
-			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
-			  	<input type="reset" class="btn btn-default" value="Limpiar">
-			</form>
-			<!-- Formulario de baja matricula -->
-			<form name="formu_bajaMatricula">
-				<h3>Baja de matrícula</h3><br>
-			    <div class="form-group">
-			      	<label>Identificador matricula</label>
-			    	<input type="text" class="form-control" name="bajaCocheIdentificador" placeholder="ID de la Matrícula">
-			   	</div>
-			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
-			  	<input type="reset" class="btn btn-default" value="Limpiar">
-			</form>
-			<!-- Formulario de baja coche -->
-			<form name="formu_bajaCoche">
-				<h3>Baja de coche</h3><br>
-			    <div class="form-group">
-			      	<label>Matrícula</label>
-			    	<input type="text" class="form-control" name="bajaCocheMatricula" placeholder="Matrícula del Coche">
-			   	</div>
-			   	<input type="button" name="baja" class="btn btn-default" value="Dar de baja">
-			  	<input type="reset" class="btn btn-default" value="Limpiar">
-			</form>
-			<!-- Formulario de aprobar teórico -->
-			<form name="formu_aprobarTeorico">
-				<h3>Aprobar Teorico</h3><br>
-			    <div class="form-group">
-			      	<label>ID Matricula</label>
-			    	<input type="text" class="form-control" name="aprobarTeoricoMatricula" placeholder="ID de la Matrícula">
-			   	</div>
-			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
-			  	<input type="reset" class="btn btn-default" value="Limpiar">
-			</form>
 			<!-- Formulario de aprobar Practico -->
-			<form name="formu_aprobarPractico">
+			<form name="formu_aprobarPractico" id="formu_aprobarPractico">
 				<h3>Aprobar Práctico</h3><br>
 			    <div class="form-group">
 			      	<label>ID Matricula</label>
@@ -213,7 +168,7 @@
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de matriculacion de cliente -->
-			<form name="formu_matricularCliente">
+			<form name="formu_matricularCliente" id="formu_matricularCliente">
 				<h3>Matricular Cliente en Clase</h3><br>
 			    <div class="form-group">
 			      	<label>DNI Cliente</label>
@@ -226,7 +181,7 @@
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de aprobar Practico -->
-			<form name="formu_asignarProfesor">
+			<form name="formu_asignarProfesor" id="formu_asignarProfesor">
 				<h3>Asignar Profesor a Clase</h3><br>
 			    <div class="form-group">
 			      	<label>DNI Profesor</label>
@@ -239,7 +194,7 @@
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de busqueda avanzada por persona -->
-			<form name="formu_busquedaAvanzadaPersona">
+			<form name="formu_busquedaAvanzadaPersona" id="formu_busquedaAvanzadaPersona">
 				<h3>Busqueda Avanzada por Persona</h3><br>
 			    <div class="form-group">
 			    	<div class="form-group">
@@ -264,7 +219,7 @@
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de busqueda avanzada por matricula -->
-			<form name="formu_busquedaAvanzadaMatricula">
+			<form name="formu_busquedaAvanzadaMatricula" id="formu_busquedaAvanzadaMatricula">
 				<h3>Busqueda Avanzada por Matricula</h3><br>
 			    <div class="form-group">
 			    	<div class="form-group">
@@ -273,7 +228,6 @@
   							<option>Seleccione clave</option>
       						<option>Identificador Matricula</option>
           					<option>Cantidad abonada</option>
-          					<option>Examen Teorico aprobado</option>
       						<option>Examen Practico aprobado</option>
       						<option>Fecha</option>
       						<option>DNI Cliente</option>
@@ -290,7 +244,7 @@
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de busqueda avanzada por clase -->
-			<form name="formu_busquedaAvanzadaClase">
+			<form name="formu_busquedaAvanzadaClase" id="formu_busquedaAvanzadaClase">
 				<h3>Busqueda Avanzada por Clase</h3><br>
 			    <div class="form-group">
 			    	<div class="form-group">
@@ -317,7 +271,7 @@
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de busqueda avanzada por coche -->
-			<form name="formu_busquedaAvanzadaCoche">
+			<form name="formu_busquedaAvanzadaCoche" id="formu_busquedaAvanzadaCoche">
 				<h3>Busqueda Avanzada por Coche</h3><br>
 			    <div class="form-group">
 			    	<div class="form-group">

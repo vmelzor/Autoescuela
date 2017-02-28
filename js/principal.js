@@ -1,65 +1,75 @@
 var oAutoescuela = new Autoescuela();
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////FORMULARIOS///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$("#btnGestionPersona").click(function(){ oDlgFormuGestionPersona.dialog("open"); });
+$("#btnGestionMatricula").click(function(){ oDlgFormuGestionMatricula.dialog("open"); });
+$("#btnGestionClases").click(function(){ oDlgFormuGestionClases.dialog("open"); });
+$("#btnGestionCoche").click(function(){ oDlgFormuGestionCoche.dialog("open"); });
+
+// DIALOGOS
+oDlgMensaje = $( "#mensajes" ).dialog({
+ 	autoOpen: false,
+    height: 240,
+    width: 350,
+    modal: true // modal
+});
+oDlgFormuGestionPersona = $( "#formu_gestionPersona" ).dialog({
+    autoOpen: false,
+    height: 800,
+    width: 700,
+    modal: false,
+
+    close: function() {
+		formu_gestionPersona.reset();
+    }
+});
+oDlgFormuGestionMatricula = $( "#formu_gestionMatricula" ).dialog({
+    autoOpen: false,
+    height: 750,
+    width: 700,
+    modal: false,
+
+    close: function() {
+		formu_gestionMatricula.reset();
+    }
+});
+oDlgFormuGestionCoche = $( "#formu_gestionCoche" ).dialog({
+    autoOpen: false,
+    height: 460,
+    width: 700,
+    modal: false,
+
+    close: function() {
+		formu_gestionCoche.reset();
+    }
+});
+oDlgFormuGestionClases = $( "#formu_gestionClases" ).dialog({
+    autoOpen: false,
+    height: 620,
+    width: 700,
+    modal: false,
+
+    close: function() {
+		formu_gestionClases.reset();
+    }
+});
+
+
 //Eventos para mostrar  y ocultar formularios
 window.addEventListener("load", ocultarFormularios);
 document.getElementById("inicio").addEventListener("click", ocultarFormularios); 
-document.getElementById("btnAltaPersona").addEventListener("click", mostrarAltaPersona); 
-document.getElementById("btnAltaMatricula").addEventListener("click", mostrarAltaMatricula); 
-document.getElementById("btnAltaClases").addEventListener("click", mostrarAltaClases); 
-document.getElementById("btnAltaCoche").addEventListener("click", mostrarAltaCoche); 
-document.getElementById("btnBajaPersona").addEventListener("click", mostrarBajaPersona); 
-document.getElementById("btnBajaMatricula").addEventListener("click", mostrarBajaMatricula); 
-document.getElementById("btnBajaCoche").addEventListener("click", mostrarBajaCoche); 
-document.getElementById("btnAprobarTeorico").addEventListener("click", mostrarAprobarTeorico); 
-document.getElementById("btnAprobarPractico").addEventListener("click", mostrarAprobarPractico); 
-document.getElementById("btnMatricularCliente").addEventListener("click", mostrarMatricularCliente); 
-document.getElementById("btnAsignarProfesorAClase").addEventListener("click", mostrarAsignarProfesorAClase); 
-document.getElementById("btnListadoPersona").addEventListener("click", listadoPersona);
-document.getElementById("btnListadoMatricula").addEventListener("click", listadoMatriculas);
-document.getElementById("btnListadoClases").addEventListener("click", listadoClases);
-document.getElementById("btnListadoCoche").addEventListener("click", listadoCoche);
+// document.getElementById("btnAprobarPractico").addEventListener("click", mostrarAprobarPractico); 
+// document.getElementById("btnMatricularCliente").addEventListener("click", mostrarMatricularCliente); 
+// document.getElementById("btnAsignarProfesorAClase").addEventListener("click", mostrarAsignarProfesorAClase); 
+// document.getElementById("btnListadoPersona").addEventListener("click", listadoPersona);
+// document.getElementById("btnListadoMatricula").addEventListener("click", listadoMatriculas);
+// document.getElementById("btnListadoClases").addEventListener("click", listadoClases);
+// document.getElementById("btnListadoCoche").addEventListener("click", listadoCoche);
 
 //Funciones que muestran los formularios
-function mostrarAltaPersona(){
-	ocultarFormularios();
-	document.formu_altaPersona.style.display = "block";
-	document.formu_altaPersona.reset();	
-}
-function mostrarAltaMatricula(){
-	ocultarFormularios();
-	document.formu_altaMatricula.style.display = "block";
-	document.formu_altaMatricula.reset();	
-}
-function mostrarAltaClases(){
-	ocultarFormularios();
-	document.formu_altaClases.style.display = "block";
-	document.formu_altaClases.reset();	
-}
-function mostrarAltaCoche(){
-	ocultarFormularios();
-	document.formu_altaCoche.style.display = "block";
-	document.formu_altaCoche.reset();	
-}
-function mostrarBajaPersona(){
-	ocultarFormularios();
-	document.formu_bajaPersona.style.display = "block";
-	document.formu_bajaPersona.reset();	
-}
-function mostrarBajaMatricula(){
-	ocultarFormularios();
-	document.formu_bajaMatricula.style.display = "block";
-	document.formu_bajaMatricula.reset();	
-}
-function mostrarBajaCoche(){
-	ocultarFormularios();
-	document.formu_bajaCoche.style.display = "block";
-	document.formu_bajaCoche.reset();	
-}
-function mostrarAprobarTeorico(){
-	ocultarFormularios();
-	document.formu_aprobarTeorico.style.display = "block";
-	document.formu_aprobarTeorico.reset();
-}
 function mostrarAprobarPractico(){
 	ocultarFormularios();
 	document.formu_aprobarPractico.style.display = "block";
@@ -77,14 +87,6 @@ function mostrarAsignarProfesorAClase(){
 }
 //Funcion que oculta todos los formularios
 function ocultarFormularios(){
-	document.formu_altaPersona.style.display = "none";
-	document.formu_altaMatricula.style.display = "none";
-	document.formu_altaCoche.style.display = "none";
-	document.formu_altaClases.style.display = "none";
-	document.formu_bajaCoche.style.display = "none";
-	document.formu_bajaMatricula.style.display = "none";
-	document.formu_bajaPersona.style.display = "none";
-	document.formu_aprobarTeorico.style.display = "none";
 	document.formu_aprobarPractico.style.display = "none";
 	document.formu_matricularCliente.style.display = "none";
 	document.formu_asignarProfesor.style.display = "none";
@@ -101,66 +103,21 @@ function ocultarFormularios(){
 }
 
 
-//Eventos para añadir y mostrar datos al modelo
-document.formu_altaPersona.añadir.addEventListener("click", frmAltaPersona);
-document.formu_altaMatricula.añadir.addEventListener("click", frmAltaMatricula);
-document.formu_altaCoche.añadir.addEventListener("click", frmAltaCoche);
-document.formu_altaClases.añadir.addEventListener("click", frmAltaClases);
-document.formu_bajaPersona.baja.addEventListener("click", frmBajaPersona);
-document.formu_bajaMatricula.baja.addEventListener("click", frmBajaMatricula);
-document.formu_bajaCoche.baja.addEventListener("click", frmBajaCoche);
-document.formu_aprobarTeorico.mod.addEventListener("click", frmAprobarTeorico);
-document.formu_aprobarPractico.mod.addEventListener("click", frmAprobarPractico);
-document.formu_matricularCliente.mod.addEventListener("click", frmMatricularCliente);
-document.formu_asignarProfesor.mod.addEventListener("click", frmAsignarProfesorAClase);
-document.formu_busquedaAvanzadaPersona.buscar.addEventListener("click", listadoPersonaConValores);
-document.formu_busquedaAvanzadaMatricula.buscar.addEventListener("click", listadoMatriculaConValores);
-document.formu_busquedaAvanzadaClase.buscar.addEventListener("click", listadoClasesConValores);
-document.formu_busquedaAvanzadaCoche.buscar.addEventListener("click", listadoCocheConValores);
-window.addEventListener("load", añadirDatos);
-
-
-
+//Eventos para añadir, modificar, eliminar y mostrar datos del modelo
 //////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////ALTAS////////////////////////////////////////////
+////////////////////////////GESTION PERSONAS//////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
+document.formu_gestionPersona.añadir.addEventListener("click", altaPersona);
+document.formu_gestionPersona.mod.addEventListener("click", modPersona);
 
 //Funcion para dar de alta a una persona
-function frmAltaPersona(){
-	var oForm = document.formu_altaPersona;
+function altaPersona(){
+	var oForm = document.formu_gestionPersona;
 	var bValido = true;
 	var sErrores = "";
 
-	//Campo Nombre
-	var sNombre = oForm.altaPersonaNombre.value.trim();
-	var oExpReg = /^[a-zA-Z\s]{2,40}$/;
-	if (oExpReg.test(sNombre) == false){
-		if(bValido == true){
-			bValido = false;		
-		}
-		sErrores += "Nombre incorrecto (Sintaxis: 2-40 Digitos)";
-		//Marcar error
-		oForm.altaPersonaNombre.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaPersonaNombre.className = "form-control";	
-	}
-	// Campo apellidos
-	var sApellidos = oForm.altaPersonaApellidos.value.trim();
-	oExpReg = /^[a-zA-Z\s]{3,40}$/;
-	if (oExpReg.test(sApellidos) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos)";
-		//Marcar error
-		oForm.altaPersonaApellidos.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaPersonaApellidos.className = "form-control";	
-	}
 	// Campo dni
-	var sDni = oForm.altaPersonaDni.value.trim();
+	var sDni = oForm.dniPersona.value.trim();
 	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
 	if (oExpReg.test(sDni) == false){
 		if(bValido == true){
@@ -168,13 +125,41 @@ function frmAltaPersona(){
 		}
 		sErrores += "<br>DNI incorrecto  (Sintaxis: XXXXXXXX-A)";
 		//Marcar error
-		oForm.altaPersonaDni.className = "form-control error";
+		oForm.dniPersona.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.altaPersonaDni.className = "form-control";
+		oForm.dniPersona.className = "form-control";
+	}
+	//Campo Nombre
+	var sNombre = oForm.nombrePersona.value.trim();
+	var oExpReg = /^[a-zA-Z\s]{2,40}$/;
+	if (oExpReg.test(sNombre) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "Nombre incorrecto (Sintaxis: 2-40 Digitos)";
+		//Marcar error
+		oForm.nombrePersona.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.nombrePersona.className = "form-control";	
+	}
+	// Campo apellidos
+	var sApellidos = oForm.apellidoPersona.value.trim();
+	oExpReg = /^[a-zA-Z\s]{3,40}$/;
+	if (oExpReg.test(sApellidos) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos)";
+		//Marcar error
+		oForm.apellidoPersona.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.apellidoPersona.className = "form-control";	
 	}
 	// Campo direccion
-	var sDireccion = oForm.altaPersonaDireccion.value.trim();
+	var sDireccion = oForm.direccionPersona.value.trim();
 	oExpReg = /^[a-zA-Z\s]{10,40}$/; 
 	if (oExpReg.test(sDireccion) == false){
 		if(bValido == true){
@@ -182,13 +167,13 @@ function frmAltaPersona(){
 		}
 		sErrores += "<br>Direccion incorrecta (Sintaxis: 10-40 Digitos)";
 		//Marcar error
-		oForm.altaPersonaDireccion.className = "form-control error";
+		oForm.direccionPersona.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.altaPersonaDireccion.className = "form-control";	
+		oForm.direccionPersona.className = "form-control";	
 	}
 	// Campo email
-	var sEmail = oForm.altaPersonaEmail.value.trim();
+	var sEmail = oForm.emailPersona.value.trim();
 	oExpReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})$/;
 	if (oExpReg.test(sEmail) == false){
 		if(bValido == true){
@@ -196,13 +181,13 @@ function frmAltaPersona(){
 		}
 		sErrores += "<br>Email incorrecto (Sintaxis:  nombreusuario@servidor.dominio)";
 		//Marcar error
-		oForm.altaPersonaEmail.className = "form-control error";
+		oForm.emailPersona.className = "form-control error";
 	}else {
 		//Desmarcar error
-		oForm.altaPersonaEmail.className = "form-control";	
+		oForm.emailPersona.className = "form-control";	
 	}
 	// Campo tlf
-	var sTlf = oForm.altaPersonaTlf.value.trim();
+	var sTlf = oForm.tlfPersona.value.trim();
 	oExpReg = /^[0-9-]{9}$/;
 	if (oExpReg.test(sTlf) == false){
 		if(bValido == true){
@@ -210,13 +195,13 @@ function frmAltaPersona(){
 		}
 		sErrores += "<br>Telefono incorrecto (Sintaxis: 9 Digitos)";
 		//Marcar error
-		oForm.altaPersonaTlf.className = "form-control error";
+		oForm.tlfPersona.className = "form-control error";
 	}else {
 		//Desmarcar error
-		oForm.altaPersonaTlf.className = "form-control";	
+		oForm.tlfPersona.className = "form-control";	
 	}
 	// Campo ID
-	var sID = oForm.altaPersonaId.value.trim();
+	var sID = oForm.idPersona.value.trim();
 	var oExpReg = /^[0-9]{1,10}$/;
 	if (oExpReg.test(sID) == false){
 		if(bValido == true){
@@ -224,10 +209,10 @@ function frmAltaPersona(){
 		}
 		sErrores += "<br>ID incorrecto (Sintaxis: 1-10 numeros)";
 		//Marcar error
-		oForm.altaPersonaId.className = "form-control error";
+		oForm.idPersona.className = "form-control error";
 	}else {
 		//Desmarcar error
-		oForm.altaPersonaId.className = "form-control";	
+		oForm.idPersona.className = "form-control";	
 	}
 
 	if (bValido) {
@@ -247,56 +232,28 @@ function frmAltaPersona(){
 	}
 }
 
+//Funcion para modificar los datos de una persona
+function modPersona(){
+	alert("modPersona");
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////GESTION MATRICULAS////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+document.formu_gestionMatricula.añadir.addEventListener("click", altaMatricula);
+document.formu_gestionMatricula.baja.addEventListener("click", bajaMatricula);
+document.formu_gestionMatricula.mod.addEventListener("click", modMatricula);
 
 //Funcion para dar de alta una matricula
-function frmAltaMatricula(){
-	var oForm = document.formu_altaMatricula;
+function altaMatricula(){
+	var oForm = document.formu_gestionMatricula;
 	var bValido = true;
 	var sErrores = "";
 
-	//campo cantidad abonada
-	var sCantidad = oForm.altaMatriculaCantidadAbonada.value.trim();
-	oExpReg = /^[+-]?\d+(\.\d+)?$/; 
-	if (oExpReg.test(sCantidad) == false){
-		if(bValido == true){
-			bValido = false;		
-		}
-		sErrores += "Cantidad abonado incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
-		//Marcar error
-		oForm.altaMatriculaCantidadAbonada.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaMatriculaCantidadAbonada.className = "form-control";	
-	}
-	//campo fecha
-	var dFecha = oForm.altaMatriculaFecha.value;
-	if (dFecha=="") {
-		if(bValido == true){
-			bValido = false;		
-		}
-		sErrores += "<br>Fecha incorrecta";
-		//Marcar error
-		oForm.altaMatriculaFecha.className = "form-control error";
-	}else{
-		oForm.altaMatriculaFecha.className = "form-control";	
-	}
-
-	//campo dni cliente
-	var sDni = oForm.altaMatriculaDniCliente.value.trim();
-	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
-	if (oExpReg.test(sDni) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "<br>DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
-		//Marcar error
-		oForm.altaMatriculaDniCliente.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaMatriculaDniCliente.className = "form-control";
-	}
 	//campo identificador matricula
-	var sIdentificador = oForm.altaMatriculaIdMatricula.value.trim();
+	var sIdentificador = oForm.idMatricula.value.trim();
 	oExpReg = /^[0-9]{1,10}$/; 
 	if (oExpReg.test(sIdentificador) == false){
 		if(bValido == true){
@@ -304,13 +261,54 @@ function frmAltaMatricula(){
 		}
 		sErrores += "<br>Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
-		oForm.altaMatriculaIdMatricula.className = "form-control error";
+		oForm.idMatricula.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.altaMatriculaIdMatricula.className = "form-control";
+		oForm.idMatricula.className = "form-control";
+	}
+	//campo cantidad abonada
+	var sCantidad = oForm.cantidadAbonadaMatricula.value.trim();
+	oExpReg = /^[+-]?\d+(\.\d+)?$/; 
+	if (oExpReg.test(sCantidad) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "Cantidad abonado incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
+		//Marcar error
+		oForm.cantidadAbonadaMatricula.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.cantidadAbonadaMatricula.className = "form-control";	
+	}
+	//campo fecha
+	var dFecha = oForm.fechaMatricula.value;
+	if (dFecha=="") {
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Fecha incorrecta";
+		//Marcar error
+		oForm.fechaMatricula.className = "form-control error";
+	}else{
+		oForm.fechaMatricula.className = "form-control";	
+	}
+
+	//campo dni cliente
+	var sDni = oForm.dniClienteMatricula.value.trim();
+	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
+	if (oExpReg.test(sDni) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "<br>DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+		//Marcar error
+		oForm.dniClienteMatricula.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.dniClienteMatricula.className = "form-control";
 	}
 	//campo numero de practicas
-	var sNPracticas = oForm.altaMatriculaNPracticas.value.trim();
+	var sNPracticas = oForm.nPracticasMatricula.value.trim();
 	oExpReg = /^[0-9]{1,2}$/; 
 	if (oExpReg.test(sNPracticas) == false){
 		if(bValido == true){
@@ -318,13 +316,13 @@ function frmAltaMatricula(){
 		}
 		sErrores += "<br>Nº de practicas incorrectas (Sintaxis: De 0 al 99)";
 		//Marcar error
-		oForm.altaMatriculaNPracticas.className = "form-control error";
+		oForm.nPracticasMatricula.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.altaMatriculaNPracticas.className = "form-control";
+		oForm.nPracticasMatricula.className = "form-control";
 	}
 	//campo precio
-	var sPrecio = oForm.altaMatriculaPrecio.value.trim();
+	var sPrecio = oForm.precioMatricula.value.trim();
 	oExpReg = /^[+-]?\d+(\.\d+)?$/; 
 	if (oExpReg.test(sPrecio) == false){
 		if(bValido == true){
@@ -332,10 +330,10 @@ function frmAltaMatricula(){
 		}
 		sErrores += "<br>Precio incorrecto (Sintaxis: Numeros enteros o decimales(con .))";
 		//Marcar error
-		oForm.altaMatriculaPrecio.className = "form-control error";
+		oForm.precioMatricula.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.altaMatriculaPrecio.className = "form-control";	
+		oForm.precioMatricula.className = "form-control";	
 	}
 	
 	if (bValido) {
@@ -355,222 +353,20 @@ function frmAltaMatricula(){
 	}
 }
 
-//Funcion para dar de alta una clase
-function frmAltaClases(){
-	var oForm = document.formu_altaClases;
-	var bValido = true;
-	var sErrores = "";
-
-	//Campo ID
-	var sIdentificador = oForm.altaClasesId.value.trim();
-	var oExpReg = /^[0-9]{1,10}$/; 
-	if (oExpReg.test(sIdentificador) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "Identificador incorrecto (Sintaxis:  1-10 numeros)";
-		//Marcar error
-		oForm.altaClasesId.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaClasesId.className = "form-control";
-	}
-	//Campo duración
-	var sDuracion = oForm.altaClasesDuracion.value.trim();
-	oExpReg = /^[0-9]{1,3}$/; 
-	if (oExpReg.test(sDuracion) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "<br>Duracion incorrecta (Sintaxis: Del 1 al 999)";
-		//Marcar error
-		oForm.altaClasesDuracion.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaClasesDuracion.className = "form-control";
-	}
-	//campo fecha
-	var dFecha = oForm.altaClasesFecha.value;
-	if (dFecha=="") {
-		if(bValido == true){
-			bValido = false;		
-		}
-		sErrores += "<br>Fecha incorrecta";
-		//Marcar error
-		oForm.altaClasesFecha.className = "form-control error";
-	}else{
-		oForm.altaClasesFecha.className = "form-control";	
-	}
-	//Campo hora
-	var sHora = oForm.altaClasesHora.value.trim();
-	oExpReg = /^[0-2][0-3]:[0-5][0-9]$/; 
-	if (oExpReg.test(sHora) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "<br>Hora incorrecta (Sintaxis: HH:MM)";
-		//Marcar error
-		oForm.altaClasesHora.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaClasesHora.className = "form-control";
-	}
-	//Comprobamos si esta marcado Prácticas o Teóricas
-	if (oForm.clase.value == "practica") {
-		//Campo tarifa
-		var sTarifa = oForm.altaClasesTarifa.value.trim();
-		oExpReg = /^[+-]?\d+(\.\d+)?$/; 
-		if (oExpReg.test(sTarifa) == false){
-			if(bValido == true){
-				bValido = false;		
-			}
-			sErrores += "<br>Tarifa incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
-			//Marcar error
-			oForm.altaClasesTarifa.className = "form-control error";
-			oForm.altaClasesAforo.className = "form-control";
-		}else{
-			//Desmarcar error
-			oForm.altaClasesTarifa.className = "form-control";
-			oForm.altaClasesAforo.className = "form-control";	
-		}
-	}else{
-		//Campo aforo
-		var sAforo = oForm.altaClasesAforo.value.trim();
-		oExpReg = /^[0-9]{1,2}$/; 
-		if (oExpReg.test(sAforo) == false){
-			if(bValido == true){
-				bValido = false;	
-			}
-			sErrores += "<br>Aforo incorrecto (Sintaxis: Del 1 al 99)";
-			//Marcar error
-			oForm.altaClasesAforo.className = "form-control error";
-			oForm.altaClasesTarifa.className = "form-control";
-		}else{
-			//Desmarcar error
-			oForm.altaClasesAforo.className = "form-control";
-			oForm.altaClasesTarifa.className = "form-control";
-		}
-	}
-
-	if (bValido) {
-		//Aquí es donde se hacen los metodos para añadir la persona al modelo
-		var sMensaje;
-
-		if (oForm.clase.value == "practica"){
-			var oPractica = new Practicas(sIdentificador, sDuracion, dFecha, sHora, sTarifa);
-			sMensaje = oAutoescuela.altaClases(oPractica);
-		}else{
-			var oTeorica = new Teoricas(sIdentificador, sDuracion, dFecha, sHora, sAforo);
-			sMensaje = oAutoescuela.altaClases(oTeorica);
-		}
-		toastr.info(sMensaje);
-		oForm.reset();
-	}else{
-		toastr.error(sErrores);
-	}
-}
-
-//Funcion para dar de alta un coche
-function frmAltaCoche(){
-	var oForm = document.formu_altaCoche;
-	var bValido = true;
-	var sErrores = "";	
-
-	//Campo Marca
-	var sMarca = oForm.altaCocheMarca.value.trim();
-	var oExpReg = /^[a-zA-Z\s]{3,20}$/; 
-	if (oExpReg.test(sMarca) == false){
-		if(bValido == true){
-			bValido = false;		
-		}
-		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos)";
-		//Marcar error
-		oForm.altaCocheMarca.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaCocheMarca.className = "form-control";	
-	}
-	//Campo matricula
-	var sMatricula = oForm.altaCocheMatricula.value.trim();
-	oExpReg = /^[1-9]{4}\s[a-zA-Z]{3}/;
-	if (oExpReg.test(sMatricula) == false){
-		if(bValido == true){
-			bValido = false;		
-		}
-		sErrores += "<br>Matricula incorrecta (Sintaxis: XXXX AAA)";
-		//Marcar error
-		oForm.altaCocheMatricula.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaCocheMatricula.className = "form-control";	
-	}
-	//Campo modelo
-	var sModelo = oForm.altaCocheModelo.value.trim();
-	oExpReg = /^[a-zA-Z\s]{3,20}$/; 
-	if (oExpReg.test(sModelo) == false){
-		if(bValido == true){
-			bValido = false;		
-		}
-		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos)";
-		//Marcar error
-		oForm.altaCocheModelo.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.altaCocheModelo.className = "form-control";	
-	}
-
-	//Comprobamos si el formulario es valido y añadimos el coche al modelo
-	if (bValido) {
-		//Aquí es donde se hacen los metodos para añadir el coche al modelo
-		var oCoche = new Coche(sMarca, sMatricula, sModelo);
-		var sMensaje = oAutoescuela.altaCoche(oCoche);
-		oForm.reset();
-		toastr.info(sMensaje);
-	}else{
-		toastr.error(sErrores);
-	}
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////BAJAS////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-
-//Funcion para dar de baja a una persona
-function frmBajaPersona(){
-	var oForm = document.formu_bajaPersona;
-
-	// Campo dni
-	var sDni = oForm.bajaPersonaDni.value.trim();
-	var oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
-	if (oExpReg.test(sDni) == false){
-		toastr.error("DNI incorrecto  (Sintaxis: XXXXXXXX-A)");
-		//Marcar error
-		oForm.bajaPersonaDni.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.bajaPersonaDni.className = "form-control";
-		//Aqui es donde se hacen los metodos para quitar una persona del modelo
-		var sMensaje = oAutoescuela.bajaPersona(sDni);
-		oForm.reset();
-		toastr.info(sMensaje);
-	}
-}
-
 //Funcion para dar de baja un matricula
-function frmBajaMatricula(){
-	var oForm = document.formu_bajaMatricula;
+function bajaMatricula(){
+	var oForm = document.formu_gestionMatricula;
 
 	// Campo indetificador
-	var sIdentificador = oForm.bajaCocheIdentificador.value.trim();
+	var sIdentificador = oForm.idMatricula.value.trim();
 	var oExpReg = /^[0-9]{1,10}$/; 
 	if (oExpReg.test(sIdentificador) == false){
 		toastr.error("Matricula incorrecta  (Sintaxis:  1-10 numeros)");
 		//Marcar error
-		oForm.bajaCocheIdentificador.className = "form-control error";
+		oForm.idMatricula.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.bajaCocheIdentificador.className = "form-control";
+		oForm.idMatricula.className = "form-control";
 		//Aqui es donde se hacen los metodos para quitar una matricula del modelo
 		var sMensaje = oAutoescuela.bajaMatricula(sIdentificador);
 		oForm.reset();
@@ -578,463 +374,615 @@ function frmBajaMatricula(){
 	}
 }
 
+//Funcion que modifica los datos de una matricula
+function modMatricula(){
+	alert("modMatricula");
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////GESTION COCHES////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+document.formu_gestionCoche.añadir.addEventListener("click", altaCoche);
+document.formu_gestionCoche.baja.addEventListener("click", bajaCoche);
+document.formu_gestionCoche.mod.addEventListener("click", modCoche);
+
+//Funcion para dar de alta un coche
+function altaCoche(){
+	var oForm = document.formu_gestionCoche;
+	var bValido = true;
+	var sErrores = "";	
+
+	//Campo Marca
+	var sMarca = oForm.marcaCoche.value.trim();
+	var oExpReg = /^[a-zA-Z\s]{3,20}$/; 
+	if (oExpReg.test(sMarca) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos)";
+		//Marcar error
+		oForm.marcaCoche.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.marcaCoche.className = "form-control";	
+	}
+	//Campo matricula
+	var sMatricula = oForm.matriculaCoche.value.trim();
+	oExpReg = /^[1-9]{4}\s[a-zA-Z]{3}/;
+	if (oExpReg.test(sMatricula) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Matricula incorrecta (Sintaxis: XXXX AAA)";
+		//Marcar error
+		oForm.matriculaCoche.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.matriculaCoche.className = "form-control";	
+	}
+	//Campo modelo
+	var sModelo = oForm.modeloCoche.value.trim();
+	oExpReg = /^[a-zA-Z\s]{3,20}$/; 
+	if (oExpReg.test(sModelo) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos)";
+		//Marcar error
+		oForm.modeloCoche.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.modeloCoche.className = "form-control";	
+	}
+
+	//Comprobamos si el formulario es valido y añadimos el coche a la base de datos
+	if (bValido) {
+		var oCoche = { 
+			marca : sMarca,
+			matricula: sMatricula,
+			modelo: sModelo
+			};
+		
+		sURL = "php/coches/altaCoche.php";
+		sParametros = "datos=" + JSON.stringify(oCoche);
+		peticionAjax(sURL,sParametros);
+	}else{
+		toastr.error(sErrores);
+	}
+}
+
 //Funcion para dar de baja un coche
-function frmBajaCoche(){
-	var oForm = document.formu_bajaCoche;
+function bajaCoche(){
+	var oForm = document.formu_gestionCoche;
 
 	//Campo matricula
-	var sMatricula = oForm.bajaCocheMatricula.value.trim();
+	var sMatricula = oForm.matriculaCoche.value.trim();
 	var oExpReg = /^[1-9]{4}\s[a-zA-Z]{3}/;
 	if (oExpReg.test(sMatricula) == false){
 		toastr.error("Matricula incorrecta  (Sintaxis: XXXX AAA)");
 		//Marcar error
-		oForm.bajaCocheMatricula.className = "form-control error";
+		oForm.matriculaCoche.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.bajaCocheMatricula.className = "form-control";
-		//Aqui es donde se hacen los metodos para quitar un coche del modelo
-		var sMensaje = oAutoescuela.bajaCoche(sMatricula);
-		oForm.reset();
-		toastr.info(sMensaje);
+		oForm.matriculaCoche.className = "form-control";
+		//Aqui es donde se hacen los metodos para quitar un coche de la base de datos
+		sURL = "php/coches/bajaCoche.php";
+		sParametros = "matricula=" + sMatricula;
+		peticionAjax(sURL,sParametros);
+		// var sMensaje = oAutoescuela.bajaCoche(sMatricula);
+		// oForm.reset();
+		// toastr.info(sMensaje);
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////MODIFICACIONES//////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-
-function frmAprobarTeorico(){
-	var oForm = document.formu_aprobarTeorico;
-
-	//campo identificador matricula
-	var sIdentificador = oForm.aprobarTeoricoMatricula.value.trim();
-	oExpReg = /^[0-9]{1,10}$/; 
-	if (oExpReg.test(sIdentificador) == false){
-		toastr.error("Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)");
-		//Marcar error
-		oForm.aprobarTeoricoMatricula.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.aprobarTeoricoMatricula.className = "form-control";
-		var sMensaje = oAutoescuela.apruebaTeorico(sIdentificador);
-		oForm.reset();
-		toastr.info(sMensaje);
-	}
-}
-
-function frmAprobarPractico(){
-	var oForm = document.formu_aprobarPractico;
-
-	//campo identificador matricula
-	var sIdentificador = oForm.aprobarPracticoMatricula.value.trim();
-	oExpReg = /^[0-9]{1,10}$/; 
-	if (oExpReg.test(sIdentificador) == false){
-		toastr.error("Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)");
-		//Marcar error
-		oForm.aprobarPracticoMatricula.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.aprobarPracticoMatricula.className = "form-control";
-		var sMensaje = oAutoescuela.apruebaPractico(sIdentificador);
-		oForm.reset();
-		toastr.info(sMensaje);
-	}
-}
-
-function frmMatricularCliente(){
-	var oForm = document.formu_matricularCliente;
+//Funcion que modifica los datos de un coche
+function modCoche(){
+	var oForm = document.formu_gestionCoche;
 	var bValido = true;
-	var sErrores = "";
+	var sErrores = "";	
 
-	//campo dni cliente
-	var sDni = oForm.matricularClienteDni.value.trim();
-	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
-	if (oExpReg.test(sDni) == false){
+	//Campo Marca
+	var sMarca = oForm.marcaCoche.value.trim();
+	var oExpReg = /^[a-zA-Z\s]{3,20}$/; 
+	if (oExpReg.test(sMarca) == false){
 		if(bValido == true){
-			bValido = false;	
+			bValido = false;		
 		}
-		sErrores += "DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos)";
 		//Marcar error
-		oForm.matricularClienteDni.className = "form-control error";
+		oForm.marcaCoche.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.matricularClienteDni.className = "form-control";
+		oForm.marcaCoche.className = "form-control";	
 	}
-	//Campo ID
-	var sIdentificador = oForm.matricularClienteId.value.trim();
-	var oExpReg = /^[0-9]{1,10}$/; 
-	if (oExpReg.test(sIdentificador) == false){
+	//Campo matricula
+	var sMatricula = oForm.matriculaCoche.value.trim();
+	oExpReg = /^[1-9]{4}\s[a-zA-Z]{3}/;
+	if (oExpReg.test(sMatricula) == false){
 		if(bValido == true){
-			bValido = false;	
+			bValido = false;		
 		}
-		sErrores += "<br>Identificador incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "<br>Matricula incorrecta (Sintaxis: XXXX AAA)";
 		//Marcar error
-		oForm.matricularClienteId.className = "form-control error";
+		oForm.matriculaCoche.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.matricularClienteId.className = "form-control";
+		oForm.matriculaCoche.className = "form-control";	
+	}
+	//Campo modelo
+	var sModelo = oForm.modeloCoche.value.trim();
+	oExpReg = /^[a-zA-Z\s]{3,20}$/; 
+	if (oExpReg.test(sModelo) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos)";
+		//Marcar error
+		oForm.modeloCoche.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.modeloCoche.className = "form-control";	
 	}
 
-	//Comprobamos si el formulario es valido y matriculamos cliente
+	//Comprobamos si el formulario es valido y añadimos el coche a la base de datos
 	if (bValido) {
-		//Aquí es donde se hacen los metodos para matricular al cliente
-		var sMensaje = oAutoescuela.matricularClienteEnClases(sDni, sIdentificador);
-		oForm.reset();
-		toastr.info(sMensaje);
+		var oCoche = { 
+			marca : sMarca,
+			matricula: sMatricula,
+			modelo: sModelo
+			};
+		
+		sURL = "php/coches/modificarCoche.php";
+		sParametros = "datos=" + JSON.stringify(oCoche);
+		peticionAjax(sURL,sParametros);
 	}else{
 		toastr.error(sErrores);
 	}
 }
 
-function frmAsignarProfesorAClase(){
-	var oForm = document.formu_asignarProfesor;
+//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////GESTION CLASES////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+document.formu_gestionClases.añadir.addEventListener("click", altaClase);
+
+//Funcion para dar de alta una clase
+function altaClase(){
+	var oForm = document.formu_gestionClases;
 	var bValido = true;
 	var sErrores = "";
 
-	//campo dni cliente
-	var sDni = oForm.asignarProfDni.value.trim();
-	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
-	if (oExpReg.test(sDni) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
-		//Marcar error
-		oForm.asignarProfDni.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.asignarProfDni.className = "form-control";
-	}
 	//Campo ID
-	var sIdentificador = oForm.asignarProfId.value.trim();
+	var sIdentificador = oForm.idClase.value.trim();
 	var oExpReg = /^[0-9]{1,10}$/; 
 	if (oExpReg.test(sIdentificador) == false){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "<br>Identificador incorrecto (Sintaxis:  1-10 numeros)";
+		sErrores += "Identificador incorrecto (Sintaxis:  1-10 numeros)";
 		//Marcar error
-		oForm.asignarProfId.className = "form-control error";
+		oForm.idClase.className = "form-control error";
 	}else{
 		//Desmarcar error
-		oForm.asignarProfId.className = "form-control";
+		oForm.idClase.className = "form-control";
+	}
+	//Campo duración
+	var sDuracion = oForm.duracionClase.value.trim();
+	oExpReg = /^[0-9]{1,3}$/; 
+	if (oExpReg.test(sDuracion) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "<br>Duracion incorrecta (Sintaxis: Del 1 al 999)";
+		//Marcar error
+		oForm.duracionClase.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.duracionClase.className = "form-control";
+	}
+	//campo fecha
+	var dFecha = oForm.fechaClase.value;
+	if (dFecha=="") {
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Fecha incorrecta";
+		//Marcar error
+		oForm.fechaClase.className = "form-control error";
+	}else{
+		oForm.fechaClase.className = "form-control";	
+	}
+	//Campo hora
+	var sHora = oForm.horaClase.value.trim();
+	oExpReg = /^[0-2][0-3]:[0-5][0-9]$/; 
+	if (oExpReg.test(sHora) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "<br>Hora incorrecta (Sintaxis: HH:MM)";
+		//Marcar error
+		oForm.horaClase.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.horaClase.className = "form-control";
+	}
+	
+	//Campo tarifa
+	var sTarifa = oForm.tarifaClase.value.trim();
+	oExpReg = /^[+-]?\d+(\.\d+)?$/; 
+	if (oExpReg.test(sTarifa) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Tarifa incorrecta (Sintaxis: Numeros enteros o decimales(con .))";
+		//Marcar error
+		oForm.tarifaClase.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.tarifaClase.className = "form-control";
 	}
 
-	//Comprobamos si el formulario es valido y matriculamos cliente
 	if (bValido) {
-		//Aquí es donde se hacen los metodos para matricular al cliente
-		var sMensaje = oAutoescuela.AsignarProfesorAClases(sDni, sIdentificador);
-		oForm.reset();
+		//Aquí es donde se hacen los metodos para añadir la persona al modelo
+		var sMensaje;
+		var oPractica = new Practicas(sIdentificador, sDuracion, dFecha, sHora, sTarifa);
+		sMensaje = oAutoescuela.altaClases(oPractica);
 		toastr.info(sMensaje);
+		oForm.reset();
 	}else{
 		toastr.error(sErrores);
 	}
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////LISTADOS/////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-var cont = 0;
-function listadoPersona(){
-	ocultarFormularios();
-	document.formu_busquedaAvanzadaPersona.style.display = "block";
-	document.formu_busquedaAvanzadaPersona.reset();
-	listadoPersonaAvanzados("","");	
-}
-function listadoPersonaConValores(){
-	var oForm = document.formu_busquedaAvanzadaPersona;
-	var sClave = oForm.busquedaPersonaClave.value.trim();
-	var sValor = oForm.busquedaPersonaValor.value.trim();
 
-	if (sClave == "Seleccione clave") {
-		listadoPersonaAvanzados("", "");	
-	}else{
-		listadoPersonaAvanzados(sClave, sValor);	
-	}
-	oForm.reset();
-}
-function listadoPersonaAvanzados(clave, valor){
-	var oCapa = document.getElementById("capa");
-	oCapa.style.display = "block";
-	if(cont > 0){
-		oCapa.removeChild(oCapa.childNodes[0]);
-	}
-	oCapa.appendChild(oAutoescuela.ListadoPersonas(clave, valor));
-	cont++;
+
+
+
+
+
+
+var oAjax = null;
+function inicializa_xhr() {
+  if (window.XMLHttpRequest) {
+	    return new XMLHttpRequest(); 
+  } else if (window.ActiveXObject) {
+	    return new ActiveXObject("Microsoft.XMLHTTP"); 
+  } 
 }
 
+function peticionAjax(sURL,sParametros){
 
-
-
-function listadoMatriculas(){
-	ocultarFormularios();
-	document.formu_busquedaAvanzadaMatricula.style.display = "block";
-	document.formu_busquedaAvanzadaMatricula.reset();
-	listadoMatriculaAvanzados("","");		
-}
-function listadoMatriculaConValores(){
-	var oForm = document.formu_busquedaAvanzadaMatricula;
-	var sClave = oForm.busquedaMatriculaClave.value.trim();
-	var sValor = oForm.busquedaMatriculaValor.value.trim();
-
-	if(sClave == "Examen Teorico aprobado" || sClave == "Examen Practico aprobado"){
-		sValor = sValor.toUpperCase();
-	}
+	// PRIMERO: configuracion de la peticion
+	oAjax = inicializa_xhr();
+	oAjax.open("POST",sURL,true);
+	oAjax.addEventListener("readystatechange",procesarRespuesta,false);	
+	oAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	
-	if (sClave == "Seleccione clave") {
-		listadoMatriculaAvanzados("", "");	
-	}else{
-		listadoMatriculaAvanzados(sClave, sValor);
-	}
-	oForm.reset();
-}
-function listadoMatriculaAvanzados(clave, valor){
-	var oCapa = document.getElementById("capa");
-	oCapa.style.display = "block";
-	if(cont > 0){
-		oCapa.removeChild(oCapa.childNodes[0]);
-	}
-	oCapa.appendChild(oAutoescuela.ListadoMatriculas(clave, valor));
-	cont++;
-}
-
-
-
-
-function listadoClases(){
-	ocultarFormularios();
-	document.formu_busquedaAvanzadaClase.style.display = "block";
-	document.formu_busquedaAvanzadaClase.reset();
-	listadoClasesAvanzados("","");
-}
-function listadoClasesConValores(){
-	var oForm = document.formu_busquedaAvanzadaClase;
-	var sClave = oForm.busquedaClaseClave.value.trim();
-	var sValor = oForm.busquedaClaseValor.value.trim();
-
-	if (sClave == "Seleccione clave") {
-		listadoClasesAvanzados("", "");	
-	}else{
-		listadoClasesAvanzados(sClave, sValor);
-	}
-	oForm.reset();
-}
-function listadoClasesAvanzados(clave, valor){
-	var oCapa = document.getElementById("capa");
-	oCapa.style.display = "block";
-	if(cont > 0){
-		oCapa.removeChild(oCapa.childNodes[0]);
-	}
-	oCapa.appendChild(oAutoescuela.listadoClases(clave,valor));
-	cont++;
-}
-
-
-
-
-function listadoCoche(){
-	ocultarFormularios();
-	document.formu_busquedaAvanzadaCoche.style.display = "block";
-	document.formu_busquedaAvanzadaCoche.reset();
-	listadoCocheAvanzados("","");
-}
-function listadoCocheConValores(){
-	var oForm = document.formu_busquedaAvanzadaCoche;
-
-	var sClave = oForm.busquedaCocheClave.value.trim();
-	var sValor = oForm.busquedaCocheValor.value.trim();
-
-	if (sClave == "Seleccione clave") {
-		listadoCocheAvanzados("", "");	
-	}else{
-		listadoCocheAvanzados(sClave, sValor);
-	}
-	oForm.reset();
-}
-function listadoCocheAvanzados(clave, valor){
-	var oCapa = document.getElementById("capa");
-	oCapa.style.display = "block";
-	if(cont > 0){
-		oCapa.removeChild(oCapa.childNodes[0]);
-	}
-	oCapa.appendChild(oAutoescuela.ListadoCoches(clave, valor));
-	cont++;
-}
-
-
-//La funcion añadirDatos desde un XML solo funciona desde firefox, Para que funcione desde un chrome se debe crear un servidor en local
-function añadirDatos(){
-	var oXML = loadXMLDoc("xml/Autoescuela.xml");
+	// SEGUNDO : hacer la peticion
+	oAjax.send(sParametros);
 	
-	//Recogemos los datos de coche
-	var aCoche = oXML.getElementsByTagName("Coche");
-	
-	for(var i = 0; i < aCoche.length; i++){
-		var Marca, Matricula, Modelo;
-		for(var j = 0; j < aCoche[i].childNodes.length; j++){
-			if(aCoche[i].childNodes[j].nodeType == 1){
-				var nodo = oXML.getElementsByTagName(aCoche[i].childNodes[j].nodeName)[i];
-				switch(nodo.nodeName){
-					case "Marca":
-						Marca = nodo.getAttribute("value");
-					break;
-					case "MatriculaCoche":
-						Matricula = nodo.getAttribute("value");
-					break;
-					case "Modelo":
-						Modelo = nodo.getAttribute("value");
-					break;
+}
+    
+function procesarRespuesta(){
+	// TERCERO: procesar respuesta cuando llega
+	if (oAjax.readyState == 4 && oAjax.status == 200){
+		// JSON.parse cadena --> objeto
+		// JSON.stringify objeto --> cadena
+		 var oObjeto = JSON.parse(oAjax.responseText);
+		 
+		 switch(oObjeto.accion){
+		 	case 100: // altaCoche
+		 	case 200: // bajaCoche
+		 	case 300: // modificarCoche
+		 		oDlgMensaje.dialog("option","title", oObjeto.mensaje);
+		 		$("#pResultado").text(oObjeto.resultado);
+
+				oDlgMensaje.dialog("open");	 
+				
+				if (oObjeto.error == false){
+					oDlgFormuGestionCoche.dialog("close");
 				}
-			}
-		}
-		oAutoescuela.altaCoche(new Coche(Marca, Matricula, Modelo));
-	}
-	
-	//Recogemos los datos de Persona
-	var aPersona = oXML.getElementsByTagName("Persona");
-	
-	for(var i = 0; i < aPersona.length; i++){
-		var DNI, Nombre, Apellidos, Direccion, Email, Telefono, ID;
-		for(var j = 0; j < aPersona[i].childNodes.length; j++){
-			if(aPersona[i].childNodes[j].nodeType == 1){
-				var nodo = aPersona[i].childNodes[j];
-				switch(nodo.nodeName){
-					case "DNI":
-						DNI = nodo.getAttribute("value");
-					break;
-					case "Nombre":
-						Nombre = nodo.getAttribute("value");
-					break;
-					case "Apellidos":
-						Apellidos = nodo.getAttribute("value");
-					break;
-					case "Direccion":
-						Direccion = nodo.getAttribute("value");
-					break;
-					case "Email":
-						Email = nodo.getAttribute("value");
-					break;
-					case "Telefono":
-						Telefono = nodo.getAttribute("value");
-					break;
-					case "IdPersona":
-						ID = nodo.getAttribute("value");
-					break;
-				}
-			}
-		}
-		if(aPersona[i].getAttribute("Tipo") == "Profesor"){
-			oAutoescuela.altaPersona(new Profesor(Apellidos, Direccion, DNI, Email, Nombre, Telefono, ID));
-		}
-		else{
-			oAutoescuela.altaPersona(new Cliente(Apellidos, Direccion, DNI, Email, Nombre, Telefono, ID));
-		}
-	}
-	
-	//Recogemos los datos de Matriculas
-	var aMatricula = oXML.getElementsByTagName("Matricula");
-	
-	for(var i = 0; i < aMatricula.length; i++){
-		var IdMatricula, CantidadAbonada, Fecha, oCliente, NumeroPracticas, Precio;
-		for(var j = 0; j < aMatricula[i].childNodes.length; j++){
-			if(aMatricula[i].childNodes[j].nodeType == 1){
-				var nodo = aMatricula[i].childNodes[j];
-				switch(nodo.nodeName){
-					case "IdMatricula":
-						IdMatricula = nodo.getAttribute("value");
-					break;
-					case "CantidadAbonada":
-						CantidadAbonada = nodo.getAttribute("value");
-					break;
-					case "FechaMatricula":
-						Fecha = nodo.getAttribute("value");
-					break;
-					case "NumeroPracticas":
-						NumeroPracticas = nodo.getAttribute("value");
-					break;
-					case "Cliente":
-						var dni = nodo.getAttribute("value");
-						oCliente = oAutoescuela.BuscarPersona(dni);
-					break;
-					case "Precio":
-						Precio = nodo.getAttribute("value");
-					break;
-				}
-			}
-		}
-		oAutoescuela.altaMatriculas(new Matriculas(CantidadAbonada, Fecha, oCliente, IdMatricula, NumeroPracticas, Precio));		
-	}
-	
-	//Recogemos los datos de clase
-	var aClase = oXML.getElementsByTagName("Clase");
-	
-	for(var i = 0; i < aClase.length; i++){
-		var IdClase, Duracion, FechaClase, Hora, AforoTarifa, DniProfesor="", arrDniCliente=[];
-		for(var j = 0; j < aClase[i].childNodes.length; j++){
-			if(aClase[i].childNodes[j].nodeType == 1){
-				var nodo = oXML.getElementsByTagName(aClase[i].childNodes[j].nodeName)[i];
-				switch(nodo.nodeName){
-					case "IdClase":
-						IdClase = nodo.getAttribute("value");
-					break;
-					case "Duracion":
-						Duracion = nodo.getAttribute("value");
-					break;
-					case "FechaClase":
-						FechaClase = nodo.getAttribute("value");
-					break;
-					case "Hora":
-						Hora = nodo.getAttribute("value");
-					break;
-					case "AforoTarifa":
-						AforoTarifa = nodo.getAttribute("value");
-					break;
-					case "ProfesorClase":
-						if(nodo.getAttribute("value") != ""){
-							DniProfesor = nodo.getAttribute("value");
-						}
-					break;
-					case "ClientesClase":
-						if(nodo.childNodes[1] != null){
-							for(var k = 0; k < nodo.childNodes.length; k++){
-								if(nodo.childNodes[k].nodeType == 1){
-									arrDniCliente.push(nodo.childNodes[k].getAttribute("value"));
-								}
-							}
-						}
-						
-					break;
-				}
-			}
-		}
-		if(aClase[i].getAttribute("Tipo") == "Practicas"){
-			oAutoescuela.altaClases(new Practicas(IdClase, Duracion, FechaClase, Hora, AforoTarifa));
-		}
-		else{
-			oAutoescuela.altaClases(new Teoricas(IdClase, Duracion, FechaClase, Hora, AforoTarifa));
-		}
-		if(DniProfesor != ""){
-			oAutoescuela.AsignarProfesorAClases(DniProfesor, IdClase);
-		}
-		if(arrDniCliente.length > 0){
-			for(var j = 0; j < arrDniCliente.length; j++){
-				oAutoescuela.matricularClienteEnClases(arrDniCliente[j], IdClase);
-			}
-		}
+				break;		
+		 }
 	}
 }
 
-function loadXMLDoc(filename){
-    if (window.XMLHttpRequest){
-        xhttp=new XMLHttpRequest();
-    }
-    else{
-        xhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xhttp.open("GET",filename,false);
 
-    xhttp.send();
 
-    return xhttp.responseXML;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.formu_aprobarPractico.mod.addEventListener("click", frmAprobarPractico);
+// document.formu_matricularCliente.mod.addEventListener("click", frmMatricularCliente);
+// document.formu_asignarProfesor.mod.addEventListener("click", frmAsignarProfesorAClase);
+// document.formu_busquedaAvanzadaPersona.buscar.addEventListener("click", listadoPersonaConValores);
+// document.formu_busquedaAvanzadaMatricula.buscar.addEventListener("click", listadoMatriculaConValores);
+// document.formu_busquedaAvanzadaClase.buscar.addEventListener("click", listadoClasesConValores);
+// document.formu_busquedaAvanzadaCoche.buscar.addEventListener("click", listadoCocheConValores);
+// // window.addEventListener("load", añadirDatos);
+
+
+
+
+// //////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////MODIFICACIONES//////////////////////////////////
+// //////////////////////////////////////////////////////////////////////////////////
+
+// function frmAprobarPractico(){
+// 	var oForm = document.formu_aprobarPractico;
+
+// 	//campo identificador matricula
+// 	var sIdentificador = oForm.aprobarPracticoMatricula.value.trim();
+// 	oExpReg = /^[0-9]{1,10}$/; 
+// 	if (oExpReg.test(sIdentificador) == false){
+// 		toastr.error("Identificador de matricula incorrecto (Sintaxis:  1-10 numeros)");
+// 		//Marcar error
+// 		oForm.aprobarPracticoMatricula.className = "form-control error";
+// 	}else{
+// 		//Desmarcar error
+// 		oForm.aprobarPracticoMatricula.className = "form-control";
+// 		var sMensaje = oAutoescuela.apruebaPractico(sIdentificador);
+// 		oForm.reset();
+// 		toastr.info(sMensaje);
+// 	}
+// }
+
+// function frmMatricularCliente(){
+// 	var oForm = document.formu_matricularCliente;
+// 	var bValido = true;
+// 	var sErrores = "";
+
+// 	//campo dni cliente
+// 	var sDni = oForm.matricularClienteDni.value.trim();
+// 	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
+// 	if (oExpReg.test(sDni) == false){
+// 		if(bValido == true){
+// 			bValido = false;	
+// 		}
+// 		sErrores += "DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+// 		//Marcar error
+// 		oForm.matricularClienteDni.className = "form-control error";
+// 	}else{
+// 		//Desmarcar error
+// 		oForm.matricularClienteDni.className = "form-control";
+// 	}
+// 	//Campo ID
+// 	var sIdentificador = oForm.matricularClienteId.value.trim();
+// 	var oExpReg = /^[0-9]{1,10}$/; 
+// 	if (oExpReg.test(sIdentificador) == false){
+// 		if(bValido == true){
+// 			bValido = false;	
+// 		}
+// 		sErrores += "<br>Identificador incorrecto (Sintaxis:  1-10 numeros)";
+// 		//Marcar error
+// 		oForm.matricularClienteId.className = "form-control error";
+// 	}else{
+// 		//Desmarcar error
+// 		oForm.matricularClienteId.className = "form-control";
+// 	}
+
+// 	//Comprobamos si el formulario es valido y matriculamos cliente
+// 	if (bValido) {
+// 		//Aquí es donde se hacen los metodos para matricular al cliente
+// 		var sMensaje = oAutoescuela.matricularClienteEnClases(sDni, sIdentificador);
+// 		oForm.reset();
+// 		toastr.info(sMensaje);
+// 	}else{
+// 		toastr.error(sErrores);
+// 	}
+// }
+
+// function frmAsignarProfesorAClase(){
+// 	var oForm = document.formu_asignarProfesor;
+// 	var bValido = true;
+// 	var sErrores = "";
+
+// 	//campo dni cliente
+// 	var sDni = oForm.asignarProfDni.value.trim();
+// 	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
+// 	if (oExpReg.test(sDni) == false){
+// 		if(bValido == true){
+// 			bValido = false;	
+// 		}
+// 		sErrores += "DNI de cliente incorrecto (Sintaxis:  1-10 numeros)";
+// 		//Marcar error
+// 		oForm.asignarProfDni.className = "form-control error";
+// 	}else{
+// 		//Desmarcar error
+// 		oForm.asignarProfDni.className = "form-control";
+// 	}
+// 	//Campo ID
+// 	var sIdentificador = oForm.asignarProfId.value.trim();
+// 	var oExpReg = /^[0-9]{1,10}$/; 
+// 	if (oExpReg.test(sIdentificador) == false){
+// 		if(bValido == true){
+// 			bValido = false;	
+// 		}
+// 		sErrores += "<br>Identificador incorrecto (Sintaxis:  1-10 numeros)";
+// 		//Marcar error
+// 		oForm.asignarProfId.className = "form-control error";
+// 	}else{
+// 		//Desmarcar error
+// 		oForm.asignarProfId.className = "form-control";
+// 	}
+
+// 	//Comprobamos si el formulario es valido y matriculamos cliente
+// 	if (bValido) {
+// 		//Aquí es donde se hacen los metodos para matricular al cliente
+// 		var sMensaje = oAutoescuela.AsignarProfesorAClases(sDni, sIdentificador);
+// 		oForm.reset();
+// 		toastr.info(sMensaje);
+// 	}else{
+// 		toastr.error(sErrores);
+// 	}
+// }
+
+
+// //////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////LISTADOS/////////////////////////////////////////
+// //////////////////////////////////////////////////////////////////////////////////
+// var cont = 0;
+// function listadoPersona(){
+// 	ocultarFormularios();
+// 	document.formu_busquedaAvanzadaPersona.style.display = "block";
+// 	document.formu_busquedaAvanzadaPersona.reset();
+// 	listadoPersonaAvanzados("","");	
+// }
+// function listadoPersonaConValores(){
+// 	var oForm = document.formu_busquedaAvanzadaPersona;
+// 	var sClave = oForm.busquedaPersonaClave.value.trim();
+// 	var sValor = oForm.busquedaPersonaValor.value.trim();
+
+// 	if (sClave == "Seleccione clave") {
+// 		listadoPersonaAvanzados("", "");	
+// 	}else{
+// 		listadoPersonaAvanzados(sClave, sValor);	
+// 	}
+// 	oForm.reset();
+// }
+// function listadoPersonaAvanzados(clave, valor){
+// 	var oCapa = document.getElementById("capa");
+// 	oCapa.style.display = "block";
+// 	if(cont > 0){
+// 		oCapa.removeChild(oCapa.childNodes[0]);
+// 	}
+// 	oCapa.appendChild(oAutoescuela.ListadoPersonas(clave, valor));
+// 	cont++;
+// }
+
+
+
+
+// function listadoMatriculas(){
+// 	ocultarFormularios();
+// 	document.formu_busquedaAvanzadaMatricula.style.display = "block";
+// 	document.formu_busquedaAvanzadaMatricula.reset();
+// 	listadoMatriculaAvanzados("","");		
+// }
+// function listadoMatriculaConValores(){
+// 	var oForm = document.formu_busquedaAvanzadaMatricula;
+// 	var sClave = oForm.busquedaMatriculaClave.value.trim();
+// 	var sValor = oForm.busquedaMatriculaValor.value.trim();
+
+// 	if(sClave == "Examen Teorico aprobado" || sClave == "Examen Practico aprobado"){
+// 		sValor = sValor.toUpperCase();
+// 	}
+	
+// 	if (sClave == "Seleccione clave") {
+// 		listadoMatriculaAvanzados("", "");	
+// 	}else{
+// 		listadoMatriculaAvanzados(sClave, sValor);
+// 	}
+// 	oForm.reset();
+// }
+// function listadoMatriculaAvanzados(clave, valor){
+// 	var oCapa = document.getElementById("capa");
+// 	oCapa.style.display = "block";
+// 	if(cont > 0){
+// 		oCapa.removeChild(oCapa.childNodes[0]);
+// 	}
+// 	oCapa.appendChild(oAutoescuela.ListadoMatriculas(clave, valor));
+// 	cont++;
+// }
+
+
+
+
+// function listadoClases(){
+// 	ocultarFormularios();
+// 	document.formu_busquedaAvanzadaClase.style.display = "block";
+// 	document.formu_busquedaAvanzadaClase.reset();
+// 	listadoClasesAvanzados("","");
+// }
+// function listadoClasesConValores(){
+// 	var oForm = document.formu_busquedaAvanzadaClase;
+// 	var sClave = oForm.busquedaClaseClave.value.trim();
+// 	var sValor = oForm.busquedaClaseValor.value.trim();
+
+// 	if (sClave == "Seleccione clave") {
+// 		listadoClasesAvanzados("", "");	
+// 	}else{
+// 		listadoClasesAvanzados(sClave, sValor);
+// 	}
+// 	oForm.reset();
+// }
+// function listadoClasesAvanzados(clave, valor){
+// 	var oCapa = document.getElementById("capa");
+// 	oCapa.style.display = "block";
+// 	if(cont > 0){
+// 		oCapa.removeChild(oCapa.childNodes[0]);
+// 	}
+// 	oCapa.appendChild(oAutoescuela.listadoClases(clave,valor));
+// 	cont++;
+// }
+
+
+
+
+// function listadoCoche(){
+// 	ocultarFormularios();
+// 	document.formu_busquedaAvanzadaCoche.style.display = "block";
+// 	document.formu_busquedaAvanzadaCoche.reset();
+// 	listadoCocheAvanzados("","");
+// }
+// function listadoCocheConValores(){
+// 	var oForm = document.formu_busquedaAvanzadaCoche;
+
+// 	var sClave = oForm.busquedaCocheClave.value.trim();
+// 	var sValor = oForm.busquedaCocheValor.value.trim();
+
+// 	if (sClave == "Seleccione clave") {
+// 		listadoCocheAvanzados("", "");	
+// 	}else{
+// 		listadoCocheAvanzados(sClave, sValor);
+// 	}
+// 	oForm.reset();
+// }
+// function listadoCocheAvanzados(clave, valor){
+// 	var oCapa = document.getElementById("capa");
+// 	oCapa.style.display = "block";
+// 	if(cont > 0){
+// 		oCapa.removeChild(oCapa.childNodes[0]);
+// 	}
+// 	oCapa.appendChild(oAutoescuela.ListadoCoches(clave, valor));
+// 	cont++;
+// }
