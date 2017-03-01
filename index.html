@@ -37,10 +37,13 @@
 				      		</li>
 					      	<!-- Modificaciones -->
 					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Aprobar <span class="caret"></span></a>
-					        	<ul class="dropdown-menu">
+				        		<ul class="dropdown-menu">
 					      			<li><a href="#" id="btnAprobarPractico">Aprobar Práctico</a></li>
-					        	</ul>
-					      	</li>
+					      			<li><a href="#" id="btnAprobarTeorico">Aprobar Teórico</a></li>
+				        		</ul>
+				      		</li>
+					      	<li><a href="#" id="btnMatricularCliente">Matricular Cliente en Clase</a></li>
+					      	<li><a href="#" id="btnAsignarProfesorAClase">Asignar Profesor a Clase</a></li>
 					      	<!-- Listados -->
 					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados <span class="caret"></span></a>
 					        	<ul class="dropdown-menu">
@@ -50,8 +53,6 @@
 					          		<li><a href="#" id="btnListadoCoche">Listado Coche</a></li>
 					        	</ul>
 					      	</li>
-					      	<li><a href="#" id="btnMatricularCliente">Matricular Cliente en Clase</a></li>
-					      	<li><a href="#" id="btnAsignarProfesorAClase">Asignar Profesor a Clase</a></li>
 				   		</ul>
 			  	</div>
 			</nav>
@@ -83,8 +84,6 @@
 		  				<label><input type="radio" name="persona" value="profesor" checked>Profesor</label>
 		  				<label><input type="radio" name="persona" value="cliente">Cliente</label>
 					</div>
-			    	<label>ID </label>
-			    	<input type="text" class="form-control" name="idPersona" placeholder="ID de la Persona">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Alta cliente">
 			   	<input name="mod" type="button" class="btn btn-default" value="Modificación cliente">
@@ -101,20 +100,17 @@
 			    	<input type="text" class="form-control" name="cantidadAbonadaMatricula" placeholder="Cantidad Abonada por el Cliente">
 			    	<br>
 		  			<label>Fecha </label>
-		  			<input type="date" class="form-control" name="fechaMatricula" placeholder="Fecha de la Matrícula">
-		  			<br><br>
+		  			<input type="text" class="form-control" name="fechaMatricula" id="fechaMatricula" placeholder="Fecha de la Matrícula">
+		  			<br>
 			    	<label>DNI cliente</label>
 			    	<input type="text" class="form-control" name="dniClienteMatricula" placeholder="DNI del Cliente">
-			    	<br>
-			    	<label>Numero de practicas</label>
-			    	<input type="text" class="form-control" name="nPracticasMatricula" placeholder="Numero de Practicas">
 			    	<br>
 			    	<label>Precio</label>
 			    	<input type="text" class="form-control" name="precioMatricula" placeholder="Precio">
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Alta matrícula">
 			   	<input name="baja" type="button" class="btn btn-default" value="Baja matrícula">
-			   	<input name="mod" type="button" class="btn btn-default" value="Modificación matrícula">
+			   	<!-- <input name="mod" type="button" class="btn btn-default" value="Modificación matrícula"> -->
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de gestion de un coche -->
@@ -146,7 +142,7 @@
 			      	<input type="text" class="form-control" name="duracionClase" placeholder="Duración Clase">
 			    	<br>
 		  			<label>Fecha </label>
-		  			<input type="date" class="form-control" name="fechaClase" placeholder="Fecha de la Matrícula">
+		  			<input type="text" class="form-control" name="fechaClase" id="fechaClase" placeholder="Fecha de la Matrícula">
 		  			<br>
 			    	<label>Hora</label>
 			    	<input type="text" class="form-control" name="horaClase" placeholder="Hora Clase">
