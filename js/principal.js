@@ -469,6 +469,7 @@ function bajaCoche(){
 		//Aqui es donde se hacen los metodos para quitar un coche de la base de datos
 		sURL = "php/coches/bajaCoche.php";
 		sParametros = "matricula=" + sMatricula;
+		//oAutoescuela.accionCoche(sURL,sParametros);
 		peticionAjax(sURL,sParametros);
 		// var sMensaje = oAutoescuela.bajaCoche(sMatricula);
 		// oForm.reset();
