@@ -18,7 +18,7 @@ oDlgMensaje = $( "#mensajes" ).dialog({
 });
 oDlgFormuGestionPersona = $( "#formu_gestionPersona" ).dialog({
     autoOpen: false,
-    height: 800,
+    height: 720,
     width: 700,
     modal: false,
 
@@ -28,7 +28,7 @@ oDlgFormuGestionPersona = $( "#formu_gestionPersona" ).dialog({
 });
 oDlgFormuGestionMatricula = $( "#formu_gestionMatricula" ).dialog({
     autoOpen: false,
-    height: 750,
+    height: 650,
     width: 700,
     modal: false,
 
@@ -200,33 +200,31 @@ function altaPersona(){
 		//Desmarcar error
 		oForm.tlfPersona.className = "form-control";	
 	}
-	// Campo ID
-	var sID = oForm.idPersona.value.trim();
-	var oExpReg = /^[0-9]{1,10}$/;
-	if (oExpReg.test(sID) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "<br>ID incorrecto (Sintaxis: 1-10 numeros)";
-		//Marcar error
-		oForm.idPersona.className = "form-control error";
-	}else {
-		//Desmarcar error
-		oForm.idPersona.className = "form-control";	
-	}
 
+		
 	if (bValido) {
-		//Aquí es donde se hacen los metodos para añadir la persona al modelo
-		var sMensaje;
-		if (oForm.persona.value == "profesor") {
-			var oProfesor = new Profesor(sApellidos,sDireccion, sDni, sEmail, sNombre, sTlf, sID);
-			sMensaje = oAutoescuela.altaPersona(oProfesor);
-		}else{
-			var oCliente = new Cliente(sApellidos,sDireccion, sDni, sEmail, sNombre, sTlf, sID);
-			sMensaje = oAutoescuela.altaPersona(oCliente);
-		}
-		oForm.reset();
-		toastr.info(sMensaje);
+		//Aquí es donde se hacen los metodos para añadir la persona a la base de datos
+		var sTipo = oForm.persona.value.trim();
+		var oPersona = { 
+			dni: sDni,
+			nombre: sNombre,
+			apellidos: sApellidos,
+			direccion: sDireccion,
+			email: sEmail,
+			telefono: sTlf,
+			tipo: sTipo
+		};
+		sParametros = "datos=" + JSON.stringify(oPersona);
+
+		$.post('php/personas/altaPersonas.php', sParametros, function(json) {
+			if (json.error == false){
+				toastr.success(json.resultado)
+				oForm.reset();
+				oDlgFormuGestionCoche.dialog("close");
+			}else{
+				toastr.error(json.resultado)
+			}
+		},'json');
 	}else{
 		toastr.error(sErrores);
 	}
@@ -234,7 +232,122 @@ function altaPersona(){
 
 //Funcion para modificar los datos de una persona
 function modPersona(){
-	alert("modPersona");
+	var oForm = document.formu_gestionPersona;
+	var bValido = true;
+	var sErrores = "";
+
+	// Campo dni
+	var sDni = oForm.dniPersona.value.trim();
+	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
+	if (oExpReg.test(sDni) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "<br>DNI incorrecto  (Sintaxis: XXXXXXXX-A)";
+		//Marcar error
+		oForm.dniPersona.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.dniPersona.className = "form-control";
+	}
+	//Campo Nombre
+	var sNombre = oForm.nombrePersona.value.trim();
+	var oExpReg = /^[a-zA-Z\s]{2,40}$/;
+	if (oExpReg.test(sNombre) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "Nombre incorrecto (Sintaxis: 2-40 Digitos)";
+		//Marcar error
+		oForm.nombrePersona.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.nombrePersona.className = "form-control";	
+	}
+	// Campo apellidos
+	var sApellidos = oForm.apellidoPersona.value.trim();
+	oExpReg = /^[a-zA-Z\s]{3,40}$/;
+	if (oExpReg.test(sApellidos) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos)";
+		//Marcar error
+		oForm.apellidoPersona.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.apellidoPersona.className = "form-control";	
+	}
+	// Campo direccion
+	var sDireccion = oForm.direccionPersona.value.trim();
+	oExpReg = /^[a-zA-Z\s]{10,40}$/; 
+	if (oExpReg.test(sDireccion) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Direccion incorrecta (Sintaxis: 10-40 Digitos)";
+		//Marcar error
+		oForm.direccionPersona.className = "form-control error";
+	}else{
+		//Desmarcar error
+		oForm.direccionPersona.className = "form-control";	
+	}
+	// Campo email
+	var sEmail = oForm.emailPersona.value.trim();
+	oExpReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})$/;
+	if (oExpReg.test(sEmail) == false){
+		if(bValido == true){
+			bValido = false;		
+		}
+		sErrores += "<br>Email incorrecto (Sintaxis:  nombreusuario@servidor.dominio)";
+		//Marcar error
+		oForm.emailPersona.className = "form-control error";
+	}else {
+		//Desmarcar error
+		oForm.emailPersona.className = "form-control";	
+	}
+	// Campo tlf
+	var sTlf = oForm.tlfPersona.value.trim();
+	oExpReg = /^[0-9-]{9}$/;
+	if (oExpReg.test(sTlf) == false){
+		if(bValido == true){
+			bValido = false;	
+		}
+		sErrores += "<br>Telefono incorrecto (Sintaxis: 9 Digitos)";
+		//Marcar error
+		oForm.tlfPersona.className = "form-control error";
+	}else {
+		//Desmarcar error
+		oForm.tlfPersona.className = "form-control";	
+	}
+
+		
+	if (bValido) {
+		//Aquí es donde se hacen los metodos para añadir la persona a la base de datos
+		var sTipo = oForm.persona.value.trim();
+		var oPersona = { 
+			dni: sDni,
+			nombre: sNombre,
+			apellidos: sApellidos,
+			direccion: sDireccion,
+			email: sEmail,
+			telefono: sTlf,
+			tipo: sTipo
+		};
+		sParametros = "datos=" + JSON.stringify(oPersona);
+
+		$.get('php/personas/modPersonas.php', sParametros, function(json) {
+			if (json.error == false){
+				oForm.reset();
+				toastr.success(json.resultado)
+				oDlgFormuGestionPersona.dialog("close");
+			}else{
+				toastr.error(json.resultado)
+			}
+		},'json');
+	}else{
+		toastr.error(sErrores);
+	}
 }
 
 
@@ -244,7 +357,8 @@ function modPersona(){
 //////////////////////////////////////////////////////////////////////////////////
 document.formu_gestionMatricula.añadir.addEventListener("click", altaMatricula);
 document.formu_gestionMatricula.baja.addEventListener("click", bajaMatricula);
-document.formu_gestionMatricula.mod.addEventListener("click", modMatricula);
+// document.formu_gestionMatricula.mod.addEventListener("click", modMatricula);
+$("#fechaMatricula").datepicker();
 
 //Funcion para dar de alta una matricula
 function altaMatricula(){
@@ -281,18 +395,18 @@ function altaMatricula(){
 		oForm.cantidadAbonadaMatricula.className = "form-control";	
 	}
 	//campo fecha
-	var dFecha = oForm.fechaMatricula.value;
-	if (dFecha=="") {
+	var sFecha = oForm.fechaMatricula.value.trim();
+	if (sFecha == ""){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "<br>Fecha incorrecta";
+		sErrores += "Fecha incorrecta (Debe seleccionar algun dia)";
 		//Marcar error
 		oForm.fechaMatricula.className = "form-control error";
 	}else{
+		//Desmarcar error
 		oForm.fechaMatricula.className = "form-control";	
 	}
-
 	//campo dni cliente
 	var sDni = oForm.dniClienteMatricula.value.trim();
 	oExpReg = /^[0-9]{8}\-[a-zA-Z]{1}$/;
@@ -306,20 +420,6 @@ function altaMatricula(){
 	}else{
 		//Desmarcar error
 		oForm.dniClienteMatricula.className = "form-control";
-	}
-	//campo numero de practicas
-	var sNPracticas = oForm.nPracticasMatricula.value.trim();
-	oExpReg = /^[0-9]{1,2}$/; 
-	if (oExpReg.test(sNPracticas) == false){
-		if(bValido == true){
-			bValido = false;	
-		}
-		sErrores += "<br>Nº de practicas incorrectas (Sintaxis: De 0 al 99)";
-		//Marcar error
-		oForm.nPracticasMatricula.className = "form-control error";
-	}else{
-		//Desmarcar error
-		oForm.nPracticasMatricula.className = "form-control";
 	}
 	//campo precio
 	var sPrecio = oForm.precioMatricula.value.trim();
@@ -337,17 +437,32 @@ function altaMatricula(){
 	}
 	
 	if (bValido) {
-		//Aquí es donde se hacen los metodos para añadir la matricula al modelo
-		var sMensaje;
-		var oPersona = oAutoescuela.BuscarPersona(sDni);
-		if(oPersona instanceof Object){
-			var oMatricula = new Matriculas(sCantidad, dFecha, oPersona, sIdentificador, sNPracticas, sPrecio);
-			sMensaje = oAutoescuela.altaMatriculas(oMatricula);
-			oForm.reset();
-			toastr.info(sMensaje);
-		}else{
-			toastr.error(oPersona);
-		}
+		//Aquí es donde se hacen los metodos para añadir la matricula a la base de datos
+		var oMatricula = { 
+			id: sIdentificador,
+			cantidad: sCantidad,
+			fecha: sFecha,
+			dniCli: sDni,
+			precio: sPrecio
+		};
+		sParametros = "datos=" + JSON.stringify(oMatricula);
+
+		$.ajax({
+		    url: 'php/matriculas/altaMatricula.php',
+		    type: 'POST',
+		    dataType: 'json',
+		    data: sParametros,
+		    complete: function(oAjax){
+		    	var oObjeto = JSON.parse(oAjax.responseText);
+		    	if (oObjeto.error == false){
+					oForm.reset();
+					toastr.success(oObjeto.resultado)
+					oDlgFormuGestionMatricula.dialog("close");
+				}else{
+					toastr.error(oObjeto.resultado)
+				}
+		    }
+	    });
 	}else{
 		toastr.error(sErrores);
 	}
@@ -367,16 +482,24 @@ function bajaMatricula(){
 	}else{
 		//Desmarcar error
 		oForm.idMatricula.className = "form-control";
-		//Aqui es donde se hacen los metodos para quitar una matricula del modelo
-		var sMensaje = oAutoescuela.bajaMatricula(sIdentificador);
-		oForm.reset();
-		toastr.info(sMensaje);
+		//Aqui es donde se hacen los metodos para quitar una matricula de la base de datos
+		$.ajax({
+		    url: 'php/matriculas/bajaMatricula.php',
+		    type: 'POST',
+		    dataType: 'json',
+		    data: {id:sIdentificador},
+		    complete: function(oAjax){
+		    	var oObjeto = JSON.parse(oAjax.responseText);
+		    	if (oObjeto.error == false){
+					oForm.reset();
+					toastr.success(oObjeto.resultado)
+					oDlgFormuGestionMatricula.dialog("close");
+				}else{
+					toastr.error(oObjeto.resultado)
+				}
+		    }
+	    });		
 	}
-}
-
-//Funcion que modifica los datos de una matricula
-function modMatricula(){
-	alert("modMatricula");
 }
 
 
@@ -446,7 +569,7 @@ function altaCoche(){
 		
 		sURL = "php/coches/altaCoche.php";
 		sParametros = "datos=" + JSON.stringify(oCoche);
-		peticionAjax(sURL,sParametros);
+		peticionAjax(sURL,sParametros);	
 	}else{
 		toastr.error(sErrores);
 	}
@@ -471,9 +594,6 @@ function bajaCoche(){
 		sParametros = "matricula=" + sMatricula;
 		//oAutoescuela.accionCoche(sURL,sParametros);
 		peticionAjax(sURL,sParametros);
-		// var sMensaje = oAutoescuela.bajaCoche(sMatricula);
-		// oForm.reset();
-		// toastr.info(sMensaje);
 	}
 }
 
@@ -546,6 +666,7 @@ function modCoche(){
 ////////////////////////////GESTION CLASES////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 document.formu_gestionClases.añadir.addEventListener("click", altaClase);
+$("#fechaClase").datepicker();
 
 //Funcion para dar de alta una clase
 function altaClase(){
@@ -624,23 +745,12 @@ function altaClase(){
 	}
 
 	if (bValido) {
-		//Aquí es donde se hacen los metodos para añadir la persona al modelo
-		var sMensaje;
-		var oPractica = new Practicas(sIdentificador, sDuracion, dFecha, sHora, sTarifa);
-		sMensaje = oAutoescuela.altaClases(oPractica);
-		toastr.info(sMensaje);
-		oForm.reset();
+		//Aquí es donde se hacen los metodos para añadir la clase a la base de datos
+		
 	}else{
 		toastr.error(sErrores);
 	}
 }
-
-
-
-
-
-
-
 
 
 var oAjax = null;
@@ -676,15 +786,14 @@ function procesarRespuesta(){
 		 	case 100: // altaCoche
 		 	case 200: // bajaCoche
 		 	case 300: // modificarCoche
-		 		oDlgMensaje.dialog("option","title", oObjeto.mensaje);
-		 		$("#pResultado").text(oObjeto.resultado);
-
-				oDlgMensaje.dialog("open");	 
-				
-				if (oObjeto.error == false){
+		 		if (oObjeto.error == false){
+					toastr.success(oObjeto.resultado)
 					oDlgFormuGestionCoche.dialog("close");
+					oDlgFormuGestionCoche.reset();
+				}else{
+					toastr.error(oObjeto.resultado)
 				}
-				break;		
+				break;	
 		 }
 	}
 }

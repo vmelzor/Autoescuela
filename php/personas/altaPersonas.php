@@ -1,5 +1,5 @@
 ﻿<?php
-	$matricula = $_POST['matricula'];
+	$oPersona = json_decode($_POST['datos']);
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -11,24 +11,26 @@
 	if ($conn->connect_error) {
 	    die("Conexion fallida: " . $conn->connect_error);
 	}
-	
-	$sqlComprueba = "SELECT * FROM coches WHERE MATRICULA='".$matricula."'";
+
+	$sqlComprueba = "SELECT * FROM personas WHERE DNI='".$oPersona->dni."'";
 	//Compruebo si existe
-	if ($conn->query($sqlComprueba)->num_rows > 0) {
-		$sql = 'DELETE FROM coches WHERE MATRICULA = "'.$matricula.'"';
+	if ($conn->query($sqlComprueba)->num_rows == 0) {
+		$sql = "INSERT INTO personas (DNI, NOMBRE, APELLIDOS, DIRECCION, EMAIL, TELEFONO, TIPO) VALUES ('$oPersona->dni', '$oPersona->nombre', '$oPersona->apellidos', '$oPersona->direccion', '$oPersona->email', '$oPersona->telefono', '$oPersona->tipo')";
+
 		if ($conn->query($sql) === TRUE) {
-		    $resultado =  "Baja de coche correcta";
+		    $resultado =  "Alta de persona correcta";
 		    $error = FALSE;
 		} else {
 		    $resultado = "Error: " . $sql . "<br>" . $conn->error;
 		    $error = TRUE;
-		}	
+		}
 	}else{
-		$resultado = "Ese coche no existe";
+		$resultado = "Ese persona ya existe";
 		$error = TRUE;
 	}
+
 	// Creo un "objeto" php creando un array asociativo
-	$objeto_salida = array ( "mensaje" => "Baja de coche" , "resultado" => $resultado, "accion" => 200, "error" => $error );
+	$objeto_salida = array ( "mensaje" => "Alta de persona" , "resultado" => $resultado, "accion" => 400, "error" => $error );
 	$json_salida = json_encode($objeto_salida);
 	echo $json_salida;
 	$conn->close();
