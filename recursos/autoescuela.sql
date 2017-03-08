@@ -54,6 +54,13 @@ CREATE TABLE IF NOT EXISTS `clases` (
 --       `personas` -> `DNI`
 --
 
+--
+-- Volcado de datos para la tabla `coches`
+--
+
+INSERT INTO `clases` (`ID_CLASES`, `DURACION`, `HORA`, `FECHA`, `TARIFA`, `MATRICULA_COCHE`, `DNI_PROFESOR`, `DNI_CLIENTE`) VALUES
+(1, 50, '16:00:00', '2017-03-02', '10', '8888 RRA', '11223344-T', '77857469-R');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +73,13 @@ CREATE TABLE IF NOT EXISTS `coches` (
   `MODELO` varchar(20) NOT NULL,
   PRIMARY KEY (`MATRICULA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `coches`
+--
+
+INSERT INTO `coches` (`MATRICULA`, `MARCA`, `MODELO`) VALUES
+('8888 RRA', 'Fiat', 'Panda');
 
 -- --------------------------------------------------------
 
@@ -91,6 +105,13 @@ CREATE TABLE IF NOT EXISTS `matriculas` (
 --       `personas` -> `DNI`
 --
 
+--
+-- Volcado de datos para la tabla `matriculas`
+--
+
+INSERT INTO `matriculas` (`ID_MATRICULA`, `CANTIDAD_ABONADA`, `FECHA`, `PRACTICO_APROBADO`, `TEORICO_APROBADO`, `PRECIO`, `DNI_CLIENTE`) VALUES
+(1, '450', '2017-03-01', 0, 0, '450', '66524728-P');
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +128,15 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `TIPO` varchar(1) NOT NULL,
   PRIMARY KEY (`DNI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `personas`
+--
+
+INSERT INTO `personas` (`DNI`, `NOMBRE`, `APELLIDOS`, `DIRECCION`, `EMAIL`, `TELEFONO`, `TIPO`) VALUES
+('11223344-T', 'Sofia', 'Lopez', 'Avenida de España', 'sofia@hotmail.com', 777777777, 'c'),
+('66524728-P', 'Jose', 'Jimenez', 'Calle de la piruleta', 'Jose@hotmail.com', 655324578, 'c'),
+('77857469-R', 'Manolo', 'Rodriguez', 'Avenida de España', 'Manolo@gmail.com', 955333698, 'p');
 
 --
 -- Restricciones para tablas volcadas

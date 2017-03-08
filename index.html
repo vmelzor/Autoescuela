@@ -20,42 +20,7 @@
 		  	<div class="jumbotron">
 		    	<h1 style="text-align: center;">Autoescuela El multazo</h1> 
 		  	</div>
-			<nav class="navbar navbar-inverse">
-			  	<div class="container-fluid">
-			  		<div class="navbar-header">
-				      	<a class="navbar-brand" href="#" id="inicio">Inicio</a>
-				    </div>
-				    	<ul class="nav navbar-nav">
-				    		<!-- Gestiones -->
-				      		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestiones <span class="caret"></span></a>
-				        		<ul class="dropdown-menu">
-				        			<li><a href="#" id="btnGestionPersona">Gestión Personas</a></li>
-						      		<li><a href="#" id="btnGestionMatricula">Gestión Matrículas</a></li>
-						      		<li><a href="#" id="btnGestionCoche">Gestión Coches</a></li>
-						      		<li><a href="#" id="btnGestionClases">Gestión Clases</a></li>
-				        		</ul>
-				      		</li>
-					      	<!-- Modificaciones -->
-					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Aprobar <span class="caret"></span></a>
-				        		<ul class="dropdown-menu">
-					      			<li><a href="#" id="btnAprobarPractico">Aprobar Práctico</a></li>
-					      			<li><a href="#" id="btnAprobarTeorico">Aprobar Teórico</a></li>
-				        		</ul>
-				      		</li>
-					      	<li><a href="#" id="btnMatricularCliente">Matricular Cliente en Clase</a></li>
-					      	<li><a href="#" id="btnAsignarProfesorAClase">Asignar Profesor a Clase</a></li>
-					      	<!-- Listados -->
-					      	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados <span class="caret"></span></a>
-					        	<ul class="dropdown-menu">
-					          		<li><a href="#" id="btnListadoPersona">Listado Persona</a></li>
-					          		<li><a href="#" id="btnListadoMatricula">Listado Matricula</a></li>
-					          		<li><a href="#" id="btnListadoClases">Listado Clases</a></li>
-					          		<li><a href="#" id="btnListadoCoche">Listado Coche</a></li>
-					        	</ul>
-					      	</li>
-				   		</ul>
-			  	</div>
-			</nav>
+			<div id="cabesa"></div>
 			<div id="mensajes" title="mensajes">
 				<p id="pResultado"></p>
 			</div>
@@ -85,7 +50,7 @@
 		  				<label><input type="radio" name="persona" value="cliente">Cliente</label>
 					</div>
 			   	</div>
-			   	<input name="añadir" type="button" class="btn btn-default" value="Alta cliente">
+			   	<input name="añadir" type="button" class="btn btn-default" value="Alta persona">
 			   	<input name="mod" type="button" class="btn btn-default" value="Modificación cliente">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
@@ -100,31 +65,30 @@
 			    	<input type="text" class="form-control" name="cantidadAbonadaMatricula" placeholder="Cantidad Abonada por el Cliente">
 			    	<br>
 		  			<label>Fecha </label>
-		  			<input type="text" class="form-control" name="fechaMatricula" id="fechaMatricula" placeholder="Fecha de la Matrícula">
-		  			<br>
-			    	<label>DNI cliente</label>
-			    	<input type="text" class="form-control" name="dniClienteMatricula" placeholder="DNI del Cliente">
+		  			<input type="text" class="form-control" name="fechaMatricula" id="fechaMatricula" placeholder="2017-03-02">
 			    	<br>
 			    	<label>Precio</label>
 			    	<input type="text" class="form-control" name="precioMatricula" placeholder="Precio">
+		  			<br>
+		  			<div id="comboClientesMatricula"><label>Seleccione el cliente</label></div>
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Alta matrícula">
 			   	<input name="baja" type="button" class="btn btn-default" value="Baja matrícula">
-			   	<!-- <input name="mod" type="button" class="btn btn-default" value="Modificación matrícula"> -->
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de gestion de un coche -->
 			<form name="formu_gestionCoche" id="formu_gestionCoche">
 				<h3>Gestión de coches</h3><br>
 			    <div class="form-group">
-			      	<label>Matrícula</label>
+			    	<div id="capaFormuDinamico"></div>
+			      	<!-- <label>Matrícula</label>
 			    	<input type="text" class="form-control" name="matriculaCoche" placeholder="Matrícula del Coche">
 			    	<br>
 			      	<label>Marca</label>
 			      	<input type="text" class="form-control" name="marcaCoche" placeholder="Marca del Coche">
 			    	<br>
 			    	<label>Modelo</label>
-			    	<input type="text" class="form-control" name="modeloCoche" placeholder="Modelo del Coche">
+			    	<input type="text" class="form-control" name="modeloCoche" placeholder="Modelo del Coche"> -->
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Alta coche">
 			   	<input name="baja" type="button" class="btn btn-default" value="Baja coche">
@@ -136,30 +100,48 @@
 				<h3>Gestión de clases</h3><br>
 			    <div class="form-group">
 			      	<label>ID</label>
-			      	<input type="text" class="form-control" name="idClase" placeholder="ID Clase">
+			      	<input type="text" class="form-control" name="idClase" id="idClase" placeholder="ID Clase">
 			    	<br>
 			    	<label>Duración (Por horas)</label>
 			      	<input type="text" class="form-control" name="duracionClase" placeholder="Duración Clase">
-			    	<br>
-		  			<label>Fecha </label>
-		  			<input type="text" class="form-control" name="fechaClase" id="fechaClase" placeholder="Fecha de la Matrícula">
 		  			<br>
 			    	<label>Hora</label>
 			    	<input type="text" class="form-control" name="horaClase" placeholder="Hora Clase">
+			    	<br>
+		  			<label>Fecha </label>
+		  			<input type="text" class="form-control" name="fechaClase" id="fechaClase" placeholder="Fecha de la Clase">
 		  			<br>
 					<label>Tarifa por horas</label>
 			    	<input type="text" class="form-control" name="tarifaClase" placeholder="Tarifa por hora">
+			    	<br>
+			    	<div id="comboCoches"><label>Seleccione el coche</label></div>
+			    	<br>
+			    	<div id="comboProfesoresClase"><label>Seleccione el profesor</label></div>
+			    	<br>
+			    	<div id="comboClientesClase"><label>Seleccione el cliente</label></div>
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Dar de alta">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
+			</form>
+			<!-- Formulario de aprobar teórico -->
+			<form name="formu_aprobarTeorico" id="formu_aprobarTeorico">
+				<h3>Aprobar Teorico</h3><br>
+			    <div class="form-group">
+			      	<label>ID Matricula</label>
+			      	<div id="comboMatriculasTeorico"/>
+			   	</div>
+			    <br>
+			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
+			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de aprobar Practico -->
 			<form name="formu_aprobarPractico" id="formu_aprobarPractico">
 				<h3>Aprobar Práctico</h3><br>
 			    <div class="form-group">
 			      	<label>ID Matricula</label>
-			    	<input type="text" class="form-control" name="aprobarPracticoMatricula" placeholder="ID de la Matrícula">
+			      	<div id="comboMatriculasPractico"/>
 			   	</div>
+			    <br>
 			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
@@ -168,23 +150,24 @@
 				<h3>Matricular Cliente en Clase</h3><br>
 			    <div class="form-group">
 			      	<label>DNI Cliente</label>
-			    	<input type="text" class="form-control" name="matricularClienteDni" placeholder="DNI del Cliente">
+			      	<div id="comboClientesMatricularCliente"></div>
 			    	<br>
 			    	<label>ID Clases</label>
-			    	<input type="text" class="form-control" name="matricularClienteId" placeholder="ID de la Clase">
+			      	<div id="comboIdMatricularCliente"></div>
 			   	</div>
+			   	
 			   	<input type="button" name="mod" class="btn btn-default" value="Matricular Cliente">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
-			<!-- Formulario de aprobar Practico -->
+			<!-- Formulario de asignar profesor -->
 			<form name="formu_asignarProfesor" id="formu_asignarProfesor">
 				<h3>Asignar Profesor a Clase</h3><br>
 			    <div class="form-group">
 			      	<label>DNI Profesor</label>
-			    	<input type="text" class="form-control" name="asignarProfDni" placeholder="DNI del Profesor">
+			      	<div id="comboProfesoresAsignarProfesor"></div>
 			    	<br>
 			    	<label>ID Clases</label>
-			    	<input type="text" class="form-control" name="asignarProfId" placeholder="ID de la Clase">
+			      	<div id="comboIdAsignarProfesor"></div>
 			   	</div>
 			   	<input type="button" name="mod" class="btn btn-default" value="Asignar Profesor">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
@@ -198,13 +181,12 @@
   						<select class="form-control" id="sel1" name="busquedaPersonaClave">
       						<option>Seleccione clave</option>
       						<option>DNI</option>
-          					<option>Nombre</option>
-          					<option>Apellidos</option>
-      						<option>Telefono</option>
-      						<option>Direccion</option>
-      						<option>Email</option>
-      						<option>ID</option>
-      						<option>Tipo</option>
+          					<option>NOMBRE</option>
+          					<option>APELLIDOS</option>
+      						<option>DIRECCION</option>
+      						<option>TELEFONO</option>
+      						<option>EMAIL</option>
+      						<option>TIPO</option>
   						</select>
 					</div>
 			    	<br>
@@ -221,15 +203,14 @@
 			    	<div class="form-group">
   						<label for="sel1">Clave</label>
   						<select class="form-control" id="sel1" name="busquedaMatriculaClave">
-  							<option>Seleccione clave</option>
-      						<option>Identificador Matricula</option>
-          					<option>Cantidad abonada</option>
-      						<option>Examen Practico aprobado</option>
-      						<option>Fecha</option>
-      						<option>DNI Cliente</option>
-      						<option>Nombre Cliente</option>
-      						<option>Numero de practicas</option>
-      						<option>Precio</option>
+  							<option value="Seleccione clave">Seleccione clave</option>
+      						<option value="ID_MATRICULA">ID MATRICULA</option>
+          					<option value="CANTIDAD_ABONADA">CANTIDAD ABONADA</option>
+      						<option value="FECHA">FECHA</option>
+      						<option value="PRACTICO_APROBADO">PRACTICO APROBADO</option>
+      						<option value="TEORICO_APROBADO">TEORICO APROBADO</option>
+      						<option value="PRECIO">PRECIO</option>
+      						<option value="DNI_CLIENTE">DNI CLIENTE</option>
   						</select>
 					</div>
 			    	<br>
@@ -246,17 +227,15 @@
 			    	<div class="form-group">
   						<label for="sel1">Clave</label>
   						<select class="form-control" id="sel1" name="busquedaClaseClave">
-  							<option>Seleccione clave</option>
-      						<option>Identificador</option>
-          					<option>Duracion</option>
-          					<option>Fecha</option>
-      						<option>Hora</option>
-                  			<option>Tarifa</option>
-                			<option>Aforo</option>
-      						<option>DNI profesor</option>
-      						<option>Nombre Profesor</option>
-      						<option>Clientes DNI</option>
-      						<option>Clientes Nombre</option>
+  							<option value="Seleccione clave">Seleccione clave</option>
+      						<option value="ID_CLASES">ID CLASES</option>
+          					<option value="DURACION">DURACION</option>
+          					<option value="FECHA">FECHA</option>
+      						<option value="HORA">HORA</option>
+                  			<option value="TARIFA">TARIFA</option>
+                			<option value="MATRICULA_COCHE">MATRICULA COCHE</option>
+      						<option value="DNI_PROFESOR">DNI PROFESOR</option>
+      						<option value="DNI_CLIENTE">DNI CLIENTE</option>
   						</select>
 					</div>
 			    	<br>
@@ -274,9 +253,9 @@
   						<label for="sel1">Clave</label>
   						<select class="form-control" id="sel1" name="busquedaCocheClave">
   							<option>Seleccione clave</option>
-  							<option>Marca</option>
-      						<option>Matricula</option>
-          					<option>Modelo</option>
+  							<option>MARCA</option>
+      						<option>MATRICULA</option>
+          					<option>MODELO</option>
   						</select>
 					</div>
 			    	<br>
@@ -289,7 +268,6 @@
 			<br>
 			<div id="capa"></div>
 		</div>
-		<script type="text/javascript" src="js/objetos.js"></script>
 		<script type="text/javascript" src="js/principal.js"></script>
 	</body>
 </html>

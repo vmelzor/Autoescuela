@@ -1,6 +1,6 @@
 <?php
 // Cabecera para indicar que vamos a enviar datos JSON y que no haga cacheo de los datos. NO HACE FALTA EN POST
-header('Content-Type: application/json');
+header("Content-Type: text/xml");
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
@@ -23,19 +23,18 @@ mysql_select_db($basedatos, $conexion) or die(mysql_error());
 
 // Consulta SQL para obtener los datos de los centros.
 
-$datos = [];
+
 $resultados = mysql_query($sql, $conexion) or die(mysql_error());
-while ($fila = mysql_fetch_array($resultados, MYSQL_ASSOC)) {
-    // Almacenamos en un array cada una de las filas que vamos leyendo del recordset.
-    $datos[] = $fila;
+$respuesta="<?xml version='1.0' encoding='UTF-8'?><coches>";
+while($fila=mysql_fetch_assoc($resultados)){
+    $respuesta.="<coche>";
+        $respuesta.="<matricula>".$fila['MATRICULA']."</matricula>";
+        $respuesta.="<marca>".$fila['MARCA']."</marca>";
+        $respuesta.="<modelo>".$fila['MODELO']."</modelo>";
+    $respuesta.="</coche>";
 }
-
-// Creo un "objeto" php creando un array asociativo
-$objeto_salida = array ("prueba" => $sql, "mensaje" => "Listado de coches" , "resultado" => $datos, "accion" => 400, "error" => FALSE );
-
-
-
-echo json_encode($objeto_salida); 
+$respuesta.="</coches>";
+echo $respuesta;
 mysql_close($conexion);
 
 ?> 

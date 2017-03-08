@@ -23,19 +23,18 @@ mysql_select_db($basedatos, $conexion) or die(mysql_error());
 
 // Consulta SQL para obtener los datos de los centros.
 
-$datos = [];
+$texto = "<table border='1' class='table small'>";
+$texto .= "<tr><th>DNI</th><th>NOMBRE</th><th>APELLIDOS</th><th>DIRECCION</th><th>EMAIL</th><th>TELEFONO</th><th>TIPO</th></tr>";
 $resultados = mysql_query($sql, $conexion) or die(mysql_error());
 while ($fila = mysql_fetch_array($resultados, MYSQL_ASSOC)) {
     // Almacenamos en un array cada una de las filas que vamos leyendo del recordset.
-    $datos[] = $fila;
+    $texto .= "<tr><td>".$fila["DNI"]."</td><td>".$fila["NOMBRE"]."</td>
+	<td>".$fila["APELLIDOS"]."</td><td>".$fila["DIRECCION"]."</td><td>".$fila["EMAIL"]."</td>
+	<td>".$fila["TELEFONO"]."</td><td>".$fila["TIPO"]."</td></tr>";
 }
-
+$texto .= "</table>";
 // Creo un "objeto" php creando un array asociativo
-$objeto_salida = array ("prueba" => $sql, "mensaje" => "Listado de personas" , "resultado" => $datos, "accion" => 400, "error" => FALSE );
-
-
-
-echo json_encode($objeto_salida); 
+echo $texto;
 mysql_close($conexion);
 
 ?> 

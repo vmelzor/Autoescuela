@@ -11,7 +11,7 @@ $usuario   = "root";
 $password  = "";
 
 //Datos de busqueda
-$sql = "select * from clases";
+$sql = "SELECT ID_CLASES AS 'ID CLASES', DURACION,HORA,FECHA,TARIFA,MATRICULA_COCHE AS 'MATRICULA COCHE',DNI_PROFESOR AS 'DNI PROFESOR', DNI_CLIENTE AS 'DNI CLIENTE' FROM clases";
 
 // Creamos la conexión al servidor.
 $conexion = mysql_connect($servidor, $usuario, $password) or die(mysql_error());

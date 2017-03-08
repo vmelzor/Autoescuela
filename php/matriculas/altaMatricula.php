@@ -1,5 +1,11 @@
 ﻿<?php
-	$oMatricula = json_decode($_POST['datos']);
+	//Campos 
+	$idMatricula = $_POST['idMatricula'];
+	$cantidad = $_POST['cantidadAbonadaMatricula'];
+	$fecha = $_POST['fechaMatricula'];
+	$precio = $_POST['precioMatricula'];
+	$dniCli = $_POST['clienteMatricula'];
+
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -12,16 +18,16 @@
 	    die("Conexion fallida: " . $conn->connect_error);
 	}
 
-	$sqlComprueba = "SELECT * FROM matriculas WHERE ID_MATRICULA='".$oMatricula->id."'";
+	$sqlComprueba = "SELECT * FROM matriculas WHERE ID_MATRICULA='".$idMatricula."'";
 	//Compruebo si existe la matricula introducida
 	if ($conn->query($sqlComprueba)->num_rows == 0) {
 		//Tras comprobar si existe la matricula, comprobamos si existe la persona
-		$sqlComprueba = "SELECT * FROM personas WHERE DNI='".$oMatricula->dniCli."'";
+		$sqlComprueba = "SELECT * FROM personas WHERE DNI='".$dniCli."'";
 		if ($conn->query($sqlComprueba)->num_rows > 0) {
 			//Tras comprobar si existe la persona, comprobamos si la persona introducida ya esta en una matricula
-			$sqlComprueba = "SELECT * FROM matriculas WHERE DNI_CLIENTE='".$oMatricula->dniCli."'";
+			$sqlComprueba = "SELECT * FROM matriculas WHERE DNI_CLIENTE='".$dniCli."'";
 			if ($conn->query($sqlComprueba)->num_rows == 0) {
-				$sql = "INSERT INTO matriculas(ID_MATRICULA, CANTIDAD_ABONADA, FECHA, PRACTICO_APROBADO, TEORICO_APROBADO, PRECIO, DNI_CLIENTE) VALUES ($oMatricula->id, '$oMatricula->cantidad', '$oMatricula->fecha', '0', '0', '$oMatricula->precio', '$oMatricula->dniCli')";
+				$sql = "INSERT INTO matriculas(ID_MATRICULA, CANTIDAD_ABONADA, FECHA, PRACTICO_APROBADO, TEORICO_APROBADO, PRECIO, DNI_CLIENTE) VALUES ('".$idMatricula."', '".$cantidad."', '".$fecha."', '0', '0', '".$precio."', '".$dniCli."')";
 				if ($conn->query($sql) === TRUE) {
 				    $resultado =  "Alta de matrícula correcta";
 				    $error = FALSE;
