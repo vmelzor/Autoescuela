@@ -12,7 +12,7 @@ $usuario   = "root";
 $password  = "";
 
 //Datos de busqueda
-$sql = "SELECT ID_MATRICULA AS 'ID MATRICULA',CANTIDAD_ABONADA AS 'CANTIDAD ABONADA',FECHA,PRACTICO_APROBADO AS 'PRACTICO APROBADO',TEORICO_APROBADO AS 'ID TEORICO APROBADO',PRECIO,DNI_CLIENTE AS 'DNI CLIENTE' from matriculas where ".$oMatricula->clave." = '".$oMatricula->valor."'";
+$sql = "SELECT ID_MATRICULA AS 'ID MATRICULA',CANTIDAD_ABONADA AS 'CANTIDAD ABONADA',FECHA,PRACTICO_APROBADO AS 'PRACTICO APROBADO',TEORICO_APROBADO AS 'TEORICO APROBADO',PRECIO,DNI_CLIENTE AS 'DNI CLIENTE' from matriculas where ".$oMatricula->clave." = '".$oMatricula->valor."'";
 
 // Creamos la conexión al servidor.
 $conexion = mysql_connect($servidor, $usuario, $password) or die(mysql_error());

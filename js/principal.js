@@ -2,7 +2,7 @@
 ////////////////////////////////////////////FORMULARIOS///////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $("#cabesa").load("cabecera.html");
-$.getScript("js/eventosCabecera.js");
+$.getScript("js/eventos.js");
 
 
 // DIALOGOS
@@ -117,9 +117,6 @@ function ocultarFormularios(){
 //////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////GESTION PERSONAS//////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-// document.formu_gestionPersona.añadir.addEventListener("click", altaPersona);
-// document.formu_gestionPersona.mod.addEventListener("click", modPersona);
-
 //Funcion para dar de alta a una persona
 function altaPersona(){
 	var oForm = document.formu_gestionPersona;
@@ -147,7 +144,7 @@ function altaPersona(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "<br>Nombre incorrecto (Sintaxis: 2-40 Digitos)";
+		sErrores += "<br>Nombre incorrecto (Sintaxis: 2-40 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.nombrePersona.className = "form-control error";
 	}else{
@@ -161,7 +158,7 @@ function altaPersona(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos)";
+		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.apellidoPersona.className = "form-control error";
 	}else{
@@ -175,7 +172,7 @@ function altaPersona(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "<br>Direccion incorrecta (Sintaxis: 10-40 Digitos)";
+		sErrores += "<br>Direccion incorrecta (Sintaxis: 10-40 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.direccionPersona.className = "form-control error";
 	}else{
@@ -267,7 +264,7 @@ function modPersona(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "<br>Nombre incorrecto (Sintaxis: 2-40 Digitos)";
+		sErrores += "<br>Nombre incorrecto (Sintaxis: 2-40 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.nombrePersona.className = "form-control error";
 	}else{
@@ -281,7 +278,7 @@ function modPersona(){
 		if(bValido == true){
 			bValido = false;	
 		}
-		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos)";
+		sErrores += "<br>Apellidos incorrecto (Sintaxis: 3-40 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.apellidoPersona.className = "form-control error";
 	}else{
@@ -295,7 +292,7 @@ function modPersona(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "<br>Direccion incorrecta (Sintaxis: 10-40 Digitos)";
+		sErrores += "<br>Direccion incorrecta (Sintaxis: 10-40 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.direccionPersona.className = "form-control error";
 	}else{
@@ -366,9 +363,6 @@ function modPersona(){
 //////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////GESTION MATRICULAS////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-// document.formu_gestionMatricula.añadir.addEventListener("click", altaMatricula);
-// document.formu_gestionMatricula.baja.addEventListener("click", bajaMatricula);
-
 $("#fechaMatricula").datepicker({dateFormat: 'yy-mm-dd'}).val();
 
 //Funcion para dar de alta una matricula
@@ -508,21 +502,11 @@ function bajaMatricula(){
 //////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////GESTION COCHES////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-/*
-<label>Matrícula</label>
-<input type="text" class="form-control" name="matriculaCoche" placeholder="Matrícula del Coche">
-<br>
-<label>Marca</label>
-<input type="text" class="form-control" name="marcaCoche" placeholder="Marca del Coche">
-<br>
-<label>Modelo</label>
-<input type="text" class="form-control" name="modeloCoche" placeholder="Modelo del Coche">
-*/
-
 //funcion que crea el formulario dinamicamente
 function cargarFormularioDinamicamente(){
+	$("#capaFormuDinamico").empty();
 	var oCapa = $("#capaFormuDinamico");
-	
+
 	//label
 	var oLabel = document.createElement("label");
 	var oTexto = document.createTextNode("Matrícula");
@@ -565,17 +549,6 @@ function cargarFormularioDinamicamente(){
 	oCapa.append(oInput);
 }
 
-
-
-
-
-
-
-
-// document.formu_gestionCoche.añadir.addEventListener("click", altaCoche);
-// document.formu_gestionCoche.baja.addEventListener("click", bajaCoche);
-// document.formu_gestionCoche.mod.addEventListener("click", modCoche);
-
 //Funcion para dar de alta un coche
 function altaCoche(){
 	var oForm = document.formu_gestionCoche;
@@ -589,7 +562,7 @@ function altaCoche(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos)";
+		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.marcaCoche.className = "form-control error";
 	}else{
@@ -617,7 +590,7 @@ function altaCoche(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos)";
+		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.modeloCoche.className = "form-control error";
 	}else{
@@ -675,7 +648,7 @@ function modCoche(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos)";
+		sErrores += "Marca incorrecta (Sintaxis: 3-20 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.marcaCoche.className = "form-control error";
 	}else{
@@ -703,7 +676,7 @@ function modCoche(){
 		if(bValido == true){
 			bValido = false;		
 		}
-		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos)";
+		sErrores += "<br>Modelo incorrecto (Sintaxis: 3-20 Digitos, tampoco puede usar la ñ)";
 		//Marcar error
 		oForm.modeloCoche.className = "form-control error";
 	}else{
@@ -733,7 +706,6 @@ function modCoche(){
 //////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////GESTION CLASES////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-// document.formu_gestionClases.añadir.addEventListener("click", altaClase);
 $("#fechaClase").datepicker({dateFormat: 'yy-mm-dd'}).val();
 
 //Funcion para dar de alta una clase
@@ -900,7 +872,6 @@ function altaClase(){
 ////////////////////////////APROBAR TEÓRICO///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 oForm = document.formu_aprobarTeorico;
-// oForm.mod.addEventListener("click", aprobarTeorico);
 
 function aprobarTeorico(){
 	var valor = $("#matriculaTeorico").val();
@@ -935,7 +906,6 @@ function aprobarTeorico(){
 ////////////////////////////APROBAR PRÁCTICO//////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 oForm = document.formu_aprobarPractico;
-// oForm.mod.addEventListener("click", aprobarPractico);
 
 function aprobarPractico(){
 	var valor = $("#matriculaPractico").val();
@@ -1006,6 +976,7 @@ function cargarComboGestionClases(){
 	// Creamos el select de coches del formulario Gestión de clases
 	$.post('php/selects/selectCoches.php', function(json) {
 		var oCoches = json.arrayCoches;
+		localStorage['coches'] = oCoches;
 		var oSelect = document.createElement("SELECT");
 		oSelect.setAttribute("id", "cocheClase");
 		oSelect.className="form-control";
@@ -1148,8 +1119,6 @@ function peticionAjax(sURL,sParametros){
 function procesarRespuesta(){
 	// TERCERO: procesar respuesta cuando llega
 	if (oAjax.readyState == 4 && oAjax.status == 200){
-		// JSON.parse cadena --> objeto
-		// JSON.stringify objeto --> cadena
 		 var oObjeto = JSON.parse(oAjax.responseText);
 		 
 		 switch(oObjeto.accion){
@@ -1226,7 +1195,6 @@ function listadoMatriculaConValores(){
  	var oForm = document.formu_busquedaAvanzadaMatricula;
 
  	var sClave = oForm.busquedaMatriculaClave.value.trim();
-	
  	var sValor = oForm.busquedaMatriculaValor.value.trim();
 
  	if (sClave == "Seleccione clave") {
@@ -1333,6 +1301,7 @@ function verComentarios(url,parametros){
 	}
 	
 	if(parametros != null){
+		
 		conexion1 = inicializa_xhr();
 		conexion1.open("POST",url,true);
 		conexion1.onreadystatechange = procesarEventos;
@@ -1359,8 +1328,8 @@ function procesarEventos(){
 		var titulo = "";
 		var bOk = true;
 		if(tipo == "JSON"){
-			//console.log(conexion1.responseText);
 			datos=JSON.parse(conexion1.responseText);
+			
 			titulo = datos["mensaje"];
 			if(datos["resultado"].length == 0){
 				salida += "<h2>Sin resultados<h2>";
@@ -1430,7 +1399,6 @@ function procesarEventos(){
 			salida += "</table>";
 		}
 		
-		//detalles.innerHTML = salida;
 		$(".container").remove("#capa");
 		var capa = $("#capa").addClass("table-responsive").css("display","block").html(salida);
 		$(".container").append(capa);
@@ -1439,11 +1407,5 @@ function procesarEventos(){
 		$(".container").remove("#capa");
 		var capa = $("#capa").addClass("table-responsive").css("display","block").text('Cargando...');
 		$(".container").append(capa);
-		//detalles.innerHTML = 'Cargando...';
 	}
 }
-
-
-
-//document.getElementById("btnListadoClases").addEventListener("click", listadoClases);
-//document.formu_busquedaAvanzadaClase.buscar.addEventListener("click", listadoClasesConValores);

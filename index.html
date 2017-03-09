@@ -50,8 +50,8 @@
 		  				<label><input type="radio" name="persona" value="cliente">Cliente</label>
 					</div>
 			   	</div>
-			   	<input name="añadir" type="button" class="btn btn-default" value="Alta persona">
-			   	<input name="mod" type="button" class="btn btn-default" value="Modificación cliente">
+			   	<input name="añadir" type="button" class="btn btn-default" value="Alta Persona">
+			   	<input name="mod" type="button" class="btn btn-default" value="Modificación Persona">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de gestion de matriculas -->
@@ -81,14 +81,6 @@
 				<h3>Gestión de coches</h3><br>
 			    <div class="form-group">
 			    	<div id="capaFormuDinamico"></div>
-			      	<!-- <label>Matrícula</label>
-			    	<input type="text" class="form-control" name="matriculaCoche" placeholder="Matrícula del Coche">
-			    	<br>
-			      	<label>Marca</label>
-			      	<input type="text" class="form-control" name="marcaCoche" placeholder="Marca del Coche">
-			    	<br>
-			    	<label>Modelo</label>
-			    	<input type="text" class="form-control" name="modeloCoche" placeholder="Modelo del Coche"> -->
 			   	</div>
 			   	<input name="añadir" type="button" class="btn btn-default" value="Alta coche">
 			   	<input name="baja" type="button" class="btn btn-default" value="Baja coche">
@@ -120,7 +112,7 @@
 			    	<br>
 			    	<div id="comboClientesClase"><label>Seleccione el cliente</label></div>
 			   	</div>
-			   	<input name="añadir" type="button" class="btn btn-default" value="Dar de alta">
+			   	<input name="añadir" type="button" class="btn btn-default" value="Alta clase">
 			   	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
 			<!-- Formulario de aprobar teórico -->
@@ -145,33 +137,6 @@
 			   	<input type="button" name="mod" class="btn btn-default" value="Aprobar Cliente">
 			  	<input type="reset" class="btn btn-default" value="Limpiar">
 			</form>
-			<!-- Formulario de matriculacion de cliente -->
-			<form name="formu_matricularCliente" id="formu_matricularCliente">
-				<h3>Matricular Cliente en Clase</h3><br>
-			    <div class="form-group">
-			      	<label>DNI Cliente</label>
-			      	<div id="comboClientesMatricularCliente"></div>
-			    	<br>
-			    	<label>ID Clases</label>
-			      	<div id="comboIdMatricularCliente"></div>
-			   	</div>
-			   	
-			   	<input type="button" name="mod" class="btn btn-default" value="Matricular Cliente">
-			  	<input type="reset" class="btn btn-default" value="Limpiar">
-			</form>
-			<!-- Formulario de asignar profesor -->
-			<form name="formu_asignarProfesor" id="formu_asignarProfesor">
-				<h3>Asignar Profesor a Clase</h3><br>
-			    <div class="form-group">
-			      	<label>DNI Profesor</label>
-			      	<div id="comboProfesoresAsignarProfesor"></div>
-			    	<br>
-			    	<label>ID Clases</label>
-			      	<div id="comboIdAsignarProfesor"></div>
-			   	</div>
-			   	<input type="button" name="mod" class="btn btn-default" value="Asignar Profesor">
-			  	<input type="reset" class="btn btn-default" value="Limpiar">
-			</form>
 			<!-- Formulario de busqueda avanzada por persona -->
 			<form name="formu_busquedaAvanzadaPersona" id="formu_busquedaAvanzadaPersona">
 				<h3>Busqueda Avanzada por Persona</h3><br>
@@ -186,7 +151,6 @@
       						<option>DIRECCION</option>
       						<option>TELEFONO</option>
       						<option>EMAIL</option>
-      						<option>TIPO</option>
   						</select>
 					</div>
 			    	<br>
